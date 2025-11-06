@@ -1,5 +1,5 @@
 
-<!--Creación del botón de menu-->
+<!--Creación del botón de menu-
 <div class="container">
     <mat-toolbar class="custom-toolbar">
         <button
@@ -11,7 +11,38 @@
         </button>
     </mat-toolbar>
     <mat-menu #menuUsuario="matMenu">
-        <button mat-menu-item routerLink="/listausuarios">Listar Usuarios</button>
+        <button mat-menu-item routerLink="/listausuarios">Usuarios</button>
+        <button mat-menu-item routerLink="/dispositivos">Dispositivos</button>
+        <button mat-menu-item routerLink="/foros">Foros</button>
     </mat-menu>
+</div>
+-->
+
+<!--Creación del botón de menú-->
+<div class="container">
+  <mat-toolbar class="custom-toolbar">
+    <button
+      mat-button
+      class="btn-rojo"
+      aria-label="Botón de menú principal"
+      [matMenuTriggerFor]="menuUsuario">
+      <mat-icon>menu</mat-icon> EcoHabit
+    </button>
+  </mat-toolbar>
+
+  <!-- Menú principal -->
+  <mat-menu #menuUsuario="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="submenuUsuarios">
+      Usuarios
+    </button>
+    <button mat-menu-item routerLink="/dispositivos">Dispositivos</button>
+    <button mat-menu-item routerLink="/foros">Foros</button>
+  </mat-menu>
+
+  <!-- Submenú de Usuarios -->
+  <mat-menu #submenuUsuarios="matMenu">
+    <button mat-menu-item routerLink="/listausuarios">Listar</button>
+    <button mat-menu-item routerLink="/registrarusuario">Registrar</button>
+  </mat-menu>
 </div>
 
