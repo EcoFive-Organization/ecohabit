@@ -9,6 +9,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withFetch()) // Linra nueva :v
+    provideHttpClient(withFetch()) // Linea nueva :v
   ]
 };

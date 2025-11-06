@@ -1,0 +1,17 @@
+
+<!--Creación del botón de menu-->
+<div class="container">
+    <mat-toolbar class="custom-toolbar">
+        <button
+        matButton
+        class="btn-rojo"
+        aria-label="Example icon-button with menu icon"
+        [matMenuTriggerFor]="menuUsuario">
+            <mat-icon>menu</mat-icon> EcoHabit
+        </button>
+    </mat-toolbar>
+    <mat-menu #menuUsuario="matMenu">
+        <button mat-menu-item routerLink="/listausuarios">Listar Usuarios</button>
+    </mat-menu>
+</div>
+
