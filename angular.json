@@ -26,7 +26,11 @@
             ],
             "styles": [
               "src/custom-theme.scss",
-              "src/styles.css"
+              "src/styles.css",
+              "public/assets/styles/styles.css"
+            ],
+            "scripts": [
+              
             ]
           },
           "configurations": {

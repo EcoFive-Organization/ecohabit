@@ -35,6 +35,7 @@
     <button mat-menu-item [matMenuTriggerFor]="submenuUsuarios">
       Usuarios
     </button>
+<<<<<<< HEAD
     <button mat-menu-item [matMenuTriggerFor]="submenuForos">
       Foros
     </button>
@@ -42,12 +43,17 @@
       Billeteras
     </button>
     
+=======
+    <button mat-menu-item routerLink="/dispositivos">Dispositivos</button>
+    <button mat-menu-item routerLink="/foros">Foros</button>
+    <button mat-menu-item routerLink="/">Landing Page</button>
+>>>>>>> c5d99a63854431d8e1d42aa7a38286b8519b7c53
   </mat-menu>
 
   <!-- Submenú de Usuarios -->
   <mat-menu #submenuUsuarios="matMenu">
     <button mat-menu-item routerLink="/listausuarios">Listar</button>
-    <button mat-menu-item routerLink="/registrarusuario">Registrar</button>
+    <button mat-menu-item routerLink="/listausuarios/registrousuario">Registrar</button>
   </mat-menu>
 
   <!-- Submenú de Foro -->

@@ -1,0 +1,334 @@
+<header>
+  <!-- Barra de navegación -->
+  <nav>
+    <img src="assets/images/icono_ecohabit.png" alt="Icono EcoHabit" id="icono" />
+    <div class="hamburguesa" onclick="toggleMenu()">☰</div>
+    <ul>
+      <li><a href="#seccion-inicio">Inicio</a></li>
+      <li><a href="#seccion-servicios">Servicios</a></li>
+      <li><a href="#seccion-nosotros">Quienes Somos</a></li>
+      <li><a href="#seccion-contacto">Contacto</a></li>
+      <li><a href="#seccion-descargar">Descargar</a></li>
+      <li><a href="#" class="registro" id="registrarse">Registrarse</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!--Modal Registrarse-->
+  <div id="registro_modal" class="modal">
+    <div class="contenido_modal">
+      <span class="cerrar">&times;</span>
+      <h2>Registrarse</h2>
+      <form id="registro_form">
+        <label for="nombre">Nombres y Apellidos:</label>
+        <input type="text" id="nombre" name="nombre" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="pais">Pais:</label>
+        <input type="text" id="pais" name="pais" required />
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required />
+
+        <label for="genero">Género:</label>
+        <select name="genero|" id="genero" required>
+          <option value="masculino">Masculino</option>
+          <option value="femenino">Femenino</option>
+          <option value="otro">Otro</option>
+        </select>
+        <br />
+        <button type="submit">Confirmar Registro</button>
+        <h3>
+          ¿Ya te haz registrado? <a href="#" class="login" id="iniciar_sesion">Iniciar Sesión</a>
+        </h3>
+      </form>
+    </div>
+  </div>
+
+  <!--Modal Login-->
+  <div id="login_contenedor" class="modal_login">
+    <div class="contenido_login">
+      <span class="cerrar_login">&times;</span>
+      <h2>Iniciar Sesión</h2>
+      <form id="login_form">
+        <label for="nombre">Nombre de usuario:</label>
+        <input type="text" id="usuario" name="usuario" required />
+
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" required />
+
+        <button type="submit">Iniciar Sesión</button>
+      </form>
+    </div>
+  </div>
+
+  <!--Primera sección -->
+  <section class="banner" id="seccion-inicio">
+    <div class="fila_1">
+      <div class="bienvenida">
+        <h1>Bienvenido a EcoHabit</h1>
+        <p>Monitorea tu huella ecológica y adopta hábitos sostenibles con EcoHabit</p>
+      </div>
+      <div class="img_planta">
+        <img src="assets/images/planta.png" alt="Pie Planta" />
+      </div>
+    </div>
+    <div class="fila_2" id="seccion-descargar">
+      <div class="img_pie_planta">
+        <img src="assets/images/pie_planta.png" alt="Planta" />
+      </div>
+      <div class="botones_descarga">
+        <a href="#" class="boton_android">Descargar para Android</a>
+        <a href="#" class="boton_ios">Descargar para iOS</a>
+      </div>
+    </div>
+  </section>
+  <!--Acaba la primera sección-->
+
+  <!-- Sección Servicios -->
+  <section class="servicios" id="seccion-servicios">
+    <div class="titulo_servicios">
+      <h2>Servicios</h2>
+    </div>
+    <div class="subservicios">
+      <div class="serviciox">
+        <h3>Comunidad</h3>
+        <img src="assets/images/img_comunidad.png" alt="Comunidad de EcoHabit" id="img_comunidad" />
+        <p>
+          En EcoHabit, la comunidad es el corazón de nuestra aplicación. Conéctate con otros
+          usuarios, comparte tus logros y aprende nuevas formas de vivir de manera más sostenible.
+          Juntos, podemos hacer una gran diferencia.
+        </p>
+      </div>
+      <div class="serviciox">
+        <h3>Desafíos</h3>
+        <img src="assets/images/img_desafios.png" alt="Desafíos de EcoHabit" />
+        <p>
+          En EcoHabit, ofrecemos retos diarios para ayudarte a reducir tu huella ecológica de manera
+          divertida. Compite y colabora con la comunidad mientras adoptas hábitos sostenibles.
+        </p>
+      </div>
+      <div class="serviciox">
+        <h3>Preguntas Frecuentes</h3>
+        <img
+          src="assets/images/img_preguntas_frecuentes.png"
+          alt="Preguntas Frecuentes de EcoHabit"
+        />
+        <p>
+          ¿Tienes dudas sobre EcoHabit? Nuestra sección de Preguntas Frecuentes está diseñada para
+          proporcionarte respuestas rápidas y claras a las consultas más comunes.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- Acaba la sección Servicios -->
+
+  <!--Sección Nosotros-->
+  <section class="nosotros" id="seccion-nosotros">
+    <div class="titulo_nosotros">
+      <h2>Nosotros</h2>
+    </div>
+
+    <div class="videos">
+      <div class="video">
+        <h2>About the Team</h2>
+        <iframe
+          width="400"
+          height="270"
+          src="https://www.youtube.com/embed/r1gbxvJniWs?si=EkiB79hsnRcoXm0f"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="video">
+        <h2>About the Product</h2>
+        <iframe
+          width="400"
+          height="270"
+          src="https://www.youtube.com/embed/fIle4ehsj94?si=TirW8vZqNARjflPN"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="subnosotros">
+      <div class="img_izquierda">
+        <img src="assets/images/hoja_lluviosa.png" alt="Hoja con gotas de lluvia" />
+      </div>
+      <div class="texto">
+        <div class="texto_equipo">
+          <p>
+            EcoFive es un equipo multidisciplinario de estudiantes de la Universidad Peruana de
+            Ciencias Aplicadas (UPC), comprometidos con el desarrollo de soluciones tecnológicas
+            para promover la sostenibilidad ambiental. Su proyecto principal, EcoHabit, busca
+            facilitar la adopción de hábitos sostenibles mediante una plataforma intuitiva que
+            permite a los usuarios gestionar su huella ecológica diaria. <br />
+          </p>
+        </div>
+        <div class="texto_producto">
+          <p>
+            <br /><br />
+            EcoHabit es una aplicación desarrollada por EcoFive que permite a las personas gestionar
+            su huella ecológica diaria de manera personalizada y efectiva. Esta solución tiene como
+            objetivo ayudar a los usuarios a monitorear su consumo de recursos, como agua,
+            electricidad y alimentos, integrándose con dispositivos inteligentes del hogar para
+            ofrecer datos en tiempo real. Además, EcoHabit fomenta la adopción de hábitos
+            sostenibles a través de retos diarios y comparativas con la comunidad, promoviendo un
+            estilo de vida más ecológico. Como valor agregado, EcoHabit está comprometida con la
+            educación ambiental, guiando a las personas en su camino hacia una vida más sostenible y
+            reduciendo su impacto ambiental.
+          </p>
+        </div>
+      </div>
+      <div class="img_derecha">
+        <img src="assets/images/palma_hoja.png" alt="Palma de una mano con una hoja" />
+      </div>
+    </div>
+
+    <div class="logo_ecohabit">
+      <img src="assets/images/logo_ecohabit_grande.png" alt="Logo EcoHabit" />
+    </div>
+  </section>
+  <!--Acaba la sección Nosotros -->
+
+  <!--Sección Preguntas Frecuentes-->
+  <section class="preguntas">
+    <div class="titulo_preguntas">
+      <h2>Preguntas Frecuentes</h2>
+    </div>
+    <div class="pregunta">
+      <h3>¿Porque debería instalar su app? y ¿Que beneficios me ofrece?</h3>
+      <details class="respuesta">
+        <summary>Click para desplegar</summary>
+        <p>
+          Instalar EcoHabit te permitirá gestionar tu huella ecológica diaria de manera
+          personalizada y efectiva. La aplicación ofrece numerosos beneficios, como el monitoreo en
+          tiempo real de tu consumo de recursos, incluyendo agua, electricidad y alimentos. Además,
+          fomenta la adopción de hábitos sostenibles a través de retos diarios y comparativas con la
+          comunidad, lo que te ayudará a llevar un estilo de vida más ecológico. EcoHabit también
+          tiene un fuerte componente educativo, guiándote en el camino hacia una vida más sostenible
+          y ayudándote a reducir tu impacto ambiental. La integración con dispositivos inteligentes
+          del hogar te proporcionará datos precisos y actualizados, facilitando una gestión más
+          consciente y responsable de los recursos naturales.
+        </p>
+      </details>
+    </div>
+    <div class="pregunta">
+      <h3>¿Puedo conectar la app con todos mis dispositivos inteligentes o tiene algún limite?</h3>
+      <details class="respuesta">
+        <summary>Click para desplegar</summary>
+        <p>
+          EcoHabit está diseñada para integrarse con una amplia variedad de dispositivos
+          inteligentes del hogar. Sin embargo, la compatibilidad puede depender del tipo y la marca
+          de los dispositivos que tengas. Es recomendable verificar la lista de dispositivos
+          compatibles en la documentación de la app o en su sitio web oficial.
+        </p>
+      </details>
+    </div>
+    <div class="pregunta">
+      <h3>Puedo revisar en cualquier momento el registro del consumo?</h3>
+      <details class="respuesta">
+        <summary>Click para desplegar</summary>
+        <p>
+          Sí, puedes revisar el registro de tu consumo en cualquier momento. La app almacena los
+          datos de tu consumo de recursos y te permite acceder a ellos cuando lo necesites,
+          ofreciéndote una visión clara y detallada de tu huella ecológica a lo largo del tiempo.
+        </p>
+      </details>
+    </div>
+  </section>
+  <!--Acaba la sección Preguntas Frecuentes -->
+
+  <!--Sección Medios de Pago-->
+  <section class="medios_pago">
+    <div class="titulo_medios_pago">
+      <h2>Nuestros medios de pago</h2>
+      <p>Si la app es de tu agrado y quieres ayudarnos a mejorar podrías apoyarnos!</p>
+    </div>
+    <div class="tipos_pago">
+      <div class="yape">
+        <h3>Billeteras Digital (QR)</h3>
+        <img src="assets/images/logo_yape.png" alt="Billeteras QR Yape" />
+      </div>
+      <div class="plin">
+        <h3>&nbsp;</h3>
+        <img src="assets/images/logo_plin.png" alt="Billeteras QR Plin" />
+      </div>
+      <div class="tarjetas_paypal">
+        <h3>Tarjetas Débito/Crédito/Paypal</h3>
+        <img src="assets/images/logo_visa.png" alt="Tarjetas" />
+      </div>
+    </div>
+  </section>
+  <!--Acaba la sección de Medios de Pago-->
+
+  <!--Sección Contactos-->
+  <section class="contacto" id="seccion-contacto">
+    <div class="titulo_contacto">
+      <h2>Contacto</h2>
+      <p>¿Tienes alguna otra duda? ¡Contáctanos!</p>
+    </div>
+    <div class="contacto_contenido">
+      <div class="imagen_izquierda">
+        <img src="assets/images/img_contacto.png" alt="Contacto" />
+        <p>
+          Serás atendido por un especialista, el cual resolverá sus dudas y cualquier otro problema
+          que tenga.
+        </p>
+      </div>
+      <div class="formulario">
+        <h3>Formulario de Contacto</h3>
+        <form class="contacto_formulario">
+          <label></label>
+          <input type="text" name="nombre_apellidos" placeholder="Nombre y Apellidos" required />
+          <br />
+          <label></label>
+          <input type="email" name="email" placeholder="Correo Electrónico" required />
+          <br />
+          <label></label>
+          <textarea name="" id="" cols="30" rows="10" placeholder="Consulta"></textarea>
+          <br />
+          <label></label>
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    </div>
+  </section>
+  <!--Acaba sección Contactos-->
+
+  <!--Footer -->
+  <footer>
+    <div class="footer_main">
+      <div class="footer_a">
+        <ul>
+          <li><a href="#">Empresas Afiliadas</a></li>
+          <li><a href="#">Comunidad</a></li>
+          <li><a href="#">Publicidad</a></li>
+          <li><a href="#">Consultas</a></li>
+          <li><a href="#">Terminos y Condiciones</a></li>
+        </ul>
+      </div>
+      <div class="redes">
+        <h2>Redes Sociales</h2>
+        <img src="assets/images/logo_instagram.png" alt="Instagram" />
+        <img src="assets/images/logo_facebook.png" alt="Facebook" />
+        <img src="assets/images/logo_x.png" alt="X" />
+        <img src="assets/images/logo_whatsapp.png" alt="WhatsApp" />
+      </div>
+    </div>
+    <div class="copy">
+      <small>Copyright &copy; 2024 EcoHabit. Todos los derechos reservados</small>
+    </div>
+  </footer>
+  <!--Acaba la sección footer-->
+</main>
