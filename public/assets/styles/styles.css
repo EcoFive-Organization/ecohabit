@@ -15,7 +15,7 @@ html {
 /* Barra de navegación */
 header {
     width: 100%;
-    position: fixed;
+    position: sticky; /*Cambiar a fixed más adelante*/
     top: 0;
     z-index: 1000;
     background-color: #ECEFF1;
