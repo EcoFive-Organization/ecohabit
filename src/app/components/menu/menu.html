@@ -23,6 +23,9 @@
     <button mat-menu-item [matMenuTriggerFor]="submenuRecompensas">
       Recompensas
     </button>
+    <button mat-menu-item [matMenuTriggerFor]="submenuContenidoEducativo">
+      Contenido Educativo
+    </button>
   </mat-menu>
 
   <!-- Submenú de Usuarios -->
@@ -41,6 +44,12 @@
   <mat-menu #submenuRecompensas="matMenu">
     <button mat-menu-item routerLink="/listarrecompensa">Listar</button>
     <button mat-menu-item routerLink="/listarrecompensa/registrorecompensa">Registrar</button>
+  </mat-menu>
+
+  <!-- Submenú de Contenido Educativo -->
+  <mat-menu #submenuContenidoEducativo="matMenu">
+    <button mat-menu-item routerLink="/listarcontenidoeducativo">Listar</button>
+    <button mat-menu-item routerLink="/listarcontenidoeducativo/registrocontenidoeducativo">Registrar</button>
   </mat-menu>
 
 </div>
