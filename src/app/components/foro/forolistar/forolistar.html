@@ -21,6 +21,28 @@
         <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
       </ng-container>
 
+      <!-- Actualizar Column -->
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+        <td mat-cell *matCellDef="let element">
+          <button matButton [routerLink]="['edits', element.idForo]"> <!--Se captura el idUsuario para actualizar esa fila-->
+            <mat-icon>edit</mat-icon>
+            Actualizar
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Eliminar Column -->
+      <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <button matButton (click)="eliminar(element.idForo)" >
+            <mat-icon>delete</mat-icon>
+            Eliminar
+          </button>
+        </td>
+      </ng-container>
+
       <!-- Fila de encabezado -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <!-- Fila de contenido -->
