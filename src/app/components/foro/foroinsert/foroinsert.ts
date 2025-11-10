@@ -58,7 +58,7 @@ export class Foroinsert implements OnInit{
           });
         });
       }
-      this.router.navigate([`foros`])
+      this.router.navigate([`listarforos`])
   }
   init(){
     if (this.edicion) {

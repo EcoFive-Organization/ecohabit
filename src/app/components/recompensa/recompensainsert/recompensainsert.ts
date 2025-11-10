@@ -60,7 +60,7 @@ export class Recompensainsert implements OnInit{
           });
         });
       }
-      this.router.navigate([`foros`])
+      this.router.navigate([`listarrecompensa`])
   }
   init(){
     if (this.edicion) {
