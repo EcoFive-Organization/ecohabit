@@ -6,6 +6,7 @@ import { Usuarioinsert } from './components/usuario/usuarioinsert/usuarioinsert'
 import { Foroinsert } from './components/foro/foroinsert/foroinsert';
 import { Recompensainsert } from './components/recompensa/recompensainsert/recompensainsert';
 import { Recompensa } from './components/recompensa/recompensa';
+import { Plansuscripcion } from './components/plansuscripcion/plansuscripcion';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -29,5 +30,6 @@ export const routes: Routes = [
             // Los dos puntos indican que es una variable
             {path: 'edits/:id', component: Recompensainsert}
         ]
-    }
+    },
+    {path:'listarplansuscripcion', component:Plansuscripcion}
 ];

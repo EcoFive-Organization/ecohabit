@@ -15,7 +15,7 @@ export class Recompensaservice {
 
   constructor(private http: HttpClient){}
   
-  //listar foros
+  //listar recompensas
   list(){
     return this.http.get<Recompensa[]>(this.url)
   }
