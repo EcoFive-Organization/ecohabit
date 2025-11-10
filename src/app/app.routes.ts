@@ -7,6 +7,8 @@ import { Foroinsert } from './components/foro/foroinsert/foroinsert';
 import { Recompensainsert } from './components/recompensa/recompensainsert/recompensainsert';
 import { Recompensa } from './components/recompensa/recompensa';
 import { Plansuscripcion } from './components/plansuscripcion/plansuscripcion';
+import { Contenidoeducativo } from './components/contenidoeducativo/contenidoeducativo';
+import { Contenidoeducativoinsert } from './components/contenidoeducativo/contenidoeducativoinsert/contenidoeducativoinsert';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -29,6 +31,12 @@ export const routes: Routes = [
             {path: 'registrorecompensa', component: Recompensainsert},
             // Los dos puntos indican que es una variable
             {path: 'edits/:id', component: Recompensainsert}
+        ]
+    },
+    {path: 'listarcontenidoeducativo', component: Contenidoeducativo,
+        children: [
+            {path: 'registrocontenidoeducativo', component: Contenidoeducativoinsert},
+            {path: 'edits/:id', component: Contenidoeducativoinsert}
         ]
     },
     {path:'listarplansuscripcion', component:Plansuscripcion}
