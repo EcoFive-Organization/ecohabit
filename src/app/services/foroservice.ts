@@ -36,8 +36,8 @@ export class Foroservice {
     return this.http.get<Foro>(`${this.url}/${id}`);
   }
 
-  update(s: Foro) {
-    return this.http.put(`${this.url}`, s, { responseType: `text` });
+  update(f: Foro) {
+    return this.http.put(`${this.url}`, f, { responseType: `text` });
   }
 
   delete(id: number) {

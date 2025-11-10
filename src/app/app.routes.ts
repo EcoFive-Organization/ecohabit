@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
 import { Usuario } from './components/usuario/usuario';
-//<<<<<<< HEAD
 import { Foro } from './components/foro/foro';
 import { Home } from './components/home/home';
 import { Usuarioinsert } from './components/usuario/usuarioinsert/usuarioinsert';
 import { Foroinsert } from './components/foro/foroinsert/foroinsert';
+import { Recompensainsert } from './components/recompensa/recompensainsert/recompensainsert';
+import { Recompensa } from './components/recompensa/recompensa';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -20,6 +21,13 @@ export const routes: Routes = [
             {path: 'registroforo', component: Foroinsert},
             // Los dos puntos indican que es una variable
             {path: 'edits/:id', component: Foroinsert}
+        ]
+    },
+    {path: 'listarrecompensa', component: Recompensa,
+        children: [
+            {path: 'registrorecompensa', component: Recompensainsert},
+            // Los dos puntos indican que es una variable
+            {path: 'edits/:id', component: Recompensainsert}
         ]
     }
 ];
