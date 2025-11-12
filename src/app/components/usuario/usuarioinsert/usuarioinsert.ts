@@ -1,97 +1,124 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
-  ReactiveFormsModule,
+  ReactiveFormsModule, // Importante para formularios
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Usuario } from '../../../models/Usuario';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router'; // Importar RouterLink
 import { Usuarioservice } from '../../../services/usuarioservice';
+import { MatCardModule } from '@angular/material/card'; // Importar Card
+import { MatIconModule } from '@angular/material/icon'; // Importar Icon
+import { CommonModule } from '@angular/common'; // Importar CommonModule (para *ngIf)
+
+// --- Validador personalizado ---
+// (Puedes poner esto al final del archivo, fuera de la clase)
+export function passwordMatchValidator(
+  control: AbstractControl
+): ValidationErrors | null {
+  const password = control.get('contrasenia')?.value;
+  const confirmPassword = control.get('confirmarContrasenia')?.value;
+  // Si las contraseñas no coinciden, devuelve un error
+  return password === confirmPassword ? null : { passwordMismatch: true };
+}
+// -----------------------------
 
 @Component({
   selector: 'app-usuarioinsert',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  standalone: true, // Componente standalone
+  imports: [
+    CommonModule, // Necesario para directivas como *ngIf
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule, // Módulo para la tarjeta
+    MatIconModule, // Módulo para los iconos (ojo de contraseña)
+    RouterLink, // Módulo para routerLink (enlaces de navegación)
+  ],
   templateUrl: './usuarioinsert.html',
-  providers: [provideNativeDateAdapter()],
   styleUrl: './usuarioinsert.css',
 })
 export class Usuarioinsert implements OnInit {
   form: FormGroup = new FormGroup({});
   usuario: Usuario = new Usuario();
-
-  edicion: boolean = false; // para la logica de actualización de datos
-  id: number = 0; // para almacenar el id del usuario a editar
+  hidePassword = true; // Para el toggle de contraseña
+  hideConfirmPassword = true; // Para el toggle de confirmar contraseña
 
   constructor(
     private usuarioService: Usuarioservice,
     private router: Router,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((data: Params) => {
-      // de la ruta edits/:id que llega (está en app routes.ts) que capture el id
-      this.id = data['id'];
-
-      this.edicion = data['id'] != null; // si hay id, estamos en edición
-
-      this.init();
-    });
-
-    this.form = this.formBuilder.group({
-      codigo: [''],
-      nombre: ['', Validators.required],
-      email: ['', Validators.required],
-      contrasenia: ['', Validators.required],
-    });
+    this.form = this.formBuilder.group(
+      {
+        // 1. Campo 'nombre' añadido
+        nombre: ['', Validators.required],
+        
+        // 2. Campo 'email' con validación
+        email: ['', [Validators.required, Validators.email]],
+        
+        // 3. Campo 'contrasenia' con validaciones complejas
+        contrasenia: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/), // Requiere 1 mayúscula y 1 número
+          ],
+        ],
+        
+        // 4. Campo 'confirmarContrasenia'
+        confirmarContrasenia: ['', Validators.required],
+      },
+      {
+        // 5. Validador a nivel de grupo para comparar contraseñas
+        validators: passwordMatchValidator,
+      }
+    );
   }
 
   aceptar(): void {
     if (this.form.valid) {
-      this.usuario.idUsuario = this.form.value.codigo;
+      // Asignamos los valores del formulario al objeto usuario
       this.usuario.nombre = this.form.value.nombre;
       this.usuario.email = this.form.value.email;
       this.usuario.passwordHash = this.form.value.contrasenia;
+      // this.usuario.enabled = true; // (Ya está por defecto en tu modelo)
 
-      // Si edicion es true llama al metodo update, si no va a registrar
-      if (this.edicion) {
-        // Insertar soft y setearlo en la lista
-        this.usuarioService.update(this.usuario).subscribe((data) => {
-          this.usuarioService.list().subscribe((data) => {
-            this.usuarioService.setList(data);
-          });
+      // Lógica de solo INSERCIÓN
+      this.usuarioService.insert(this.usuario).subscribe((data) => {
+        this.usuarioService.list().subscribe((data) => {
+          this.usuarioService.setList(data);
         });
-      } else {
-        // Insertar soft y setearlo en la lista
-        this.usuarioService.insert(this.usuario).subscribe((data) => {
-          this.usuarioService.list().subscribe((data) => {
-            this.usuarioService.setList(data);
-          });
-        });
-      }
-
-      // Una vez inserta redirige a la lista de softwares, se ingresa la ruta a donde quieres que navegue
-      this.router.navigate(['listausuarios']);
+        // Redirige al login (ruta vacía) después del registro
+        this.router.navigate(['/']); 
+      });
+    } else {
+      // Opcional: marca todos los campos como "tocados" para mostrar errores
+      this.form.markAllAsTouched();
     }
   }
 
-  init() {
-    if (this.edicion) {
-      this.usuarioService.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.idUsuario),
-          nombre: new FormControl(data.nombre),
-          email: new FormControl(data.email),
-          contrasenia: new FormControl(data.passwordHash),
-        });
-      });
-    }
+  // --- Getters para facilitar la validación en el HTML ---
+  get nombre() {
+    return this.form.get('nombre');
+  }
+  get email() {
+    return this.form.get('email');
+  }
+  get password() {
+    return this.form.get('contrasenia');
+  }
+  get confirmPassword() {
+    return this.form.get('confirmarContrasenia');
   }
 }

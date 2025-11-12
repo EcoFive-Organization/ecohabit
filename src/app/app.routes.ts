@@ -11,7 +11,8 @@ import { Contenidoeducativo } from './components/contenidoeducativo/contenidoedu
 import { Contenidoeducativoinsert } from './components/contenidoeducativo/contenidoeducativoinsert/contenidoeducativoinsert';
 
 export const routes: Routes = [
-    { path: '', component: Home },
+    { path: '', component: Home},
+    { path: 'registrousuario', component: Usuarioinsert },
     { path: 'listausuarios', component: Usuario,
         children: [
             {path: 'registrousuario', component: Usuarioinsert},
