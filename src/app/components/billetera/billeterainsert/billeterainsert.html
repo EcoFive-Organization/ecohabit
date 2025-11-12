@@ -1,0 +1,57 @@
+<div class="container">
+  <br />
+  <div class="titulo"><h2>Registro de Billeteras</h2></div>
+  <br />
+  <div>
+    <form [formGroup]="form" (submit)="aceptar()">
+      <!--Si edicion está en true que se muestre el campo ID, si es false no se muestra (osea para registrar, no actualizar)-->
+      @if(edicion) {
+      <mat-form-field>
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" readonly />
+        <!--readonly para bloquear la caja de texto, el id no debe ser modificado-->
+      </mat-form-field>
+      }
+      <br />
+
+      <!--Usuario Column-->
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Usuario:</mat-label>
+          <mat-select formControlName="usuarioL" required>
+            @for (p of listaUsuarios; track p.idUsuario) {
+            <mat-option [value]="p.idUsuario">
+              {{ p.nombre }}
+            </mat-option>
+            }
+          </mat-select>
+
+          @if (form.get('usuarioL')?.hasError('required')) {
+          <mat-error>El campo tipo es obligatorio.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <br />
+
+      <!--Descripcion Column-->
+      <mat-form-field>
+        <mat-label>Saldo</mat-label>
+        <input matInput formControlName="saldo" />
+        <mat-error>
+          @if (form.get('saldo')?.hasError('required')) { El Saldo es obligatorio!!!! }
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <!--Si edicion es true que se muestre el botón Actualizar, si no se muestra el de registrar-->
+      @if(edicion) {
+      <div class="botonenviar">
+        <button matButton="elevated">Actualizar</button>
+      </div>
+      } @else {
+      <div class="botonenviar">
+        <button matButton="elevated">Registrar</button>
+      </div>
+      }
+    </form>
+  </div>
+</div>

@@ -9,6 +9,8 @@ import { Recompensa } from './components/recompensa/recompensa';
 import { Plansuscripcion } from './components/plansuscripcion/plansuscripcion';
 import { Contenidoeducativo } from './components/contenidoeducativo/contenidoeducativo';
 import { Contenidoeducativoinsert } from './components/contenidoeducativo/contenidoeducativoinsert/contenidoeducativoinsert';
+import { Billetera } from './components/billetera/billetera';
+import { Billeterainsert } from './components/billetera/billeterainsert/billeterainsert';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -39,5 +41,10 @@ export const routes: Routes = [
             {path: 'edits/:id', component: Contenidoeducativoinsert}
         ]
     },
-    {path:'listarplansuscripcion', component:Plansuscripcion}
+    {path:'listarplansuscripcion', component:Plansuscripcion},
+    {path:'listarbilleteras', component:Billetera,
+        children:[
+            {path: 'registrobilleteras', component: Billeterainsert},
+            {path: 'edits/:id', component: Billeterainsert}]
+    }
 ];
