@@ -1,52 +1,36 @@
 <div>
   <h2>Lista de Foros</h2>
-  <div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <!-- Id Column -->
-      <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> Id Foro </th>
-        <td mat-cell *matCellDef="let element"> {{element.idForo}} </td>
-      </ng-container>
+  <div class="card-container">
 
-      <!-- Titulo Column -->
-      <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef> Titulo </th>
-        <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
-      </ng-container>
+    <mat-card *ngFor="let element of dataSource" class="mat-elevation-z8 foro-card">
 
-      <!-- Descripcion Column -->
-      <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
-        <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
-      </ng-container>
+      <mat-card-header>
+        <mat-card-title>{{element.titulo}}</mat-card-title>
+        <mat-card-subtitle>ID: {{element.idForo}}</mat-card-subtitle>
+      </mat-card-header>
 
-      <!-- Actualizar Column -->
-      <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
-        <td mat-cell *matCellDef="let element">
-          <button matButton [routerLink]="['edits', element.idForo]"> <!--Se captura el idUsuario para actualizar esa fila-->
-            <mat-icon>edit</mat-icon>
-            Actualizar
-          </button>
-        </td>
-      </ng-container>
+      <mat-card-content>
+        <p>{{element.descripcion}}</p>
+      </mat-card-content>
 
-      <!-- Eliminar Column -->
-      <ng-container matColumnDef="c5">
-        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-        <td mat-cell *matCellDef="let element">
-          <button matButton (click)="eliminar(element.idForo)" >
-            <mat-icon>delete</mat-icon>
-            Eliminar
-          </button>
-        </td>
-      </ng-container>
+      <mat-card-actions align="end">
+        <button mat-button [routerLink]="['edits', element.idForo]">
+          <mat-icon>edit</mat-icon>
 
-      <!-- Fila de encabezado -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <!-- Fila de contenido -->
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        </button>
+        <button mat-button color="warn" (click)="eliminar(element.idForo)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+
   </div>
+
+  <!-- Mensaje cuando no hay datos -->
+  <div *ngIf="!dataSource || dataSource.length === 0" class="no-data-message">
+    No hay foros para mostrar.
+  </div>
+
 </div>

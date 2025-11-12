@@ -1,12 +1,39 @@
-table {
-    width: 100%;
-    margin: 30px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.card-container {
+  display: flex; /* Activa Flexbox */
+  flex-wrap: wrap; /* Permite que las tarjetas pasen a la siguiente línea */
+  gap: 16px; /* Espacio entre tarjetas */
+  padding: 16px; /* Espacio alrededor del contenedor */
+  justify-content: center; /* Opcional: centra las tarjetas */
+}
+
+.foro-card {
+  /* Define un tamaño base y permite que crezcan.
+    'flex: 1 1 300px' significa:
+    - flex-grow: 1 (que crezca para ocupar espacio)
+    - flex-shrink: 1 (que se encoja si es necesario)
+    - flex-basis: 300px (que su tamaño base sea 300px)
+  */
+  flex: 1 1 300px;
+  min-width: 280px; /* Ancho mínimo antes de que se rompa */
+  max-width: 400px; /* Ancho máximo */
+}
+
+.no-data-message {
+  text-align: center;
+  padding: 24px;
+  font-style: italic;
+  color: #777;
 }
 
 h2 {
     text-align: center;
-    margin-top: 20px;
-    font-size: 32px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 20px auto;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
 }
+
+.mat-icon {
+    margin: 0 auto;
+    font-size: 20px;
+}
+
