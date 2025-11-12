@@ -88,22 +88,40 @@ export class Usuarioinsert implements OnInit {
 
   aceptar(): void {
     if (this.form.valid) {
-      // Asignamos los valores del formulario al objeto usuario
-      this.usuario.nombre = this.form.value.nombre;
-      this.usuario.email = this.form.value.email;
-      this.usuario.passwordHash = this.form.value.contrasenia;
-      // this.usuario.enabled = true; // (Ya está por defecto en tu modelo)
+      
+      // *** ¡LA SOLUCIÓN ESTÁ AQUÍ! ***
+      // 1. NO uses this.usuario. Crea un objeto payload limpio.
+      // Este objeto NO tiene 'idUsuario', por lo que Hibernate
+      // sabrá que debe hacer un INSERT (crear uno nuevo).
+      const payload = {
+        nombre: this.form.value.nombre,
+        email: this.form.value.email,
+        passwordHash: this.form.value.contrasenia,
+        enabled: true // Asegúrate de que tu backend acepte esto
+      };
 
-      // Lógica de solo INSERCIÓN
-      this.usuarioService.insert(this.usuario).subscribe((data) => {
-        this.usuarioService.list().subscribe((data) => {
-          this.usuarioService.setList(data);
-        });
-        // Redirige al login (ruta vacía) después del registro
-        this.router.navigate(['/']); 
+      // 2. Envía el payload nuevo. 
+      // Usamos 'payload as Usuario' para que coincida con el tipo de tu servicio.
+      this.usuarioService.insert(payload as Usuario).subscribe({
+        
+        // 3. (Opcional) Manejo moderno de .subscribe
+        next: (data) => {
+          console.log("Usuario registrado:", data);
+          this.usuarioService.list().subscribe((data) => {
+            this.usuarioService.setList(data);
+          });
+          // Redirige al login (ruta vacía) después del registro
+          this.router.navigate(['/']); 
+        },
+        error: (err) => {
+          // Esto es útil si el backend te devuelve un error (ej. email duplicado)
+          console.error("Error durante el registro:", err);
+          // Aquí podrías añadir una notificación al usuario
+        }
       });
+
     } else {
-      // Opcional: marca todos los campos como "tocados" para mostrar errores
+      // Marca todos los campos como "tocados" para mostrar todos los errores
       this.form.markAllAsTouched();
     }
   }

@@ -115,32 +115,29 @@
 /* Hace que los campos de formulario ocupen todo el ancho */
 .full-width-field {
   width: 100%;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1.2rem;
 }
 
 /* Estilo del botón de registro */
-.register-button {
+button.register-button {
   width: 100%;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   padding: 1.75rem 0; 
   margin-top: 1rem;
-  
-  /* Color Verde Principal de tus Guidelines */
   background-color: #5FB963;
   color: white;
-  
   transition: background-color 0.3s ease;
 }
 
 /* Hover del botón (Verde Oscuro de tus Guidelines) */
-.register-button:not(:disabled):hover {
+button.register-button:not(:disabled):hover {
   background-color: #388E3C;
 }
 
 /* Estado deshabilitado del botón (como el del mockup) */
-.register-button:disabled {
+button.register-button:disabled {
   background-color: #e0e0e0; /* Gris claro */
   color: #a0a0a0;
   cursor: not-allowed;

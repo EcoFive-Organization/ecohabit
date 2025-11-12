@@ -12,6 +12,7 @@ import { Contenidoeducativoinsert } from './components/contenidoeducativo/conten
 
 export const routes: Routes = [
     { path: '', component: Home},
+    // Esta es ahora una ruta principal y reemplazará la página Home
     { path: 'registrousuario', component: Usuarioinsert },
     { path: 'listausuarios', component: Usuario,
         children: [
