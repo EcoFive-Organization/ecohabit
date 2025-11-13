@@ -9,7 +9,8 @@ import { Recompensa } from './components/recompensa/recompensa';
 import { Plansuscripcion } from './components/plansuscripcion/plansuscripcion';
 import { Contenidoeducativo } from './components/contenidoeducativo/contenidoeducativo';
 import { Contenidoeducativoinsert } from './components/contenidoeducativo/contenidoeducativoinsert/contenidoeducativoinsert';
-import { Menu } from './components/menu/menu';
+import { Dispositivoinsert } from './components/dispositivo/dispositivoinsert/dispositivoinsert';
+import { Dispositivo } from './components/dispositivo/dispositivo';
 
 export const routes: Routes = [
     {path: 'menu', component: Menu},
@@ -43,5 +44,12 @@ export const routes: Routes = [
             {path: 'edits/:id', component: Contenidoeducativoinsert}
         ]
     },
-    {path:'listarplansuscripcion', component:Plansuscripcion}
+    {path:'listarplansuscripcion', component:Plansuscripcion},
+
+    {path: 'listadispositivo', component: Dispositivo,
+        children : [
+            {path: 'registrodispositivo', component: Dispositivoinsert},
+            {path: 'edits/:id', component: Dispositivoinsert}
+        ]
+    }
 ];

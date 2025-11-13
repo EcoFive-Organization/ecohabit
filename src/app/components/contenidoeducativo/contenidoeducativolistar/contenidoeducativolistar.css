@@ -1,12 +1,69 @@
-table {
-    width: 100%;
-    margin: 30px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+h2 {
+  text-align: center;
+  margin: 20px auto;
+  font-size: 32px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-h2 {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 32px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.card-container {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 16px; 
+  padding: 16px; 
+  justify-content: center;
+}
+
+.contenido-card {
+  flex: 1 1 300px; 
+  min-width: 280px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenido-card mat-card-content {
+  flex-grow: 1; /* 1. Esto hace que la sección de contenido crezca */
+ 
+  /* --- NUEVO: HACEMOS LA SECCIÓN DE CONTENIDO UN CONTENEDOR FLEX --- */
+  display: flex;         /* 2. Lo convertimos en contenedor flex */
+  flex-direction: column; /* 3. Con dirección vertical */
+  margin-top: 15px;
+}
+
+/* --- NUEVO: HACEMOS QUE EL PÁRRAFO DE DESCRIPCIÓN CREZCA --- */
+.contenido-card mat-card-content p {
+  flex-grow: 1; /* 4. Hacemos que el párrafo ocupe el espacio */
+  /* (Esto empuja el botón "Ir al contenido" hacia abajo) */
+}
+
+
+.no-data-message {
+  text-align: center;
+  padding: 24px;
+  font-style: italic;
+  color: #777;
+}
+
+/* 1. Transición suave para los botones de acción */
+.contenido-card mat-card-actions button[mat-button] {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estado Hover: fondo verde, texto blanco */
+.contenido-card mat-card-actions button[mat-button]:not([color="warn"]):hover {
+  background-color: rgb(79, 136, 87);
+  color: white;
+}
+
+/* 3. Botón "Eliminar" (el que tiene color="warn") */
+/* Estado Hover: fondo rojo, texto blanco */
+.contenido-card mat-card-actions button[mat-button][color="warn"]:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* ... (tus otros estilos) ... */
+.mat-icon {
+  margin: 0;
+  text-align: center;
 }

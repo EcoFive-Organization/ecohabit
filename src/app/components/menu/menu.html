@@ -27,8 +27,8 @@
     <button mat-menu-item [matMenuTriggerFor]="submenuContenidoEducativo">
       Contenido Educativo
     </button>
-    <button mat-menu-item routerLink="/">
-      Salir
+    <button mat-menu-item [matMenuTriggerFor]="submenuDispositivo">
+      Dispositivos
     </button>
   </mat-menu>
 
@@ -54,6 +54,13 @@
   <mat-menu #submenuContenidoEducativo="matMenu">
     <button mat-menu-item routerLink="/listarcontenidoeducativo">Listar</button>
     <button mat-menu-item routerLink="/listarcontenidoeducativo/registrocontenidoeducativo">Registrar</button>
+  </mat-menu>
+
+
+  <!--Submenú de Dispositivo-->
+  <mat-menu #submenuDispositivo="matMenu">
+    <button mat-menu-item routerLink="/listadispositivo">Listar</button>
+    <button mat-menu-item routerLink="/listadispositivo/registrodispositivo">Registrar</button>
   </mat-menu>
 
 </div>
