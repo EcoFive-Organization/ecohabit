@@ -28,6 +28,13 @@
     <button mat-menu-item [matMenuTriggerFor]="submenuContenidoEducativo">
       Contenido Educativo
     </button>
+    
+    <button mat-menu-item [matMenuTriggerFor]="submenuBilletera">
+      Billetera
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="submenuTransaccion">
+      Transaccion
+    </button>
     <button mat-menu-item [matMenuTriggerFor]="submenuDispositivo">
       Dispositivos
     </button>
@@ -60,6 +67,17 @@
     <button mat-menu-item routerLink="/listarcontenidoeducativo/registrocontenidoeducativo">Registrar</button>
   </mat-menu>
 
+  <!-- Submenú de Billetera -->
+  <mat-menu #submenuBilletera="matMenu">
+    <button mat-menu-item routerLink="/listarbilleteras">Listar</button>
+    <button mat-menu-item routerLink="/listarbilleteras/registrobilleteras">Registrar</button>
+  </mat-menu>
+
+  <!-- Submenú de Billetera -->
+  <mat-menu #submenuTransaccion="matMenu">
+    <button mat-menu-item routerLink="/listartransacciones">Listar</button>
+    <button mat-menu-item routerLink="/listartransacciones/registrotransacciones">Registrar</button>
+  </mat-menu>
 
   <!--Submenú de Dispositivo-->
   <mat-menu #submenuDispositivo="matMenu">

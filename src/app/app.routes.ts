@@ -9,6 +9,10 @@ import { Recompensa } from './components/recompensa/recompensa';
 import { Plansuscripcion } from './components/plansuscripcion/plansuscripcion';
 import { Contenidoeducativo } from './components/contenidoeducativo/contenidoeducativo';
 import { Contenidoeducativoinsert } from './components/contenidoeducativo/contenidoeducativoinsert/contenidoeducativoinsert';
+import { Billetera } from './components/billetera/billetera';
+import { Billeterainsert } from './components/billetera/billeterainsert/billeterainsert';
+import { Transaccion } from './components/transaccion/transaccion';
+import { Transaccioninsert } from './components/transaccion/transaccioninsert/transaccioninsert';
 import { Dispositivoinsert } from './components/dispositivo/dispositivoinsert/dispositivoinsert';
 import { Dispositivo } from './components/dispositivo/dispositivo';
 import { Menu } from './components/menu/menu';
@@ -46,11 +50,14 @@ export const routes: Routes = [
         ]
     },
     {path:'listarplansuscripcion', component:Plansuscripcion},
-
-    {path: 'listadispositivo', component: Dispositivo,
-        children : [
-            {path: 'registrodispositivo', component: Dispositivoinsert},
-            {path: 'edits/:id', component: Dispositivoinsert}
-        ]
+    {path:'listarbilleteras', component:Billetera,
+        children:[
+            {path: 'registrobilleteras', component: Billeterainsert},
+            {path: 'edits/:id', component: Billeterainsert}]
+    },
+    {path:'listartransacciones', component:Transaccion,
+        children:[
+            {path: 'registrotransacciones', component: Transaccioninsert},
+            {path: 'edits/:id', component: Transaccioninsert}]
     }
 ];

@@ -1,0 +1,94 @@
+<div class="container">
+  <br />
+  <div class="titulo"><h2>Registro de Transacciones</h2></div>
+  <br />
+  <div>
+    <form [formGroup]="form" (submit)="aceptar()">
+      <!--Si edicion está en true que se muestre el campo ID, si es false no se muestra (osea para registrar, no actualizar)-->
+      @if(edicion) {
+      <mat-form-field>
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" readonly />
+        <!--readonly para bloquear la caja de texto, el id no debe ser modificado-->
+        @if (form.get('id')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+      <br />
+
+      <!--Billetera-->
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Billetera:</mat-label>
+          <mat-select formControlName="billeteraL" required>
+            @for (p of listaBilletras; track p.idBilletera) {
+            <mat-option [value]="p.idBilletera">
+              {{ p.usuario.nombre}}
+            </mat-option>
+            }
+          </mat-select>
+
+          @if (form.get('billeteraL')?.hasError('required')) {
+          <mat-error>El campo tipo es obligatorio.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <br />
+
+      <!--Tipo-->
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Tipo:</mat-label>
+          <mat-select formControlName="tipo" required>
+            @for (p of tipos; track p.value) {
+            <mat-option [value]="p.value">
+              {{ p.viewValue}}
+            </mat-option>
+            }
+          </mat-select>
+
+          @if (form.get('tipo')?.hasError('required')) {
+          <mat-error>El campo tipo es obligatorio.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <br />
+
+      <!--Monto-->
+      <mat-form-field>
+        <mat-label>Monto</mat-label>
+        <input matInput formControlName="monto" required />
+
+        @if (form.get('monto')?.hasError('required')) {
+        <mat-error>El campo es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      <br />
+
+    <!--Fecha-->
+    <mat-form-field>
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha" [max]="today" required />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        @if (form.get('fecha')?.hasError('required')) {
+        <mat-error>El campo fecha es obligatorio.</mat-error>
+        }
+    </mat-form-field>
+    <br />
+
+      <!--Si edicion es true que se muestre el botón Actualizar, si no se muestra el de registrar-->
+      @if(edicion) {
+      <div class="botonenviar">
+        <button matButton="elevated">Actualizar</button>
+      </div>
+      } @else {
+      <div class="botonenviar">
+        <button matButton="elevated">Registrar</button>
+      </div>
+      }
+    </form>
+  </div>
+</div>
