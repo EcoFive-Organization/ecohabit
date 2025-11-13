@@ -122,3 +122,8 @@
         font-size: 0.85rem;
     }
 }
+
+.button .mat-icon {
+    margin: 0 auto;
+    text-align: center;
+}
