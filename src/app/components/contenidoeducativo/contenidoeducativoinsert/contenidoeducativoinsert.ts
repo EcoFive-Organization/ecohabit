@@ -23,7 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatNativeDateModule
   ],
   templateUrl: './contenidoeducativoinsert.html',
   styleUrl: './contenidoeducativoinsert.css',

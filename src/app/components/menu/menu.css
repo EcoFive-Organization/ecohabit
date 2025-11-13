@@ -1,6 +1,6 @@
 /* --- Toolbar --- */
 .custom-toolbar {
- background-color: rgb(71, 238, 99); /* verde principal */
+ background-color: #ECEFF1; /* verde principal */
  display: flex;
  align-items: center;
  padding: 0 8px;
@@ -9,7 +9,7 @@
 
 /* --- Botón principal --- */
 .btn-rojo {
- background-color: rgb(71, 238, 99); 
+ background-color: #ECEFF1; 
  border: none;
  font-size: smaller;
  border-radius: 4px;
@@ -23,7 +23,7 @@
 }
 
 .btn-rojo:hover {
- background-color: rgb(6, 150, 64);
+ background-color: rgba(144, 238, 144, 0.3);
 }
 
 /* --- Icono --- */
@@ -43,7 +43,7 @@
 /* --- Asegurar color blanco --- */
 .custom-toolbar button,
 .custom-toolbar mat-icon {
- color: rgb(255, 255, 255);
+ color: #37474F;
 }
 
 /* --- Menú desplegable translúcido verde claro --- */

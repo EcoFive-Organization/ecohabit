@@ -9,8 +9,10 @@ import { Recompensa } from './components/recompensa/recompensa';
 import { Plansuscripcion } from './components/plansuscripcion/plansuscripcion';
 import { Contenidoeducativo } from './components/contenidoeducativo/contenidoeducativo';
 import { Contenidoeducativoinsert } from './components/contenidoeducativo/contenidoeducativoinsert/contenidoeducativoinsert';
+import { Menu } from './components/menu/menu';
 
 export const routes: Routes = [
+    {path: 'menu', component: Menu},
     { path: '', component: Home},
     // Esta es ahora una ruta principal y reemplazará la página Home
     { path: 'registrousuario', component: Usuarioinsert },
