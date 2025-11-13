@@ -1,18 +1,18 @@
 <div class="container">
-  <br>
+  <br />
   <div class="titulo"><h2>Registro de Foro</h2></div>
-  <br>
+  <br />
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
       <!--Si edicion está en true que se muestre el campo ID, si es false no se muestra (osea para registrar, no actualizar)-->
       @if(edicion) {
       <mat-form-field>
         <mat-label>ID</mat-label>
-        <input matInput formControlName="codigo" readonly/> <!--readonly para bloquear la caja de texto, el id no debe ser modificado-->
+        <input matInput formControlName="codigo" readonly />
+        <!--readonly para bloquear la caja de texto, el id no debe ser modificado-->
       </mat-form-field>
       }
-
-      <br>
+      <br />
 
       <!--Nombre Column-->
       <mat-form-field>
@@ -22,19 +22,23 @@
           @if (form.get('titulo')?.hasError('required')) { El titulo del foro es obligatorio!!!! }
         </mat-error>
       </mat-form-field>
-
-      <br>
+      <br />
 
       <!--Email Column-->
       <mat-form-field>
         <mat-label>Descripcion</mat-label>
-        <input matInput formControlName="descripcion" />
+        <textarea
+          matInput
+          formControlName="descripcion"
+          placeholder="Escribe una breve descripción del foro..."
+          maxlength="255"
+        ></textarea>
+        <mat-hint align="end">{{ form.get('descripcion')?.value?.length || 0 }} / 255</mat-hint>
         <mat-error>
           @if (form.get('descripcion')?.hasError('required')) { La descripcion es obligatoria!!!! }
         </mat-error>
-    </mat-form-field>
-
-      <br>
+      </mat-form-field>
+      <br />
 
       <!--Si edicion es true que se muestre el botón Actualizar, si no se muestra el de registrar-->
       @if(edicion) {
@@ -49,4 +53,3 @@
     </form>
   </div>
 </div>
-

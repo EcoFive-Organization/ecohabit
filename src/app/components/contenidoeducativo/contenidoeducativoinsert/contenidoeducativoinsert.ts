@@ -13,17 +13,23 @@ import { MatInputModule } from '@angular/material/input';
 import { ContenidoEducativo } from '../../../models/ContenidoEducativo';
 import { Contenidoeducativoservice } from '../../../services/contenidoeducativoservice';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select'; // <-- 1. IMPORTAR SELECT
+import { CommonModule } from '@angular/common'; // <-- 2. IMPORTAR COMMONMODULE
 
 @Component({
   selector: 'app-contenidoeducativoinsert',
+  standalone: true, // <-- 3. ASEGURAR QUE SEA STANDALONE
   imports: [
+    CommonModule, // <-- 4. AÑADIR COMMONMODULE (para @if/@for)
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule, // <-- 5. AÑADIR MATSELECTMODULE
+    MatOptionModule,
   ],
   templateUrl: './contenidoeducativoinsert.html',
   styleUrl: './contenidoeducativoinsert.css',
@@ -34,6 +40,10 @@ export class Contenidoeducativoinsert implements OnInit {
 
   edicion: boolean = false;
   id: number = 0;
+
+  // --- 6. AÑADIR LISTA DE TIPOS ---
+  tipos: string[] = ['Lectura', 'Video'];
+  // ---------------------------------
 
   constructor(
     private ceS: Contenidoeducativoservice,
@@ -54,8 +64,14 @@ export class Contenidoeducativoinsert implements OnInit {
       titulo: ['', Validators.required],
       tipo: ['', Validators.required],
       url: ['', Validators.required],
-      descripcion: ['', Validators.required],
-      fecha: ['', Validators.required],
+
+      // --- 7. AÑADIR VALIDACIÓN DE MAXLENGTH ---
+      descripcion: ['', [Validators.required, Validators.maxLength(255)]],
+      // ----------------------------------------
+
+      // --- 8. AÑADIR FECHA ACTUAL POR DEFECTO ---
+      fecha: [new Date(), Validators.required],
+      // ----------------------------------------
     });
   }
 
@@ -93,7 +109,11 @@ export class Contenidoeducativoinsert implements OnInit {
           titulo: new FormControl(data.titulo),
           tipo: new FormControl(data.tipo),
           url: new FormControl(data.url),
-          descripcion: new FormControl(data.descripcion),
+          // --- 9. AÑADIR VALIDACIÓN TAMBIÉN EN MODO EDICIÓN ---
+          descripcion: new FormControl(data.descripcion, [
+            Validators.required,
+            Validators.maxLength(255),
+          ]),
           fecha: new FormControl(data.fechaPublicacion),
         });
       });

@@ -1,7 +1,6 @@
 <div class="container">
   <br />
   <div class="titulo"><h2>Registro de Contenido Educativo</h2></div>
-  <br />
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
       <!--Si edicion está en true que se muestre el campo ID, si es false no se muestra (osea para registrar, no actualizar)-->
@@ -9,80 +8,72 @@
       <mat-form-field>
         <mat-label>ID</mat-label>
         <input matInput formControlName="codigo" readonly />
-        <!--readonly para bloquear la caja de texto, el id no debe ser modificado-->
       </mat-form-field>
       }
-
       <br />
-
       <!--Titulo Column-->
       <mat-form-field>
-        <mat-label>Titulo</mat-label>
-        <input matInput formControlName="titulo" />
+        <mat-label>Titulo</mat-label> <input matInput formControlName="titulo" />
         <mat-error>
           @if (form.get('titulo')?.hasError('required')) { El titulo del contenido educativo es
           obligatorio!!!! }
         </mat-error>
       </mat-form-field>
-
       <br />
-
-      <!--Tipo Column-->
       <mat-form-field>
         <mat-label>Tipo</mat-label>
-        <input matInput formControlName="tipo" />
+        <mat-select formControlName="tipo" required>
+          @for (t of tipos; track t) {
+          <mat-option [value]="t">{{ t }}</mat-option> }
+        </mat-select>
         <mat-error>
           @if (form.get('tipo')?.hasError('required')) { El tipo es obligatorio!!!! }
         </mat-error>
       </mat-form-field>
-
       <br />
-
       <!--URL Column-->
       <mat-form-field>
         <mat-label>URL</mat-label>
-        <input matInput formControlName="url" />
+        <input matInput formControlName="url" placeholder="https://youtube.com/..." />
         <mat-error>
           @if (form.get('url')?.hasError('required')) { La URL es obligatoria!!!! }
         </mat-error>
       </mat-form-field>
-
       <br />
-
-      <!--Descripcion Column-->
       <mat-form-field>
         <mat-label>Descripcion</mat-label>
-        <input matInput formControlName="descripcion" />
+        <!-- Cambiado a <textarea> y añadido maxlength -->
+        <textarea
+          matInput
+          formControlName="descripcion"
+          placeholder="Descripción del contenido..."
+          maxlength="255"
+        ></textarea>
+        <!-- Añadido contador de caracteres -->
+        <mat-hint align="end">{{ form.get('descripcion')?.value?.length || 0 }} / 255</mat-hint>
         <mat-error>
           @if (form.get('descripcion')?.hasError('required')) { La Descripcion es obligatoria!!!! }
+          @if (form.get('descripcion')?.hasError('maxlength')) { La descripción no debe exceder los
+          255 caracteres. }
         </mat-error>
       </mat-form-field>
-
-      <br>
-
-      <!--Fecha Column-->
+      <br />
       <mat-form-field>
         <mat-label>Fecha Publicación</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fecha" />
+        <input matInput [matDatepicker]="picker" formControlName="fecha" [disabled]="true" />
         <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+          [disabled]="true"
+        ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error>
-          @if (form.get('fecha')?.hasError('required')) { La fecha es obligatoria!!!! }
-        </mat-error>
       </mat-form-field>
-
-      <br>
-
-      <!--Si edicion es true que se muestre el botón Actualizar, si no se muestra el de registrar-->
+      <br />
       @if(edicion) {
-      <div class="botonenviar">
-        <button matButton="elevated">Actualizar</button>
-      </div>
+      <div class="botonenviar"><button matButton="elevated">Actualizar</button></div>
       } @else {
-      <div class="botonenviar">
-        <button matButton="elevated">Registrar</button>
-      </div>
+      <div class="botonenviar"><button matButton="elevated">Registrar</button></div>
       }
     </form>
   </div>
