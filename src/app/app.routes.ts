@@ -11,6 +11,7 @@ import { Contenidoeducativo } from './components/contenidoeducativo/contenidoedu
 import { Contenidoeducativoinsert } from './components/contenidoeducativo/contenidoeducativoinsert/contenidoeducativoinsert';
 import { Dispositivoinsert } from './components/dispositivo/dispositivoinsert/dispositivoinsert';
 import { Dispositivo } from './components/dispositivo/dispositivo';
+import { Menu } from './components/menu/menu';
 
 export const routes: Routes = [
     {path: 'menu', component: Menu},

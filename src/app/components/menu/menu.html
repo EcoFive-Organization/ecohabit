@@ -12,6 +12,7 @@
 
   <!-- Menú principal -->
   <mat-menu #menuUsuario="matMenu">
+    
     <button mat-menu-item [matMenuTriggerFor]="submenuUsuarios">
       Usuarios
     </button>
@@ -29,6 +30,9 @@
     </button>
     <button mat-menu-item [matMenuTriggerFor]="submenuDispositivo">
       Dispositivos
+    </button>
+    <button mat-menu-item routerLink="/">
+      Salir
     </button>
   </mat-menu>
 
