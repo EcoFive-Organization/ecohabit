@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Transaccionlistar } from './transaccionlistar/transaccionlistar';
+import { Menu } from '../menu/menu';
 
 @Component({
   selector: 'app-transaccion',
-  imports: [RouterOutlet,Transaccionlistar],
+  imports: [RouterOutlet,Transaccionlistar, Menu],
   templateUrl: './transaccion.html',
   styleUrl: './transaccion.css',
 })

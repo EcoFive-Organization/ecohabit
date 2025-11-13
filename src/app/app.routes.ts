@@ -13,9 +13,9 @@ import { Billetera } from './components/billetera/billetera';
 import { Billeterainsert } from './components/billetera/billeterainsert/billeterainsert';
 import { Transaccion } from './components/transaccion/transaccion';
 import { Transaccioninsert } from './components/transaccion/transaccioninsert/transaccioninsert';
-import { Dispositivoinsert } from './components/dispositivo/dispositivoinsert/dispositivoinsert';
 import { Dispositivo } from './components/dispositivo/dispositivo';
 import { Menu } from './components/menu/menu';
+import { Dispositivoinsert } from './components/dispositivo/dispositivoinsert/dispositivoinsert';
 
 export const routes: Routes = [
     {path: 'menu', component: Menu},
@@ -59,5 +59,11 @@ export const routes: Routes = [
         children:[
             {path: 'registrotransacciones', component: Transaccioninsert},
             {path: 'edits/:id', component: Transaccioninsert}]
+    },
+    {path: 'listadispositivo', component: Dispositivo,
+        children: [
+            {path: 'registrodispositivo', component: Dispositivoinsert},
+            {path: 'edits/:id', component: Dispositivoinsert}
+        ]
     }
 ];
