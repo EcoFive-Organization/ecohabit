@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Transaccion } from '../../../models/Transaccion';
 import { Billetera } from '../../../models/Billetera';
 import { Transaccionservice } from '../../../services/transaccionservice';
@@ -15,7 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-transaccioninsert',
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -23,11 +30,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatDatepickerModule,
     MatNativeDateModule,
     MatOptionModule,
-    MatSelectModule],
+    MatSelectModule,
+  ],
   templateUrl: './transaccioninsert.html',
   styleUrl: './transaccioninsert.css',
 })
-export class Transaccioninsert implements OnInit{
+export class Transaccioninsert implements OnInit {
   form: FormGroup = new FormGroup({});
   tra: Transaccion = new Transaccion();
   edicion: boolean = false;
@@ -44,7 +52,7 @@ export class Transaccioninsert implements OnInit{
   ];
 
   // Va a manejar varios softwares y los va a almacenar
-  listaBilletras: Billetera[] = []
+  listaBilletras: Billetera[] = [];
 
   constructor(
     private tS: Transaccionservice,
@@ -52,7 +60,6 @@ export class Transaccioninsert implements OnInit{
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private bS: Billeteraservice // llamar al Software Service para usar el metodo listar en el selector de registro de licencia
-
   ) {}
 
   // Esto se ejecuta ni bien inicia el
@@ -65,12 +72,12 @@ export class Transaccioninsert implements OnInit{
 
     // Ni bien inicia el componente la listaSoftwares se llena
     this.bS.list().subscribe((data) => {
-      this.listaBilletras = data
-    })
+      this.listaBilletras = data;
+    });
 
     this.form = this.formBuilder.group({
       id: [''],
-      billeteraL: ['', Validators.required],// FK de Billetera
+      billeteraL: ['', Validators.required], // FK de Billetera
       tipo: ['', Validators.required],
       monto: ['', Validators.required],
       fecha: ['', Validators.required],
@@ -79,19 +86,10 @@ export class Transaccioninsert implements OnInit{
   aceptar(): void {
     if (this.form.valid) {
       this.tra.idTransaccion = this.form.value.id;
-      
-      // --- ESTA ES LA CORRECCIÓN ---
 
-      // 1. Asegúrate de que el objeto 'billetera' exista.
-      // (Si tu clase Transaccion no lo inicializa en el constructor, hazlo aquí)
-      if (!this.tra.billetera) {
-          this.tra.billetera = new Billetera();
-      }
-
-      // 2. Asigna el ID del formulario al ID del objeto billetera.
-      // El backend solo necesita el ID para vincular la clave foránea.
-      this.tra.billetera.idBilletera = this.form.value.billeteraL; 
-      
+      // --- CORRECCION ---
+      this.tra.billetera = new Billetera();
+      this.tra.billetera.idBilletera = this.form.value.billeteraL;
       // --- FIN DE LA CORRECCIÓN ---
 
       this.tra.tipo = this.form.value.tipo;
@@ -99,9 +97,19 @@ export class Transaccioninsert implements OnInit{
       this.tra.fecha = this.form.value.fecha;
 
       if (this.edicion) {
-        //... (tu código de update)
+        // Llama a tu servicio de actualización
+        this.tS.update(this.tra).subscribe(() => {
+          this.tS.list().subscribe((data) => {
+            this.tS.setList(data);
+          });
+        });
       } else {
-        //... (tu código de insert)
+        // Llama a tu servicio de inserción
+        this.tS.insert(this.tra).subscribe(() => {
+          this.tS.list().subscribe((data) => {
+            this.tS.setList(data);
+          });
+        });
       }
       this.router.navigate(['listartransacciones']);
     }
@@ -115,7 +123,7 @@ export class Transaccioninsert implements OnInit{
           billeteraL: new FormControl(data.billetera.idBilletera),
           tipo: new FormControl(data.tipo),
           monto: new FormControl(data.monto),
-          fecha: new FormControl(data.fecha)
+          fecha: new FormControl(data.fecha),
         });
       });
     }
