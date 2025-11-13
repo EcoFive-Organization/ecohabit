@@ -8,14 +8,14 @@ import { RouterLink } from '@angular/router';
 import { Billeteraservice } from '../../../services/billeteraservice';
 
 @Component({
-  selector: 'app-bilelteralistar',
-  imports: [MatTableModule,CommonModule,MatIconModule,MatButtonModule,RouterLink],
-  templateUrl: './bilelteralistar.html',
-  styleUrl: './bilelteralistar.css'
+  selector: 'app-billeteralistar',
+  imports: [MatTableModule,CommonModule,MatIconModule,MatButtonModule],
+  templateUrl: './billeteralistar.html',
+  styleUrl: './billeteralistar.css'
 })
-export class Bilelteralistar implements OnInit {
+export class Billeteralistar implements OnInit {
   dataSource: MatTableDataSource<Billetera> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5'];
+  displayedColumns: string[] = ['c1', 'c2', 'c3'];
 
   constructor(private bS: Billeteraservice) {}
 
@@ -28,13 +28,5 @@ export class Bilelteralistar implements OnInit {
   this.bS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
-  }
-
-  eliminar(id:number){
-    this.bS.delete(id).subscribe(data=>{
-      this.bS.list().subscribe(data=>{
-        this.bS.setList(data)
-      })
-    })
   }
 }

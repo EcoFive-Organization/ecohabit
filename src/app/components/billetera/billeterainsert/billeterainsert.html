@@ -4,15 +4,6 @@
   <br />
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
-      <!--Si edicion está en true que se muestre el campo ID, si es false no se muestra (osea para registrar, no actualizar)-->
-      @if(edicion) {
-      <mat-form-field>
-        <mat-label>ID</mat-label>
-        <input matInput formControlName="id" readonly />
-        <!--readonly para bloquear la caja de texto, el id no debe ser modificado-->
-      </mat-form-field>
-      }
-      <br />
 
       <!--Usuario Column-->
       <div>
@@ -43,15 +34,9 @@
       </mat-form-field>
       <br>
       <!--Si edicion es true que se muestre el botón Actualizar, si no se muestra el de registrar-->
-      @if(edicion) {
-      <div class="botonenviar">
-        <button matButton="elevated">Actualizar</button>
-      </div>
-      } @else {
       <div class="botonenviar">
         <button matButton="elevated">Registrar</button>
       </div>
-      }
     </form>
   </div>
 </div>

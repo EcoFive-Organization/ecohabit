@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import { Bilelteralistar } from './billeteralistar/bilelteralistar';
+import { Billeteralistar } from './billeteralistar/billeteralistar';
 
 @Component({
   selector: 'app-billetera',
-  imports: [RouterOutlet,Bilelteralistar],
+  imports: [RouterOutlet,Billeteralistar],
   templateUrl: './billetera.html',
   styleUrl: './billetera.css'
 })

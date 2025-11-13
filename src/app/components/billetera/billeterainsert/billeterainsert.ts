@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Billetera } from '../../../models/Billetera';
 import { Billeteraservice } from '../../../services/billeteraservice';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Usuario } from '../../../models/Usuario';
 import { Usuarioservice } from '../../../services/usuarioservice';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -19,7 +18,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule,
     MatNativeDateModule,
     MatOptionModule,
     MatSelectModule],
@@ -49,7 +47,6 @@ export class Billeterainsert implements OnInit{
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-      this.init();
     });
 
     // Ni bien inicia el componente la listaSoftwares se llena
@@ -66,35 +63,29 @@ export class Billeterainsert implements OnInit{
   aceptar(): void {
     if (this.form.valid) {
       this.bil.idBilletera = this.form.value.id;
-      this.bil.usuario.nombre = this.form.value.usuarioL; //Fk de Software
+      
+      // --- ESTA ES LA CORRECCIÓN ---
+
+      // 1. Asegúrate de que el objeto 'usuario' dentro de 'billetera' exista.
+      // (Si tu clase Billetera no lo inicializa en el constructor, hazlo aquí)
+      if (!this.bil.usuario) {
+          this.bil.usuario = new Usuario();
+      }
+
+      // 2. Asigna el ID del formulario al ID del objeto usuario.
+      // El backend solo necesita el ID para vincular la clave foránea.
+      this.bil.usuario.idUsuario = this.form.value.usuarioL; 
+      
+      // --- FIN DE LA CORRECCIÓN ---
+
       this.bil.saldo = this.form.value.saldo;
 
-      if (this.edicion) {
-        this.bS.update(this.bil).subscribe(() => {
-          this.bS.list().subscribe((data) => {
-            this.bS.setList(data);
-          });
-        });
-      } else {
-        this.bS.insert(this.bil).subscribe((data) => {
-          this.bS.list().subscribe((data) => {
-            this.bS.setList(data);
-          });
-        });
-      }
-      this.router.navigate(['billeteras']);
-    }
-  }
-  // Al momento de actualizar algún registro trae toda la data en los campos, la FK
-  init() {
-    if (this.edicion) {
-      this.bS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          id: new FormControl(data.idBilletera),
-          usuarioL: new FormControl(data.usuario.nombre),
-          saldo: new FormControl(data.saldo)
+      this.bS.insert(this.bil).subscribe(data => {
+        this.bS.list().subscribe((data) => {
+          this.bS.setList(data);
         });
       });
+      this.router.navigate(['listarbilleteras']);
     }
   }
 }

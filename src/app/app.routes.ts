@@ -11,6 +11,8 @@ import { Contenidoeducativo } from './components/contenidoeducativo/contenidoedu
 import { Contenidoeducativoinsert } from './components/contenidoeducativo/contenidoeducativoinsert/contenidoeducativoinsert';
 import { Billetera } from './components/billetera/billetera';
 import { Billeterainsert } from './components/billetera/billeterainsert/billeterainsert';
+import { Transaccion } from './components/transaccion/transaccion';
+import { Transaccioninsert } from './components/transaccion/transaccioninsert/transaccioninsert';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -46,5 +48,10 @@ export const routes: Routes = [
         children:[
             {path: 'registrobilleteras', component: Billeterainsert},
             {path: 'edits/:id', component: Billeterainsert}]
+    },
+    {path:'listartransacciones', component:Transaccion,
+        children:[
+            {path: 'registrotransacciones', component: Transaccioninsert},
+            {path: 'edits/:id', component: Transaccioninsert}]
     }
 ];

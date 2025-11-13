@@ -29,14 +29,4 @@ export class Billeteraservice {
   getList() {
     return this.listaCambio.asObservable();
   }
-  
-  listId(id: number) {
-    return this.http.get<Billetera>(`${this.url}/${id}`);
-  }
-  update(b: Billetera) {
-    return this.http.put(`${this.url}`, b, { responseType: 'text' });
-  }
-  delete(id: number) {
-    return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
-  }
 }

@@ -33,6 +33,9 @@
     <button mat-menu-item [matMenuTriggerFor]="submenuBilletera">
       Billetera
     </button>
+    <button mat-menu-item [matMenuTriggerFor]="submenuTransaccion">
+      Transaccion
+    </button>
   </mat-menu>
 
   <!-- Submenú de Usuarios -->
@@ -63,6 +66,12 @@
   <mat-menu #submenuBilletera="matMenu">
     <button mat-menu-item routerLink="/listarbilleteras">Listar</button>
     <button mat-menu-item routerLink="/listarbilleteras/registrobilleteras">Registrar</button>
+  </mat-menu>
+
+  <!-- Submenú de Billetera -->
+  <mat-menu #submenuTransaccion="matMenu">
+    <button mat-menu-item routerLink="/listartransacciones">Listar</button>
+    <button mat-menu-item routerLink="/listartransacciones/registrotransacciones">Registrar</button>
   </mat-menu>
 </div>
 
