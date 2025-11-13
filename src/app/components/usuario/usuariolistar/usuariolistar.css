@@ -1,12 +1,124 @@
-table {
-    width: 100%;
-    margin: 30px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+/* A. CONTENEDOR Y TIPOGRAFÍA BASE */
+
+.container {
+    /* Centra y limita el ancho del contenido */
+    max-width: 90%; 
+    margin: 20px auto; 
+    padding: 1rem;
+    /* GUIDELINE: Fuente Secundaria (Roboto) y Color de texto general (Gris Oscuro) */
+    font-family: 'Roboto', sans-serif;
+    color: #37474F; 
 }
 
-h2 {
+/* TÍTULO (h2) */
+.container h2 {
+    /* GUIDELINE: Fuente Primaria (Montserrat) */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; /* 24px */
+    color: #37474F;
+    margin-bottom: 1.5rem;
+    /* GUIDELINE: Separador con color principal */
+    border-bottom: 2px solid #5FB963; 
+    padding-bottom: 0.5rem;
+}
+
+/* --- B. ESTILOS GENERALES DE LA TABLA (MAT-TABLE) --- */
+
+.mat-elevation-z8 {
+    width: 100%;
+    /* Sombra suave y bordes para mejor estética */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+    overflow: hidden; 
+}
+
+/* CABECERA DE LA TABLA (TH) */
+.mat-header-cell {
+    /* GUIDELINE: Fondo Gris Oscuro */
+    background-color: #37474F; 
+    color: #FFFFFF; /* Texto Blanco */
+    /* GUIDELINE: Montserrat para títulos de columna */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* FILAS DE CONTENIDO (TD) */
+.mat-cell {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    color: #37474F;
+}
+
+/* GUIDELINE: Alternancia de colores para legibilidad */
+.mat-row:nth-child(even) {
+    background-color: #ECEFF1; 
+}
+
+/* --- C. BOTONES DE ACCIÓN (ACTUALIZAR / ELIMINAR) --- */
+
+/* Selector para las columnas de acción */
+.mat-column-c3, .mat-column-c4 {
+    width: 80px; 
     text-align: center;
-    margin-top: 20px;
-    font-size: 32px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* 1. Botón Actualizar (c3) - Acciones secundarias */
+.mat-column-c3 button {
+    /* Asegura que el fondo sea transparente, anulando el verde genérico del tema */
+    background-color: transparent !important; 
+    color: #03A9F4; /* Color por defecto */
+    transition: all 0.3s;
+}
+
+.mat-column-c3 button mat-icon {
+    /* GUIDELINE: Azul Claro para el ícono [cite: 565-567] */
+    color: #03A9F4; 
+    transition: color 0.3s;
+}
+
+.mat-column-c3 button:hover {
+    /* Aplicamos un fondo sutil en hover */
+    background-color: rgba(3, 169, 244, 0.1) !important; 
+}
+
+.mat-column-c3 button:hover mat-icon {
+    /* GUIDELINE: Azul Oscuro para hover [cite: 594-596] */
+    color: #0288D1 !important; 
+}
+
+/* 2. Botón Eliminar (c4) - Acciones de peligro */
+.mat-column-c4 button {
+    /* Asegura que el fondo sea transparente */
+    background-color: transparent !important;
+    color: #F44336; /* Color por defecto */
+    transition: all 0.3s;
+}
+
+.mat-column-c4 button mat-icon {
+    /* GUIDELINE: Rojo de Alerta para acciones destructivas [cite: 581-583] */
+    color: #F44336; 
+    transition: color 0.3s;
+}
+
+.mat-column-c4 button:hover {
+    /* Aplicamos un fondo rojo muy sutil al hacer hover */
+    background-color: rgba(244, 67, 54, 0.1) !important; 
+}
+
+.mat-column-c4 button:hover mat-icon {
+    /* Rojo más oscuro al hacer hover */
+    color: #D32F2F !important; 
+}
+
+/* --- D. RESPONSIVE DESIGN --- */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0.5rem;
+    }
+    .mat-header-cell, .mat-cell {
+        padding: 8px; /* Reducir padding de las celdas */
+        font-size: 0.85rem;
+    }
 }

@@ -111,7 +111,7 @@ export class Usuarioinsert implements OnInit {
             this.usuarioService.setList(data);
           });
           // Redirige al login (ruta vacía) después del registro
-          this.router.navigate(['/']); 
+          this.router.navigate(['/menu']); 
         },
         error: (err) => {
           // Esto es útil si el backend te devuelve un error (ej. email duplicado)
