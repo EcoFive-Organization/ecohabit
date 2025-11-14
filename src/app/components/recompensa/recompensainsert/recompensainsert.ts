@@ -12,10 +12,17 @@ import { MatInputModule } from '@angular/material/input';
 import { Recompensa } from '../../../models/Recompensa';
 import { Recompensaservice } from '../../../services/recompensaservice';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-recompensainsert',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSliderModule,
+  ],
   templateUrl: './recompensainsert.html',
   styleUrl: './recompensainsert.css',
 })
@@ -46,6 +53,11 @@ export class Recompensainsert implements OnInit {
       costoPuntos: ['', Validators.required],
     });
   }
+
+  formatLabel(value: number): string {
+    return `${value}`;
+  }
+
   aceptar(): void {
     if (this.form.valid) {
       this.recompensa.idRecompensa = this.form.value.codigo;
@@ -75,7 +87,7 @@ export class Recompensainsert implements OnInit {
           codigo: new FormControl(data.idRecompensa),
           nombre: new FormControl(data.nombre),
           descripcion: new FormControl(data.descripcion),
-          costoPuntos: new FormControl(data.costoPuntos),
+          costoPuntos: new FormControl(Number(data.costoPuntos ?? 0)), // para el slider
         });
       });
     }

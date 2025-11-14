@@ -2,35 +2,40 @@
   <h2>Lista de Foros</h2>
 
   <div class="card-container">
-
-    <mat-card *ngFor="let element of dataSource" class="mat-elevation-z8 foro-card">
-
+    <!--Cambiar a pagedData si vas a usar paginator-->
+    <mat-card *ngFor="let element of pagedData" class="mat-elevation-z8 foro-card">
       <mat-card-header>
-        <mat-card-title>{{element.titulo}}</mat-card-title>
-        <mat-card-subtitle>ID: {{element.idForo}}</mat-card-subtitle>
+        <mat-card-title>{{ element.titulo }}</mat-card-title>
+        <mat-card-subtitle>ID: {{ element.idForo }}</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
-        <p>{{element.descripcion}}</p>
+        <p>{{ element.descripcion }}</p>
       </mat-card-content>
 
       <mat-card-actions align="end">
         <button mat-button [routerLink]="['edits', element.idForo]">
           <mat-icon>edit</mat-icon>
-
         </button>
         <button mat-button color="warn" (click)="eliminar(element.idForo)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
-
     </mat-card>
-
   </div>
+
+  <!-- Paginador -->
+  <mat-paginator
+    [length]="dataSource.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[2, 5, 10, 20]"
+    (page)="onPageChange($event)"
+    showFirstLastButtons
+  >
+  </mat-paginator>
 
   <!-- Mensaje cuando no hay datos -->
   <div *ngIf="!dataSource || dataSource.length === 0" class="no-data-message">
     No hay foros para mostrar.
   </div>
-
 </div>
