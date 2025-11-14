@@ -1,12 +1,45 @@
 table {
-    width: 100%;
-    margin: 30px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 100%;
+  margin: 30px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 h2 {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 32px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 32px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* --- NUEVAS REGLAS PARA HOVER --- */
+
+/* 1. Transición suave para TODOS los botones de la tabla */
+table.mat-elevation-z8 td button[matButton] {
+  transition: background-color 0.3s ease, color 0.3s ease; /* Opcional: Hace los botones redondos (icon-buttons) */
+}
+
+/* 2. Botón de EDITAR (Columna c5) */
+
+/* Estado normal: Hacemos el ícono verde */
+table.mat-elevation-z8 .mat-column-c5 button[matButton] {
+  color: darkgreen;
+}
+
+/* Estado Hover: Fondo verde, ícono blanco */
+table.mat-elevation-z8 .mat-column-c5 button[matButton]:hover {
+  background-color: darkgreen;
+  color: white;
+}
+
+/* 3. Botón de ELIMINAR (Columna c6) */
+
+/* Estado normal: Hacemos el ícono rojo */
+table.mat-elevation-z8 .mat-column-c6 button[matButton] {
+  color: #f44336; /* Rojo estándar de Material */
+}
+
+/* Estado Hover: Fondo rojo, ícono blanco */
+table.mat-elevation-z8 .mat-column-c6 button[matButton]:hover {
+  background-color: #f44336;
+  color: white;
 }

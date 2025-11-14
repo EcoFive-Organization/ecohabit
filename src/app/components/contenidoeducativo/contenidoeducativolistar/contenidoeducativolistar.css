@@ -51,7 +51,7 @@ h2 {
 
 /* Estado Hover: fondo verde, texto blanco */
 .contenido-card mat-card-actions button[mat-button]:not([color="warn"]):hover {
-  background-color: rgb(79, 136, 87);
+  background-color: #388E3C;
   color: white;
 }
 
@@ -62,8 +62,55 @@ h2 {
   color: white;
 }
 
-/* ... (tus otros estilos) ... */
-.mat-icon {
-  margin: 0;
-  text-align: center;
+.contenido-card mat-card-actions button[mat-button]:not([color="warn"]) {
+  color: #5FB963;
 }
+
+.contenido-card mat-card-actions button[mat-button] {
+  color: #f44336; /* Rojo estándar de Material */
+}
+
+/* ✅ AÑADE ESTO EN SU LUGAR ✅ */
+
+/* 1. Estilos para el CONTENEDOR del ícono */
+.icon-container {
+  /* Centra el <mat-icon> horizontalmente */
+  text-align: center;
+  
+  /* Le da espacio (arriba/abajo) para separarlo del título y el texto */
+  margin: 0 auto;
+}
+
+/* 2. Estilos para el ÍCONO GRANDE en específico */
+.icon-container .icono-contenido {
+  
+  /* --- ¡AQUÍ ESTÁ LA CLAVE! --- */
+  /* Le damos un tamaño grande "como de imagen" */
+  font-size: 150px;
+  
+  /* Forzamos que el ancho y alto se ajusten al tamaño de la fuente */
+  width: auto;
+  height: auto;
+  
+  /* --- (Opcional) Mejoras visuales --- */
+  
+  /* Tu color de fondo */
+  
+  /* Un color de ícono que combine con el fondo */
+  color: darkgreen; 
+  
+  /* Relleno para que el fondo sea más grande que el ícono */
+  padding: 5px;
+  
+  /* Esquinas redondeadas para que se vea más suave */
+  border-radius: 25px; 
+}
+
+/*Para los botones*/
+.mat-icon {
+  font-size: 20px;
+  justify-content: center;
+}
+
+
+
