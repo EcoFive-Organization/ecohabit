@@ -3,15 +3,17 @@
 
   <div class="card-container">
 
-    <mat-card *ngFor="let element of dataSource" class="mat-elevation-z8 contenido-card">
+    <mat-card *ngFor="let element of pagedData" class="mat-elevation-z8 contenido-card">
 
       <mat-card-header>
         <mat-card-title class="titulo">{{ element.titulo }}</mat-card-title>
         <mat-card-subtitle>
           Tipo: {{ element.tipo }} <br> ID: {{ element.idContenidoEducativo }}
         </mat-card-subtitle>
-      </mat-card-header>
-
+        </mat-card-header>
+      <div class="icon-container">
+        <mat-icon class="icono-contenido">book</mat-icon>
+      </div>
       <mat-card-content>
         <p>{{ element.descripcion }}</p>
 
@@ -37,6 +39,16 @@
     </mat-card>
 
   </div>
+
+  <!-- Paginador -->
+  <mat-paginator
+    [length]="dataSource.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[2, 5, 10, 20]"
+    (page)="onPageChange($event)"
+    showFirstLastButtons
+  >
+  </mat-paginator>
 
   <!-- Mensaje cuando no hay datos -->
   <div *ngIf="!dataSource || dataSource.length === 0" class="no-data-message">
