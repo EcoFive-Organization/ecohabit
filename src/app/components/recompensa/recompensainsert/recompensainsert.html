@@ -37,14 +37,17 @@
       <br>
 
       <!--CostoPuntos Column-->
-      <mat-form-field>
         <mat-label>Costo Puntos</mat-label>
-        <input matInput formControlName="costoPuntos" />
-        <mat-error>
-          @if (form.get('costoPuntos')?.hasError('required')) { La descripcion es obligatoria!!!! }
-        </mat-error>
-    </mat-form-field>
-
+        <mat-slider
+          min="50"
+          max="3500"
+          step="50"
+          showTickMarks
+          discrete
+          [displayWith]="formatLabel"
+        >
+          <input matSliderThumb formControlName="costoPuntos" />
+        </mat-slider>
       <br>
 
       <!--Si edicion es true que se muestre el botón Actualizar, si no se muestra el de registrar-->

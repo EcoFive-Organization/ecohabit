@@ -18,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-transaccioninsert',
@@ -30,8 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatDatepickerModule,
     MatNativeDateModule,
     MatOptionModule,
-    MatSelectModule,
-  ],
+    MatSelectModule, MatSliderModule],
   templateUrl: './transaccioninsert.html',
   styleUrl: './transaccioninsert.css',
 })
@@ -83,6 +83,16 @@ export class Transaccioninsert implements OnInit {
       fecha: ['', Validators.required],
     });
   }
+
+  // para el slider
+  formatLabel(value: number): string {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return `${value}`;
+  }
+
   aceptar(): void {
     if (this.form.valid) {
       this.tra.idTransaccion = this.form.value.id;
@@ -122,8 +132,8 @@ export class Transaccioninsert implements OnInit {
           id: new FormControl(data.idTransaccion),
           billeteraL: new FormControl(data.billetera.idBilletera),
           tipo: new FormControl(data.tipo),
-          monto: new FormControl(data.monto),
-          fecha: new FormControl(data.fecha),
+          monto: new FormControl(Number(data.monto ?? 0)), // para el slider
+          fecha: new FormControl(data.fecha)
         });
       });
     }

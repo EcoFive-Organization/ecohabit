@@ -56,14 +56,20 @@
       <br />
 
       <!--Monto-->
-      <mat-form-field>
-        <mat-label>Monto</mat-label>
-        <input matInput formControlName="monto" required />
+      <div class="slider-container">
+        <mat-label>Monto (Puntos)</mat-label>
+        <mat-slider
+          min="3000"
+          max="100000"
+          step="1000"
+          showTickMarks
+          discrete
+          [displayWith]="formatLabel"
+        >
+          <input matSliderThumb formControlName="monto" />
+        </mat-slider>
+      </div>
 
-        @if (form.get('monto')?.hasError('required')) {
-        <mat-error>El campo es obligatorio.</mat-error>
-        }
-      </mat-form-field>
       <br />
 
     <!--Fecha-->
