@@ -41,3 +41,16 @@ button[matButton='elevated']:hover {
     display: flex;
     justify-content: center;
 }
+
+/* 1. El contenedor (para dar espacio a los lados) */
+.slider-container {
+  width: 90%; 
+  margin: 20px auto; 
+}
+
+/* 2. La barra del slider (para centrarla) */
+.slider-container mat-slider {
+  width: calc(100% - 60px);
+  margin: 0 auto;
+  display: block;
+}
