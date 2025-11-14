@@ -18,29 +18,25 @@ import { MatIconModule } from '@angular/material/icon'; // Importar Icon
 import { CommonModule } from '@angular/common'; // Importar CommonModule (para *ngIf)
 
 // --- Validador personalizado ---
-// (Puedes poner esto al final del archivo, fuera de la clase)
-export function passwordMatchValidator(
-  control: AbstractControl
-): ValidationErrors | null {
+export function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
   const password = control.get('contrasenia')?.value;
   const confirmPassword = control.get('confirmarContrasenia')?.value;
-  // Si las contraseñas no coinciden, devuelve un error
   return password === confirmPassword ? null : { passwordMismatch: true };
 }
 // -----------------------------
 
 @Component({
   selector: 'app-usuarioinsert',
-  standalone: true, // Componente standalone
+  standalone: true,
   imports: [
-    CommonModule, // Necesario para directivas como *ngIf
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule, // Módulo para la tarjeta
-    MatIconModule, // Módulo para los iconos (ojo de contraseña)
-    RouterLink, // Módulo para routerLink (enlaces de navegación)
+    MatCardModule,
+    MatIconModule,
+    RouterLink,
   ],
   templateUrl: './usuarioinsert.html',
   styleUrl: './usuarioinsert.css',
@@ -48,8 +44,8 @@ export function passwordMatchValidator(
 export class Usuarioinsert implements OnInit {
   form: FormGroup = new FormGroup({});
   usuario: Usuario = new Usuario();
-  hidePassword = true; // Para el toggle de contraseña
-  hideConfirmPassword = true; // Para el toggle de confirmar contraseña
+  hidePassword = true;
+  hideConfirmPassword = true;
 
   constructor(
     private usuarioService: Usuarioservice,
@@ -60,27 +56,27 @@ export class Usuarioinsert implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        // 1. Campo 'nombre' añadido
-        nombre: ['', Validators.required],
-        
-        // 2. Campo 'email' con validación
-        email: ['', [Validators.required, Validators.email]],
-        
-        // 3. Campo 'contrasenia' con validaciones complejas
+        nombre: ['', Validators.required], // *** ¡AQUÍ ESTÁ LA CORRECCIÓN! ***
+        email: [
+          '',
+          [
+            Validators.required,
+            // Reemplazamos Validators.email por una RegEx más estricta
+            // Esta RegEx busca el formato: texto@texto.texto (ej. hola@gmail.com)
+            Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
+          ],
+        ],
         contrasenia: [
           '',
           [
             Validators.required,
             Validators.minLength(8),
-            Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/), // Requiere 1 mayúscula y 1 número
+            Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/),
           ],
         ],
-        
-        // 4. Campo 'confirmarContrasenia'
         confirmarContrasenia: ['', Validators.required],
       },
       {
-        // 5. Validador a nivel de grupo para comparar contraseñas
         validators: passwordMatchValidator,
       }
     );
@@ -88,45 +84,30 @@ export class Usuarioinsert implements OnInit {
 
   aceptar(): void {
     if (this.form.valid) {
-      
-      // *** ¡LA SOLUCIÓN ESTÁ AQUÍ! ***
-      // 1. NO uses this.usuario. Crea un objeto payload limpio.
-      // Este objeto NO tiene 'idUsuario', por lo que Hibernate
-      // sabrá que debe hacer un INSERT (crear uno nuevo).
       const payload = {
         nombre: this.form.value.nombre,
         email: this.form.value.email,
         passwordHash: this.form.value.contrasenia,
-        enabled: true // Asegúrate de que tu backend acepte esto
+        enabled: true,
       };
 
-      // 2. Envía el payload nuevo. 
-      // Usamos 'payload as Usuario' para que coincida con el tipo de tu servicio.
       this.usuarioService.insert(payload as Usuario).subscribe({
-        
-        // 3. (Opcional) Manejo moderno de .subscribe
         next: (data) => {
-          console.log("Usuario registrado:", data);
+          console.log('Usuario registrado:', data);
           this.usuarioService.list().subscribe((data) => {
             this.usuarioService.setList(data);
           });
-          // Redirige al login (ruta vacía) después del registro
-          this.router.navigate(['/menu']); 
+          this.router.navigate(['/menu']);
         },
         error: (err) => {
-          // Esto es útil si el backend te devuelve un error (ej. email duplicado)
-          console.error("Error durante el registro:", err);
-          // Aquí podrías añadir una notificación al usuario
-        }
+          console.error('Error durante el registro:', err);
+        },
       });
-
     } else {
-      // Marca todos los campos como "tocados" para mostrar todos los errores
       this.form.markAllAsTouched();
     }
-  }
+  } // --- Getters (sin cambios) ---
 
-  // --- Getters para facilitar la validación en el HTML ---
   get nombre() {
     return this.form.get('nombre');
   }
