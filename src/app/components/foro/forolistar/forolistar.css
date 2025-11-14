@@ -7,12 +7,6 @@
 }
 
 .foro-card {
-  /* Define un tamaño base y permite que crezcan.
-    'flex: 1 1 300px' significa:
-    - flex-grow: 1 (que crezca para ocupar espacio)
-    - flex-shrink: 1 (que se encoja si es necesario)
-    - flex-basis: 300px (que su tamaño base sea 300px)
-  */
   flex: 1 1 300px;
   min-width: 280px; /* Ancho mínimo antes de que se rompa */
   max-width: 400px; /* Ancho máximo */
@@ -26,14 +20,72 @@
 }
 
 h2 {
-    text-align: center;
-    margin: 20px auto;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 30px;
+  text-align: center;
+  margin: 20px auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 30px;
 }
 
-.mat-icon {
-    margin: 0 auto;
-    font-size: 20px;
+p {
+  text-align: center;
+  margin: 20px auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
 }
 
+/* 1. Estilos para el CONTENEDOR del ícono */
+.icon-container {
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* 2. Estilos para el ÍCONO GRANDE en específico */
+.icon-container .icono-foro {
+  font-size: 150px;
+  width: auto;
+  height: auto;
+  color: darkgreen;
+  padding: 5px;
+  border-radius: 25px;
+}
+
+/* --- ✅ CSS CORREGIDO Y AÑADIDO PARA BOTONES --- */
+
+/* 1. REEMPLAZO para tu regla ".mat-icon" */
+/* Hacemos que solo los íconos DENTRO de los botones de acción sean de 20px */
+/* Esto evita conflictos con tu ícono grande de 150px */
+.foro-card mat-card-actions .mat-icon {
+  font-size: 20px;
+  margin: 0 auto;
+}
+/* 2. AÑADIDO: Transición suave para los botones */
+.foro-card mat-card-actions button[mat-button] {
+  /* Animación suave de 0.3s para el fondo y el color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* (Opcional) Asegura que el ícono y el texto se centren bien */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. AÑADIDO: Hover para el botón de EDITAR (verde) */
+/* Apuntamos al botón que NO tiene color="warn" */
+.foro-card mat-card-actions button[mat-button]:not([color="warn"]):hover {
+  background-color: #388E3C; /* Un verde que combina con tu ícono */
+  color: white; /* El color del ícono y texto será blanco */
+}
+
+/* 4. AÑADIDO: Hover para el botón de ELIMINAR (rojo) */
+/* Apuntamos al botón que SÍ tiene color="warn" */
+.foro-card mat-card-actions button[mat-button][color="warn"]:hover {
+  background-color: #f44336; /* Rojo estándar de Material */
+  color: white;
+}
+
+.foro-card mat-card-actions button[mat-button]:not([color="warn"]) {
+  color: #5FB963;
+}
+
+.foro-card mat-card-actions button[mat-button] {
+  color: #f44336; /* Rojo estándar de Material */
+}

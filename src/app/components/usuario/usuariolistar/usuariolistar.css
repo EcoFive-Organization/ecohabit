@@ -67,24 +67,22 @@
 .mat-column-c3 button {
     /* Asegura que el fondo sea transparente, anulando el verde genérico del tema */
     background-color: transparent !important; 
-    color: #03A9F4; /* Color por defecto */
-    transition: all 0.3s;
+    color: #5FB963; /* Color por defecto */
 }
 
 .mat-column-c3 button mat-icon {
     /* GUIDELINE: Azul Claro para el ícono [cite: 565-567] */
-    color: #03A9F4; 
-    transition: color 0.3s;
+    color: #5FB963; 
 }
 
 .mat-column-c3 button:hover {
     /* Aplicamos un fondo sutil en hover */
-    background-color: rgba(3, 169, 244, 0.1) !important; 
+    background-color: #388E3C !important; 
 }
 
 .mat-column-c3 button:hover mat-icon {
     /* GUIDELINE: Azul Oscuro para hover [cite: 594-596] */
-    color: #0288D1 !important; 
+    color: #FFFFFF !important; 
 }
 
 /* 2. Botón Eliminar (c4) - Acciones de peligro */
@@ -92,23 +90,21 @@
     /* Asegura que el fondo sea transparente */
     background-color: transparent !important;
     color: #F44336; /* Color por defecto */
-    transition: all 0.3s;
 }
 
 .mat-column-c4 button mat-icon {
     /* GUIDELINE: Rojo de Alerta para acciones destructivas [cite: 581-583] */
     color: #F44336; 
-    transition: color 0.3s;
 }
 
 .mat-column-c4 button:hover {
     /* Aplicamos un fondo rojo muy sutil al hacer hover */
-    background-color: rgba(244, 67, 54, 0.1) !important; 
+    background-color: #F44336 !important; 
 }
 
 .mat-column-c4 button:hover mat-icon {
     /* Rojo más oscuro al hacer hover */
-    color: #D32F2F !important; 
+    color: #FFFFFF !important; 
 }
 
 /* --- D. RESPONSIVE DESIGN --- */
