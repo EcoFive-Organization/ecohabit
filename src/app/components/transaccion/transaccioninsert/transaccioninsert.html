@@ -75,7 +75,7 @@
     <!--Fecha-->
     <mat-form-field>
         <mat-label>Fecha</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fecha" [max]="today" required />
+        <input matInput [matDatepicker]="picker" formControlName="fecha" [max]="today" required/>
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
