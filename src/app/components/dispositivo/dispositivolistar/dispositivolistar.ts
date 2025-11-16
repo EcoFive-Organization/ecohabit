@@ -15,7 +15,7 @@ import { Dispositivoservice } from '../../../services/dispositivoservice';
 })
 export class Dispositivolistar implements OnInit {
   dataSource: MatTableDataSource<Dispositivo> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'cforaneanombre', 'c7', 'c8']
+  displayedColumns: string[] = ['c1', 'c2', 'c4', 'cforaneanombre', 'c7', 'c8']
 
   constructor(private dS: Dispositivoservice) {}
 

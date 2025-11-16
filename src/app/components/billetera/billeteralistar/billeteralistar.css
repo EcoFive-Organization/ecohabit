@@ -1,12 +1,71 @@
-table {
-    width: 100%;
-    margin: 30px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+/* A. CONTENEDOR Y TIPOGRAFÍA BASE */
+
+.container {
+    /* Centra y limita el ancho del contenido */
+    max-width: 90%; 
+    margin: 20px auto; 
+    padding: 1rem;
+    /* GUIDELINE: Fuente Secundaria (Roboto) y Color de texto general (Gris Oscuro) */
+    font-family: 'Roboto', sans-serif;
+    color: #37474F; 
 }
 
-h1 {
+/* TÍTULO (h1) - Adaptado del h2 del ejemplo */
+.container h1 {
+    /* GUIDELINE: Fuente Primaria (Montserrat) */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; /* 24px */
+    color: #37474F;
+    margin-bottom: 1.5rem;
+    /* GUIDELINE: Separador con color principal */
+    border-bottom: 2px solid #5FB963; 
+    padding-bottom: 0.5rem;
+    /* Centrado (de tu HTML original) */
     text-align: center;
-    margin-top: 20px;
-    font-size: 32px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* --- B. ESTILOS GENERALES DE LA TABLA (MAT-TABLE) --- */
+
+.mat-elevation-z8 {
+    width: 100%;
+    /* Sombra suave y bordes para mejor estética */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+    overflow: hidden; 
+}
+
+/* CABECERA DE LA TABLA (TH) */
+.mat-header-cell {
+    /* GUIDELINE: Fondo Verde (como solicitaste) */
+    background-color: #388E3C; 
+    color: #FFFFFF; /* Texto Blanco */
+    /* GUIDELINE: Montserrat para títulos de columna */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* FILAS DE CONTENIDO (TD) */
+.mat-cell {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    color: #37474F;
+}
+
+/* GUIDELINE: Alternancia de colores para legibilidad */
+.mat-row:nth-child(even) {
+    background-color: #ECEFF1; 
+}
+
+/* --- C. RESPONSIVE DESIGN --- */
+/* (Se mantienen los estilos responsive del ejemplo) */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0.5rem;
+    }
+    .mat-header-cell, .mat-cell {
+        padding: 8px; /* Reducir padding de las celdas */
+        font-size: 0.85rem;
+    }
 }

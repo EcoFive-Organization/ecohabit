@@ -1,45 +1,121 @@
-table {
-  width: 100%;
-  margin: 30px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+/* A. CONTENEDOR Y TIPOGRAFÍA BASE */
+
+.container {
+    /* Centra y limita el ancho del contenido */
+    max-width: 90%; 
+    margin: 20px auto; 
+    padding: 1rem;
+    /* GUIDELINE: Fuente Secundaria (Roboto) y Color de texto general (Gris Oscuro) */
+    font-family: 'Roboto', sans-serif;
+    color: #37474F; 
 }
 
-h2 {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 32px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+/* TÍTULO (h2) - Adaptado del ejemplo */
+.container h2 {
+    /* GUIDELINE: Fuente Primaria (Montserrat) */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; /* 24px */
+    color: #37474F;
+    margin-bottom: 1.5rem;
+    /* GUIDELINE: Separador con color principal */
+    border-bottom: 2px solid #5FB963; 
+    padding-bottom: 0.5rem;
+    /* Centrado */
+    text-align: center;
 }
 
-/* --- NUEVAS REGLAS PARA HOVER --- */
+/* --- B. ESTILOS GENERALES DE LA TABLA (MAT-TABLE) --- */
 
-/* 1. Transición suave para TODOS los botones de la tabla */
-table.mat-elevation-z8 td button[matButton] {
-  transition: background-color 0.3s ease, color 0.3s ease; /* Opcional: Hace los botones redondos (icon-buttons) */
+.mat-elevation-z8 {
+    width: 100%;
+    /* Sombra suave y bordes para mejor estética */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+    overflow: hidden; 
 }
 
-/* 2. Botón de EDITAR (Columna c5) */
-
-/* Estado normal: Hacemos el ícono verde */
-table.mat-elevation-z8 .mat-column-c5 button[matButton] {
-  color: darkgreen;
+/* CABECERA DE LA TABLA (TH) */
+.mat-header-cell {
+    /* GUIDELINE: Fondo Verde (como solicitaste) */
+    background-color: #388E3C; 
+    color: #FFFFFF; /* Texto Blanco */
+    /* GUIDELINE: Montserrat para títulos de columna */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-/* Estado Hover: Fondo verde, ícono blanco */
-table.mat-elevation-z8 .mat-column-c5 button[matButton]:hover {
-  background-color: darkgreen;
-  color: white;
+/* FILAS DE CONTENIDO (TD) */
+.mat-cell {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    color: #37474F;
 }
 
-/* 3. Botón de ELIMINAR (Columna c6) */
-
-/* Estado normal: Hacemos el ícono rojo */
-table.mat-elevation-z8 .mat-column-c6 button[matButton] {
-  color: #f44336; /* Rojo estándar de Material */
+/* GUIDELINE: Alternancia de colores para legibilidad */
+.mat-row:nth-child(even) {
+    background-color: #ECEFF1; 
 }
 
-/* Estado Hover: Fondo rojo, ícono blanco */
-table.mat-elevation-z8 .mat-column-c6 button[matButton]:hover {
-  background-color: #f44336;
-  color: white;
+/* --- C. BOTONES DE ACCIÓN (ACTUALIZAR / ELIMINAR) --- */
+
+/* Selector para las columnas de acción - ADAPTADO a c5 y c6 */
+.mat-column-c5, .mat-column-c6 {
+    width: 80px; 
+    text-align: center;
+}
+
+/* Estilo base para los botones de ícono en las acciones */
+.mat-column-c5 button,
+.mat-column-c6 button {
+    /* Asegura que el fondo sea transparente */
+    background-color: transparent !important; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 1. Botón Actualizar (c5) - ADAPTADO */
+.mat-column-c5 button mat-icon {
+    /* GUIDELINE: Verde para el ícono */
+    color: #5FB963; 
+    margin: 0 auto;
+}
+
+.mat-column-c5 button:hover {
+    /* Aplicamos un fondo verde en hover */
+    background-color: #388E3C !important; 
+}
+
+.mat-column-c5 button:hover mat-icon {
+    /* Ícono blanco en hover */
+    color: #FFFFFF !important; 
+}
+
+/* 2. Botón Eliminar (c6) - ADAPTADO */
+.mat-column-c6 button mat-icon {
+    /* GUIDELINE: Rojo de Alerta para acciones destructivas */
+    color: #F44336; 
+    margin: 0 auto;
+}
+
+.mat-column-c6 button:hover {
+    /* Aplicamos un fondo rojo al hacer hover */
+    background-color: #F44336 !important; 
+}
+
+.mat-column-c6 button:hover mat-icon {
+    /* Ícono blanco en hover */
+    color: #FFFFFF !important; 
+}
+
+
+/* --- D. RESPONSIVE DESIGN --- */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0.5rem;
+    }
+    .mat-header-cell, .mat-cell {
+        padding: 8px; /* Reducir padding de las celdas */
+        font-size: 0.85rem;
+    }
 }
