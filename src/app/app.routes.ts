@@ -18,52 +18,79 @@ import { Menu } from './components/menu/menu';
 import { Dispositivoinsert } from './components/dispositivo/dispositivoinsert/dispositivoinsert';
 
 export const routes: Routes = [
-    {path: 'menu', component: Menu},
-    { path: '', component: Home},
-    // Esta es ahora una ruta principal y reemplazará la página Home
-    { path: 'registrousuario', component: Usuarioinsert },
-    { path: 'listausuarios', component: Usuario,
-        children: [
-            {path: 'registrousuario', component: Usuarioinsert},
-            // Los dos puntos indican que es una variable
-            {path: 'edits/:id', component: Usuarioinsert} // Esta ruta sirve para cuando le demos al botón actualizar lleve al formulario de registro
-        ]
-    },
-    {path: 'listarforos', component: Foro,
-        children: [
-            {path: 'registroforo', component: Foroinsert},
-            // Los dos puntos indican que es una variable
-            {path: 'edits/:id', component: Foroinsert}
-        ]
-    },
-    {path: 'listarrecompensa', component: Recompensa,
-        children: [
-            {path: 'registrorecompensa', component: Recompensainsert},
-            // Los dos puntos indican que es una variable
-            {path: 'edits/:id', component: Recompensainsert}
-        ]
-    },
-    {path: 'listarcontenidoeducativo', component: Contenidoeducativo,
-        children: [
-            {path: 'registrocontenidoeducativo', component: Contenidoeducativoinsert},
-            {path: 'edits/:id', component: Contenidoeducativoinsert}
-        ]
-    },
-    {path:'listarplansuscripcion', component:Plansuscripcion},
-    {path:'listarbilleteras', component:Billetera,
-        children:[
-            {path: 'registrobilleteras', component: Billeterainsert},
-            {path: 'edits/:id', component: Billeterainsert}]
-    },
-    {path:'listartransacciones', component:Transaccion,
-        children:[
-            {path: 'registrotransacciones', component: Transaccioninsert},
-            {path: 'edits/:id', component: Transaccioninsert}]
-    },
-    {path: 'listadispositivo', component: Dispositivo,
-        children: [
-            {path: 'registrodispositivo', component: Dispositivoinsert},
-            {path: 'edits/:id', component: Dispositivoinsert}
-        ]
-    }
+  // Menu
+  { path: 'menu', component: Menu },
+
+  // Landing Page
+  { path: '', component: Home },
+
+  // Esta es ahora una ruta principal y reemplazará la página Home
+  { path: 'registrousuario', component: Usuarioinsert },
+  {
+    path: 'listausuarios',
+    component: Usuario,
+    children: [
+      { path: 'registrousuario', component: Usuarioinsert },
+      // Los dos puntos indican que es una variable
+      { path: 'perfil/:id', component: Usuarioinsert }, // Esta ruta sirve para cuando le demos al botón actualizar lleve al formulario de registro
+    ],
+  },
+  // Foro
+  {
+    path: 'listarforos',
+    component: Foro,
+    children: [
+      { path: 'registroforo', component: Foroinsert },
+      // Los dos puntos indican que es una variable
+      { path: 'edits/:id', component: Foroinsert },
+    ],
+  },
+  // Recompensa
+  {
+    path: 'listarrecompensa',
+    component: Recompensa,
+    children: [
+      { path: 'registrorecompensa', component: Recompensainsert },
+      // Los dos puntos indican que es una variable
+      { path: 'edits/:id', component: Recompensainsert },
+    ],
+  },
+  // Contenido Educativo
+  {
+    path: 'listarcontenidoeducativo',
+    component: Contenidoeducativo,
+    children: [
+      { path: 'registrocontenidoeducativo', component: Contenidoeducativoinsert },
+      { path: 'edits/:id', component: Contenidoeducativoinsert },
+    ],
+  },
+  // Plan Suscripcion
+  { path: 'listarplansuscripcion', component: Plansuscripcion },
+  // Billetera
+  {
+    path: 'listarbilleteras',
+    component: Billetera,
+    children: [
+      { path: 'registrobilleteras', component: Billeterainsert },
+      { path: 'edits/:id', component: Billeterainsert },
+    ],
+  },
+  // Transaccion
+  {
+    path: 'listartransacciones',
+    component: Transaccion,
+    children: [
+      { path: 'registrotransacciones', component: Transaccioninsert },
+      { path: 'edits/:id', component: Transaccioninsert },
+    ],
+  },
+  // Dispositivo
+  {
+    path: 'listadispositivo',
+    component: Dispositivo,
+    children: [
+      { path: 'registrodispositivo', component: Dispositivoinsert },
+      { path: 'edits/:id', component: Dispositivoinsert },
+    ],
+  },
 ];
