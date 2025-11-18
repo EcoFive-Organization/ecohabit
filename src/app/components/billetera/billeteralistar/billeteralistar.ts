@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Billetera } from '../../../models/Billetera';
-import { RouterLink } from '@angular/router';
 import { Billeteraservice } from '../../../services/billeteraservice';
 
 @Component({

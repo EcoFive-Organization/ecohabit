@@ -16,6 +16,8 @@ import { Transaccioninsert } from './components/transaccion/transaccioninsert/tr
 import { Dispositivo } from './components/dispositivo/dispositivo';
 import { Menu } from './components/menu/menu';
 import { Dispositivoinsert } from './components/dispositivo/dispositivoinsert/dispositivoinsert';
+import { Consumo } from './components/consumo/consumo';
+import { Consumoinsert } from './components/consumo/consumoinsert/consumoinsert';
 
 export const routes: Routes = [
   // Menu
@@ -93,4 +95,13 @@ export const routes: Routes = [
       { path: 'edits/:id', component: Dispositivoinsert },
     ],
   },
+
+  // Consumo
+  {
+    path: 'listarconsumo', component: Consumo,
+    children: [
+      {path: 'registroconsumo', component: Consumoinsert}
+    ]
+  }
+
 ];
