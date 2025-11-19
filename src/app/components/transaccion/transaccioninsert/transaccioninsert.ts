@@ -80,7 +80,7 @@ export class Transaccioninsert implements OnInit {
       billeteraL: ['', Validators.required], // FK de Billetera
       tipo: ['', Validators.required],
       monto: ['', Validators.required],
-      fecha: ['', Validators.required],
+      fecha: [new Date(), Validators.required], // Fecha actual por defecto
     });
   }
 

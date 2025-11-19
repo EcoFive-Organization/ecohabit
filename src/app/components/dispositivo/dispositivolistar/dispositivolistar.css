@@ -10,7 +10,7 @@
     color: #37474F; 
 }
 
-/* TÍTULO (h1) - Adaptado de la guía (que usaba h2) */
+/* TÍTULO (h1) */
 .container h1 {
     /* GUIDELINE: Fuente Primaria (Montserrat) */
     font-family: 'Montserrat', sans-serif;
@@ -20,9 +20,8 @@
     /* GUIDELINE: Separador con color principal */
     border-bottom: 2px solid #5FB963; 
     padding-bottom: 0.5rem;
-    
-    /* Tomado de tu estilo inline para mantener el centrado */
-    text-align: center; 
+    /* Centrado */
+    text-align: center;
 }
 
 /* --- B. ESTILOS GENERALES DE LA TABLA (MAT-TABLE) --- */
@@ -37,8 +36,8 @@
 
 /* CABECERA DE LA TABLA (TH) */
 .mat-header-cell {
-    /* GUIDELINE: Fondo Gris Oscuro */
-    background-color: #37474F; 
+    /* GUIDELINE: Fondo Verde */
+    background-color: #388E3C; 
     color: #FFFFFF; /* Texto Blanco */
     /* GUIDELINE: Montserrat para títulos de columna */
     font-family: 'Montserrat', sans-serif;
@@ -71,14 +70,14 @@
 .mat-column-c8 button {
     /* Asegura que el fondo sea transparente */
     background-color: transparent !important; 
+    border-radius: 50%; /* Los hace circulares */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 1. Botón Actualizar (c7) - ADAPTADO */
+/* 1. Botón Actualizar (c7) */
 .mat-column-c7 button mat-icon {
-    /* GUIDELINE: Verde (en lugar de Azul Claro) para el ícono */
-    color: #5FB963;
-    margin: 0 auto;
+    /* GUIDELINE: Verde para el ícono */
+    color: #5FB963; 
 }
 
 .mat-column-c7 button:hover {
@@ -91,11 +90,10 @@
     color: #FFFFFF !important; 
 }
 
-/* 2. Botón Eliminar (c8) - ADAPTADO */
+/* 2. Botón Eliminar (c8) */
 .mat-column-c8 button mat-icon {
     /* GUIDELINE: Rojo de Alerta para acciones destructivas */
-    color: #F44336;
-    margin: 0 auto;
+    color: #F44336; 
 }
 
 .mat-column-c8 button:hover {
@@ -108,7 +106,24 @@
     color: #FFFFFF !important; 
 }
 
-/* --- D. RESPONSIVE DESIGN --- */
+/* --- D. ESTILOS DEL PAGINADOR --- */
+
+/* Usamos '.container mat-paginator' para que sea más específico */
+.container mat-paginator {
+    /* Sombra y bordes (a juego con la tabla) */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px; /* Espacio entre la tabla y el paginador */
+    
+    /* Fondo blanco para que la sombra se vea bien */
+    background-color: #ffffff; 
+
+    /* GUIDELINE: Asegura que el paginador use la fuente correcta */
+    font-family: 'Roboto', sans-serif;
+    color: #37474F;
+}
+
+/* --- E. RESPONSIVE DESIGN --- */
 
 @media (max-width: 768px) {
     .container {
@@ -116,6 +131,11 @@
     }
     .mat-header-cell, .mat-cell {
         padding: 8px; /* Reducir padding de las celdas */
+        font-size: 0.85rem;
+    }
+
+    /* Ajusta el paginador en móviles */
+    mat-paginator {
         font-size: 0.85rem;
     }
 }

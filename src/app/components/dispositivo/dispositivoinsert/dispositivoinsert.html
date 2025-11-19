@@ -29,11 +29,13 @@
       <!--Tipo-->
       <mat-form-field>
         <mat-label>Tipo</mat-label>
-        <input matInput formControlName="tipo" required />
-
-        @if (form.get('tipo')?.hasError('required')) {
-        <mat-error>El campo tipo es obligatorio.</mat-error>
-        }
+        <mat-select formControlName="tipo" required>
+          @for (t of tipos; track t) {
+          <mat-option [value]="t">{{ t }}</mat-option> }
+        </mat-select>
+        <mat-error>
+          @if (form.get('tipo')?.hasError('required')) { El tipo es obligatorio!!!! }
+        </mat-error>
       </mat-form-field>
       <br>
 
@@ -50,7 +52,7 @@
       <!--Fecha Registro-->
       <mat-form-field>
         <mat-label>Fecha Registro</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaRegistro" [max]="today" required />
+        <input matInput [matDatepicker]="picker" formControlName="fechaRegistro" [max]="today" required [disabled]="true" readonly/>
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>

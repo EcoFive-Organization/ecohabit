@@ -40,6 +40,9 @@
         <input matInput formControlName="valor" />
         <mat-error>
           @if (form.get('valor')?.hasError('required')) { El Valor es obligatorio!!!! }
+          @else if (form.get('valor')?.hasError('min')) {
+            El valor mínimo debe ser mayor o igual a 1
+          }
         </mat-error>
       </mat-form-field>
       <br>
@@ -93,6 +96,9 @@
         <input matInput formControlName="umbral" />
         <mat-error>
           @if (form.get('umbral')?.hasError('required')) { El Umbral de Consumo es obligatorio!!!! }
+          @else if (form.get('umbral')?.hasError('min')) {
+            El valor mínimo debe ser mayor o igual a 1
+          }
         </mat-error>
       </mat-form-field>
       <br>

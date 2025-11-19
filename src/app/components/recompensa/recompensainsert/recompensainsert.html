@@ -28,11 +28,22 @@
       <!--Descripcion Column-->
       <mat-form-field>
         <mat-label>Descripcion</mat-label>
-        <input matInput formControlName="descripcion" />
+        <!-- Cambiado a <textarea> y añadido maxlength -->
+        <textarea
+          matInput
+          formControlName="descripcion"
+          placeholder="Descripción de la recompensa..."
+          maxlength="255"
+        ></textarea>
+        <!-- Añadido contador de caracteres -->
+        <mat-hint align="end">{{ form.get('descripcion')?.value?.length || 0 }} / 255</mat-hint>
         <mat-error>
-          @if (form.get('descripcion')?.hasError('required')) { La descripcion es obligatoria!!!! }
+          @if (form.get('descripcion')?.hasError('required')) { La Descripcion es obligatoria!!!! }
+          @if (form.get('descripcion')?.hasError('maxlength')) { La descripción no debe exceder los
+          255 caracteres. }
         </mat-error>
     </mat-form-field>
+
 
       <br>
 

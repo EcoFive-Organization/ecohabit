@@ -28,9 +28,7 @@ export class Consumoinsert implements OnInit {
   unidades: { value: string; viewValue: string }[] = [
     { value: 'kWh', viewValue: 'kWh' }, // Electricidad - Medidor inteligente, enchufe smart
     { value: 'L / m³', viewValue: 'L / m³' }, // Agua - 	Medidor de agua IoT, grifo inteligente
-    { value: 'm³ / kg', viewValue: 'm³ / kg' }, // Gas - 	Medidor de gas conectado
-    { value: 'MB / GB', viewValue: 'MB / GB' }, // Internet/datos - Router inteligente, smart TV
-    { value: 'h / min', viewValue: 'h / min' }, // Tiempo de uso - 	Lámpara, electrodoméstico smart
+    { value: 'm³ / kg', viewValue: 'm³ / kg' } // Gas - 	Medidor de gas conectado
   ];
 
   listaDispositivos: Dispositivo[] = []
@@ -57,11 +55,11 @@ export class Consumoinsert implements OnInit {
         id: [''],
         dispositivoL: ['', Validators.required],
         tipo: ['', Validators.required],
-        valor: ['', Validators.required],
+        valor: ['', [Validators.required, Validators.min(1)]],
         unidad: ['', Validators.required],
         origenConsumo: ['', Validators.required],
-        fecha: ['', Validators.required],
-        umbral: ['', Validators.required]
+        fecha: [new Date(), Validators.required],
+        umbral: ['', [Validators.required, Validators.min(1)]]
       })
   }
 
