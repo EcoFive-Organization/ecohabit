@@ -29,6 +29,9 @@ export class Dispositivoinsert implements OnInit {
   // Va a manejar varios usuarios y los va a almacenar
   listaUsuarios: Usuario[] = []
 
+  // Lista de tipos
+  tipos: string[] = ['Agua', 'Electricidad', 'Gas']
+
   constructor(
     private dS: Dispositivoservice,
     private router: Router,
@@ -55,7 +58,7 @@ export class Dispositivoinsert implements OnInit {
         nombre: ['', Validators.required],
         tipo: ['', Validators.required],
         ubicacion: ['', Validators.required],
-        fechaRegistro: ['', Validators.required],
+        fechaRegistro: [new Date(), Validators.required],
         usuario: ['', Validators.required] // FK de Usuario
       })
   }

@@ -30,7 +30,7 @@
     width: 100%;
     /* Sombra suave y bordes para mejor estética */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px; 
+    border-radius: 8px; /* <-- Incluido según tu petición */
     overflow: hidden; 
 }
 
@@ -57,8 +57,20 @@
     background-color: #ECEFF1; 
 }
 
-/* --- C. RESPONSIVE DESIGN --- */
-/* (Se mantienen los estilos responsive del ejemplo) */
+/* --- C. ESTILOS DEL PAGINADOR --- */
+
+mat-paginator {
+    /* Sombra y bordes (a juego con la tabla) */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px; /* Espacio entre la tabla y el paginador */
+    
+    /* GUIDELINE: Asegura que el paginador use la fuente correcta */
+    font-family: 'Roboto', sans-serif;
+    color: #37474F;
+}
+
+/* --- D. RESPONSIVE DESIGN --- */
 
 @media (max-width: 768px) {
     .container {
@@ -66,6 +78,11 @@
     }
     .mat-header-cell, .mat-cell {
         padding: 8px; /* Reducir padding de las celdas */
+        font-size: 0.85rem;
+    }
+
+    /* Ajusta el paginador en móviles */
+    mat-paginator {
         font-size: 0.85rem;
     }
 }

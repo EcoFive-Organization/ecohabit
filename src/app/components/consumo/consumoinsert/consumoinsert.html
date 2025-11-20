@@ -1,0 +1,113 @@
+<div class="container">
+  <br />
+  <div class="titulo"><h2>Registro de Consumo</h2></div>
+  <br />
+  <div>
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      <!--Dispositivo Column-->
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Dispositivo:</mat-label>
+          <mat-select formControlName="dispositivoL" required>
+            @for (p of listaDispositivos; track p.idDispositivo) {
+            <mat-option [value]="p.idDispositivo">
+              {{ p.nombre }}
+            </mat-option>
+            }
+          </mat-select>
+
+          @if (form.get('dispositivoL')?.hasError('required')) {
+          <mat-error>El nombre del Dispositivo es obligatorio.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <br />
+
+      <!--Tipo Column-->
+      <mat-form-field>
+        <mat-label>Tipo</mat-label>
+        <input matInput formControlName="tipo" />
+        <mat-error>
+          @if (form.get('tipo')?.hasError('required')) { El Tipo es obligatorio!!!! }
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <!--Valor Column-->
+      <mat-form-field>
+        <mat-label>Valor</mat-label>
+        <input matInput formControlName="valor" />
+        <mat-error>
+          @if (form.get('valor')?.hasError('required')) { El Valor es obligatorio!!!! }
+          @else if (form.get('valor')?.hasError('min')) {
+            El valor mínimo debe ser mayor o igual a 1
+          }
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <!--Unidad-->
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Unidad: </mat-label>
+          <mat-select formControlName="unidad" required>
+            @for (p of unidades; track p.value) {
+            <mat-option [value]="p.value">
+              {{ p.viewValue }}
+            </mat-option>
+            }
+          </mat-select>
+
+          @if (form.get('unidad')?.hasError('required')) {
+          <mat-error>La Unidad es obligatoria!!!!</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <br />
+
+      <!--Origen Consumo Column-->
+      <mat-form-field>
+        <mat-label>Origen Consumo</mat-label>
+        <input matInput formControlName="origenConsumo" />
+        <mat-error>
+          @if (form.get('origenConsumo')?.hasError('required')) { El Origen del Consumo es obligatorio!!!! }
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <!--Fecha-->
+      <mat-form-field>
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha" [max]="today" required />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        @if (form.get('fecha')?.hasError('required')) {
+        <mat-error>El campo fecha es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      <br />
+
+      <!--Umbral Column-->
+      <mat-form-field>
+        <mat-label>Umbral de Consumo</mat-label>
+        <input matInput formControlName="umbral" />
+        <mat-error>
+          @if (form.get('umbral')?.hasError('required')) { El Umbral de Consumo es obligatorio!!!! }
+          @else if (form.get('umbral')?.hasError('min')) {
+            El valor mínimo debe ser mayor o igual a 1
+          }
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+
+      <div class="botonenviar">
+        <button matButton="elevated">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>
+

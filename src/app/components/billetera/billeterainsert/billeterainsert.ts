@@ -57,7 +57,7 @@ export class Billeterainsert implements OnInit{
     this.form = this.formBuilder.group({
       id: [''],
       usuarioL: ['', Validators.required],
-      saldo: ['', Validators.required] // FK de Software
+      saldo: ['', [Validators.required, Validators.min(1), Validators.pattern(/^[0-9]+$/)]] // FK de Software
     });
   }
   aceptar(): void {

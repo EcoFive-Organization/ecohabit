@@ -88,7 +88,6 @@
 
 /* El cabezal de la tarjeta */
 .register-header {
-  text-align: center;
   padding-bottom: 1.5rem;
   padding-left: 0; 
   padding-right: 0;
@@ -101,6 +100,7 @@
   font-weight: 600;
   color: #37474F; 
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* Subtítulo (Únete a la comunidad...) */
@@ -110,6 +110,8 @@
   color: #555; 
   white-space: normal;
   line-height: 1.5;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Hace que los campos de formulario ocupen todo el ancho */

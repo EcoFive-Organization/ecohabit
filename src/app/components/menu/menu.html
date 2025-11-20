@@ -38,6 +38,9 @@
     <button mat-menu-item [matMenuTriggerFor]="submenuDispositivo">
       Dispositivos
     </button>
+    <button mat-menu-item [matMenuTriggerFor]="submenuConsumo">
+      Consumo
+    </button>
     <button mat-menu-item routerLink="/">
       Salir
     </button>
@@ -73,7 +76,7 @@
     <button mat-menu-item routerLink="/listarbilleteras/registrobilleteras">Registrar</button>
   </mat-menu>
 
-  <!-- Submenú de Billetera -->
+  <!-- Submenú de Transacciones -->
   <mat-menu #submenuTransaccion="matMenu">
     <button mat-menu-item routerLink="/listartransacciones">Listar</button>
     <button mat-menu-item routerLink="/listartransacciones/registrotransacciones">Registrar</button>
@@ -83,6 +86,12 @@
   <mat-menu #submenuDispositivo="matMenu">
     <button mat-menu-item routerLink="/listadispositivo">Listar</button>
     <button mat-menu-item routerLink="/listadispositivo/registrodispositivo">Registrar</button>
+  </mat-menu>
+
+  <!--Submenú de Consumo-->
+  <mat-menu #submenuConsumo="matMenu">
+    <button mat-menu-item routerLink="/listarconsumo">Listar</button>
+    <button mat-menu-item routerLink="/listarconsumo/registroconsumo">Registrar</button>
   </mat-menu>
 
 </div>

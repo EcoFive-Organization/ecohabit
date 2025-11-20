@@ -1,21 +1,141 @@
-/* --- Botones dentro de la tabla --- */
-button[matButton] {
-  font-size: 0.8rem;
-  font-weight: 500;
-  border-radius: 6px;
-  padding: 4px 12px;
-  color: rgb(238, 244, 241);
-  text-transform: none;
-  transition: all 0.25s ease;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
-  background-color: rgb(242, 94, 35);
+/* A. CONTENEDOR Y TIPOGRAFÍA BASE */
+
+.container {
+    /* Centra y limita el ancho del contenido */
+    max-width: 90%; 
+    margin: 20px auto; 
+    padding: 1rem;
+    /* GUIDELINE: Fuente Secundaria (Roboto) y Color de texto general (Gris Oscuro) */
+    font-family: 'Roboto', sans-serif;
+    color: #37474F; 
 }
 
+/* TÍTULO (h1) */
+.container h1 {
+    /* GUIDELINE: Fuente Primaria (Montserrat) */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; /* 24px */
+    color: #37474F;
+    margin-bottom: 1.5rem;
+    /* GUIDELINE: Separador con color principal */
+    border-bottom: 2px solid #5FB963; 
+    padding-bottom: 0.5rem;
+    /* Centrado */
+    text-align: center;
+}
 
-/* --- Responsivo (botones más compactos en pantallas pequeñas) --- */
+/* --- B. ESTILOS GENERALES DE LA TABLA (MAT-TABLE) --- */
+
+.mat-elevation-z8 {
+    width: 100%;
+    /* Sombra suave y bordes para mejor estética */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+    overflow: hidden; 
+}
+
+/* CABECERA DE LA TABLA (TH) */
+.mat-header-cell {
+    /* GUIDELINE: Fondo Verde */
+    background-color: #388E3C; 
+    color: #FFFFFF; /* Texto Blanco */
+    /* GUIDELINE: Montserrat para títulos de columna */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* FILAS DE CONTENIDO (TD) */
+.mat-cell {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    color: #37474F;
+}
+
+/* GUIDELINE: Alternancia de colores para legibilidad */
+.mat-row:nth-child(even) {
+    background-color: #ECEFF1; 
+}
+
+/* --- C. BOTONES DE ACCIÓN (ACTUALIZAR / ELIMINAR) --- */
+
+/* Selector para las columnas de acción - ADAPTADO a c7 y c8 */
+.mat-column-c7, .mat-column-c8 {
+    width: 80px; 
+    text-align: center;
+}
+
+/* Estilo base para los botones de ícono en las acciones */
+.mat-column-c7 button,
+.mat-column-c8 button {
+    /* Asegura que el fondo sea transparente */
+    background-color: transparent !important; 
+    border-radius: 50%; /* Los hace circulares */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 1. Botón Actualizar (c7) */
+.mat-column-c7 button mat-icon {
+    /* GUIDELINE: Verde para el ícono */
+    color: #5FB963; 
+}
+
+.mat-column-c7 button:hover {
+    /* Aplicamos un fondo verde en hover */
+    background-color: #388E3C !important; 
+}
+
+.mat-column-c7 button:hover mat-icon {
+    /* Ícono blanco en hover */
+    color: #FFFFFF !important; 
+}
+
+/* 2. Botón Eliminar (c8) */
+.mat-column-c8 button mat-icon {
+    /* GUIDELINE: Rojo de Alerta para acciones destructivas */
+    color: #F44336; 
+}
+
+.mat-column-c8 button:hover {
+    /* Aplicamos un fondo rojo al hacer hover */
+    background-color: #F44336 !important; 
+}
+
+.mat-column-c8 button:hover mat-icon {
+    /* Ícono blanco en hover */
+    color: #FFFFFF !important; 
+}
+
+/* --- D. ESTILOS DEL PAGINADOR --- */
+
+/* Usamos '.container mat-paginator' para que sea más específico */
+.container mat-paginator {
+    /* Sombra y bordes (a juego con la tabla) */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px; /* Espacio entre la tabla y el paginador */
+    
+    /* Fondo blanco para que la sombra se vea bien */
+    background-color: #ffffff; 
+
+    /* GUIDELINE: Asegura que el paginador use la fuente correcta */
+    font-family: 'Roboto', sans-serif;
+    color: #37474F;
+}
+
+/* --- E. RESPONSIVE DESIGN --- */
+
 @media (max-width: 768px) {
-  button[matButton] [matIconButton]{
-    font-size: 0.7rem;
-    padding: 3px 8px;
-  }
+    .container {
+        padding: 0.5rem;
+    }
+    .mat-header-cell, .mat-cell {
+        padding: 8px; /* Reducir padding de las celdas */
+        font-size: 0.85rem;
+    }
+
+    /* Ajusta el paginador en móviles */
+    mat-paginator {
+        font-size: 0.85rem;
+    }
 }

@@ -24,12 +24,14 @@
       </div>
       <br />
 
-      <!--Descripcion Column-->
+      <!--Saldo Column-->
       <mat-form-field>
         <mat-label>Saldo</mat-label>
         <input matInput formControlName="saldo" />
         <mat-error>
           @if (form.get('saldo')?.hasError('required')) { El Saldo es obligatorio!!!! }
+          @else if (form.get('saldo')?.hasError('min')) { El valor mínimo debe ser mayor o igual a 1 }
+          @else if (form.get('saldo')?.hasError('pattern')) { Solo se permiten números enteros positivos }
         </mat-error>
       </mat-form-field>
       <br>

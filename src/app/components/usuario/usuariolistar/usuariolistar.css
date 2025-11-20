@@ -72,7 +72,8 @@
 
 .mat-column-c3 button mat-icon {
     /* GUIDELINE: Azul Claro para el ícono [cite: 565-567] */
-    color: #5FB963; 
+    color: #5FB963;
+    margin: 0 auto;
 }
 
 .mat-column-c3 button:hover {
@@ -94,7 +95,8 @@
 
 .mat-column-c4 button mat-icon {
     /* GUIDELINE: Rojo de Alerta para acciones destructivas [cite: 581-583] */
-    color: #F44336; 
+    color: #F44336;
+    margin: 0 auto;
 }
 
 .mat-column-c4 button:hover {

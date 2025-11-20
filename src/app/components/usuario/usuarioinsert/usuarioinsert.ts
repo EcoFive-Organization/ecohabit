@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule, // Importante para formularios
   ValidationErrors,
@@ -11,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Usuario } from '../../../models/Usuario';
-import { Router, RouterLink } from '@angular/router'; // Importar RouterLink
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router'; // Importar RouterLink
 import { Usuarioservice } from '../../../services/usuarioservice';
 import { MatCardModule } from '@angular/material/card'; // Importar Card
 import { MatIconModule } from '@angular/material/icon'; // Importar Icon
@@ -46,14 +47,24 @@ export class Usuarioinsert implements OnInit {
   usuario: Usuario = new Usuario();
   hidePassword = true;
   hideConfirmPassword = true;
+  id: number = 0;
+  perfil: boolean = false;
 
   constructor(
     private usuarioService: Usuarioservice,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    
+    this.route.params.subscribe((data: Params) => {
+      this.id = data[`id`];
+      this.perfil = data[`id`] != null; //Si hay un id en la ruta, perfil se vuelve true
+      this.init();
+    });
+
     this.form = this.formBuilder.group(
       {
         nombre: ['', Validators.required], // *** ¡AQUÍ ESTÁ LA CORRECCIÓN! ***
@@ -80,6 +91,10 @@ export class Usuarioinsert implements OnInit {
         validators: passwordMatchValidator,
       }
     );
+
+    
+    
+
   }
 
   aceptar(): void {
@@ -119,5 +134,20 @@ export class Usuarioinsert implements OnInit {
   }
   get confirmPassword() {
     return this.form.get('confirmarContrasenia');
+  }
+
+  init() {
+    if (this.perfil) {
+      this.usuarioService.listId(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          nombre: new FormControl(data.nombre),
+          email: new FormControl(data.email),
+        });
+
+        // Deshabilitamos los campos para que solo sean de lectura
+        this.form.get('nombre')?.disable();
+        this.form.get('email')?.disable();
+      });
+    }
   }
 }

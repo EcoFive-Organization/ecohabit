@@ -49,7 +49,7 @@ export class Recompensainsert implements OnInit {
     this.form = this.formBuilder.group({
       codigo: [``],
       nombre: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      descripcion: ['', [Validators.required, Validators.maxLength(255)]],
       costoPuntos: ['', Validators.required],
     });
   }
