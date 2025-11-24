@@ -5,12 +5,11 @@ import { Usuarioservice } from '../../../services/usuarioservice';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { Menu } from '../../menu/menu';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-usuariolistar',
-  imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink, Menu, MatPaginatorModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink, MatPaginatorModule],
   templateUrl: './usuariolistar.html',
   styleUrl: './usuariolistar.css',
 })

@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Recompensalistar } from './recompensalistar/recompensalistar';
-import { Menu } from '../menu/menu';
 
 @Component({
   selector: 'app-recompensa',
-  imports: [RouterOutlet, Recompensalistar, Menu],
+  imports: [RouterOutlet, Recompensalistar],
   templateUrl: './recompensa.html',
   styleUrl: './recompensa.css',
 })

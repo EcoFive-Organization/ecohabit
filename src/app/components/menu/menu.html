@@ -1,98 +1,112 @@
-<!--Creación del botón de menú-->
-<div class="container">
-  <mat-toolbar class="custom-toolbar">
-    <button
-      mat-button
-      class="btn-rojo"
-      aria-label="Botón de menú principal"
-      [matMenuTriggerFor]="menuUsuario">
-      <mat-icon>menu</mat-icon> EcoHabit
-    </button>
-  </mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened class="sidenav">
+    <div class="sidenav-header">
+      <h3>EcoHabit</h3>
+    </div>
 
-  <!-- Menú principal -->
-  <mat-menu #menuUsuario="matMenu">
-    
-    <button mat-menu-item [matMenuTriggerFor]="submenuUsuarios">
-      Usuarios
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="submenuForos">
-      Foros
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="submenuRecompensas">
-      Recompensas
-    </button>
-    <button mat-menu-item routerLink="/listarplansuscripcion">
-      Planes de Suscripción
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="submenuContenidoEducativo">
-      Contenido Educativo
-    </button>
-    
-    <button mat-menu-item [matMenuTriggerFor]="submenuBilletera">
-      Billetera
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="submenuTransaccion">
-      Transaccion
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="submenuDispositivo">
-      Dispositivos
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="submenuConsumo">
-      Consumo
-    </button>
-    <button mat-menu-item routerLink="/">
-      Salir
-    </button>
-  </mat-menu>
+    <mat-nav-list>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title> <mat-icon>people</mat-icon> Usuarios </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listausuarios">Listar</a>
+          <a mat-list-item routerLink="/registrousuario">Registrar</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
 
-  <!-- Submenú de Usuarios -->
-  <mat-menu #submenuUsuarios="matMenu">
-    <button mat-menu-item routerLink="/listausuarios">Listar</button>
-    <button mat-menu-item routerLink="/listausuarios/registrousuario">Registrar</button>
-  </mat-menu>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title> <mat-icon>forum</mat-icon> Foros </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarforos">Listar</a>
+          <a mat-list-item routerLink="/menu/listarforos/registroforo">Registrar</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
 
-  <!-- Submenú de Foro -->
-  <mat-menu #submenuForos="matMenu">
-    <button mat-menu-item routerLink="/listarforos">Listar</button>
-    <button mat-menu-item routerLink="/listarforos/registroforo">Registrar</button>
-  </mat-menu>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title> <mat-icon>emoji_events</mat-icon> Recompensas </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarrecompensa">Listar</a>
+          <a mat-list-item routerLink="/menu/listarrecompensa/registrorecompensa">Registrar</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
 
-  <!-- Submenú de Recompensas -->
-  <mat-menu #submenuRecompensas="matMenu">
-    <button mat-menu-item routerLink="/listarrecompensa">Listar</button>
-    <button mat-menu-item routerLink="/listarrecompensa/registrorecompensa">Registrar</button>
-  </mat-menu>
+      <a mat-list-item routerLink="/menu/listarplansuscripcion">
+        <mat-icon>card_membership</mat-icon> Planes de Suscripción
+      </a>
 
-  <!-- Submenú de Contenido Educativo -->
-  <mat-menu #submenuContenidoEducativo="matMenu">
-    <button mat-menu-item routerLink="/listarcontenidoeducativo">Listar</button>
-    <button mat-menu-item routerLink="/listarcontenidoeducativo/registrocontenidoeducativo">Registrar</button>
-  </mat-menu>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title> <mat-icon>school</mat-icon> Cont. Educativo </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarcontenidoeducativo">Listar</a>
+          <a mat-list-item routerLink="/menu/listarcontenidoeducativo/registrocontenidoeducativo"
+            >Registrar</a
+          >
+        </mat-nav-list>
+      </mat-expansion-panel>
 
-  <!-- Submenú de Billetera -->
-  <mat-menu #submenuBilletera="matMenu">
-    <button mat-menu-item routerLink="/listarbilleteras">Listar</button>
-    <button mat-menu-item routerLink="/listarbilleteras/registrobilleteras">Registrar</button>
-  </mat-menu>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title> <mat-icon>account_balance_wallet</mat-icon> Billetera </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarbilleteras">Listar</a>
+          <a mat-list-item routerLink="/menu/listarbilleteras/registrobilleteras">Registrar</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
 
-  <!-- Submenú de Transacciones -->
-  <mat-menu #submenuTransaccion="matMenu">
-    <button mat-menu-item routerLink="/listartransacciones">Listar</button>
-    <button mat-menu-item routerLink="/listartransacciones/registrotransacciones">Registrar</button>
-  </mat-menu>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title> <mat-icon>receipt_long</mat-icon> Transacción </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listartransacciones">Listar</a>
+          <a mat-list-item routerLink="/menu/listartransacciones/registrotransacciones">Registrar</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
 
-  <!--Submenú de Dispositivo-->
-  <mat-menu #submenuDispositivo="matMenu">
-    <button mat-menu-item routerLink="/listadispositivo">Listar</button>
-    <button mat-menu-item routerLink="/listadispositivo/registrodispositivo">Registrar</button>
-  </mat-menu>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title> <mat-icon>devices</mat-icon> Dispositivos </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listadispositivo">Listar</a>
+          <a mat-list-item routerLink="/menu/listadispositivo/registrodispositivo">Registrar</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
 
-  <!--Submenú de Consumo-->
-  <mat-menu #submenuConsumo="matMenu">
-    <button mat-menu-item routerLink="/listarconsumo">Listar</button>
-    <button mat-menu-item routerLink="/listarconsumo/registroconsumo">Registrar</button>
-  </mat-menu>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title> <mat-icon>bolt</mat-icon> Consumo </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarconsumo">Listar</a>
+          <a mat-list-item routerLink="/menu/listarconsumo/registroconsumo">Registrar</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
 
-</div>
+      <mat-divider></mat-divider>
 
+      <a mat-list-item routerLink="/" class="logout-item"> <mat-icon>logout</mat-icon> Salir </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="custom-toolbar">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>EcoHabit Administración</span>
+    </mat-toolbar>
+
+    <div class="main-content p-4">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
