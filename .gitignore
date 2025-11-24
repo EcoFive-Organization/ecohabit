@@ -41,8 +41,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# .gitignore
-
 # Firebase cache (No subir esto)
 .firebase/
 
