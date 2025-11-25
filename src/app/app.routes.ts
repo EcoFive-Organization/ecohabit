@@ -18,12 +18,14 @@ import { Menu } from './components/menu/menu';
 import { Dispositivoinsert } from './components/dispositivo/dispositivoinsert/dispositivoinsert';
 import { Consumo } from './components/consumo/consumo';
 import { Consumoinsert } from './components/consumo/consumoinsert/consumoinsert';
+import { Login } from './components/login/login';
 
 export const routes: Routes = [
   // Zona pública
   // Landing Page
   { path: '', component: Home, pathMatch: 'full' },
   { path: 'registrousuario', component: Usuarioinsert },
+  { path: `login`, component: Login}
 
   // Zona privada
   // Esta es ahora una ruta principal y reemplazará la página Home
