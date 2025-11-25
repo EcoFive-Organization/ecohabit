@@ -44,15 +44,13 @@
 }
 
 .auth-header .header-actions .login-button {
-  /* Fuente Secundaria de tus Guidelines */
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  /* Gris Oscuro de tus Guidelines */
-  color: #37474F; 
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border: 1px solid transparent;
+  color: #37474F;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid #2e7d32;
   border-radius: 4px;
   transition: all 0.3s ease;
 }
@@ -70,11 +68,11 @@
   justify-content: center;
   align-items: center;
   /* Fondo gris claro como en el mockup */
-  background-color: #f7f7f7; 
+  background-color: #f7f7f7;
   padding: 3rem 1rem;
   /* Resta la altura del header para ocupar el resto */
-  min-height: calc(100vh - 80px); 
-  box-sizing: border-box; 
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
 }
 
 /* La tarjeta principal que contiene el formulario */
@@ -126,7 +124,7 @@ button.register-button {
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  padding: 1.75rem 0; 
+  padding: 1.75rem 0;
   margin-top: 1rem;
   background-color: #5FB963;
   color: white;

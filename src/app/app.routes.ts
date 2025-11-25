@@ -25,7 +25,7 @@ export const routes: Routes = [
   // Landing Page
   { path: '', component: Home, pathMatch: 'full' },
   { path: 'registrousuario', component: Usuarioinsert },
-  { path: `login`, component: Login}
+  { path: `login`, component: Login},
 
   // Zona privada
   // Esta es ahora una ruta principal y reemplazará la página Home

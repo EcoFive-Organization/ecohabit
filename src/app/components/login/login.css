@@ -1,0 +1,186 @@
+/* --- Estilos del Header (Reutilizados) --- */
+.auth-header {
+  background-color: #FFFFFF; /* Fondo Blanco */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+  padding: 1rem 3rem; /* Espaciado horizontal */
+  display: flex;
+  justify-content: center; /* Centra el contenido */
+  align-items: center;
+  height: 80px; /* Altura fija */
+  width: 100%;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+  position: sticky; /* Se queda fijo arriba */
+  top: 0;
+  z-index: 1000;
+}
+
+.auth-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo a la izq, Botón a la der */
+  width: 100%;
+  max-width: 1200px; /* Máximo ancho del contenido */
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
+}
+
+#icono {
+  height: 40px; /* Ajusta según tu logo */
+  width: auto;
+}
+
+.logo-text {
+  /* Fuente Primaria de tus Guidelines */
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 1.5rem; /* 24px */
+  font-weight: 700;
+  /* Gris Oscuro de tus Guidelines */
+  color: #37474F; 
+  text-decoration: none; 
+}
+
+.login-button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #37474F;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid #2e7d32;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  color: #000;
+  background-color: #f0f0f0;
+}
+
+/* --- Estilos del Contenedor del Login --- */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Fondo gris claro como en el mockup */
+  background-color: #f7f7f7;
+  padding: 3rem 1rem;
+  /* Resta la altura del header para ocupar el resto */
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 450px; /* Ancho máximo del formulario */
+  padding: 1.5rem 2rem; /* Espaciado interno */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px; 
+}
+
+.login-header {
+  padding-bottom: 1.5rem;
+  padding-left: 0; 
+  padding-right: 0;
+}
+
+.titulo {
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 1.875rem; /* 30px */
+  font-weight: 600;
+  color: #37474F; 
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.subtitulo {
+  font-family: 'Roboto', sans-serif; 
+  font-size: 1rem; /* 16px */
+  color: #555; 
+  white-space: normal;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* --- Estilos del Formulario --- */
+.full-width-field {
+  width: 100%;
+  padding-bottom: 1.2rem;
+}
+
+.login-submit-button {
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1.75rem 0;
+  margin-top: 1rem;
+  background-color: #5FB963;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.login-submit-button:disabled {
+  background-color: #e0e0e0; /* Gris claro */
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+/* --- Footer de la Tarjeta --- */
+.login-footer {
+  text-align: center;
+  padding: 1.5rem 0 1rem 0;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer-links a {
+  /* Azul Oscuro de tus Guidelines */
+  color: #0288D1;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 4px; 
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* --- Ajustes finos de Angular Material --- */
+/* (Esto corrige los colores de error y las pistas) */
+
+:host ::ng-deep .mat-mdc-form-field-hint-wrapper {
+  padding: 0 1rem;
+}
+
+:host ::ng-deep .mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-notched-outline__trailing {
+  /* Rojo de Alerta de tus Guidelines */
+  border-color: #F44336 !important;
+}
+
+:host ::ng-deep .mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-floating-label {
+  /* Rojo de Alerta de tus Guidelines */
+  color: #F44336 !important;
+}

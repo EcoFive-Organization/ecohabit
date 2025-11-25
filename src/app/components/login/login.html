@@ -1,13 +1,13 @@
 <!-- Header idéntico al de registro, pero con botón para ir a "Registrarse" -->
 <header class="auth-header">
   <nav>
-    <a routerLink="/home" class="logo-link">
+    <a routerLink="/" class="logo-link">
       <!-- Asegúrate de que la ruta de la imagen sea correcta -->
       <img src="assets/images/logo_ecohabit_sinletras.png" alt="Icono EcoHabit" id="icono" />
       <span class="logo-text">EcoHabit</span>
     </a>
     <div class="header-actions">
-      <a routerLink="/usuarioinsert" class="login-button">Registrarse</a>
+      <a routerLink="/registrousuario" class="login-button">Registrarse</a>
     </div>
   </nav>
 </header>
@@ -32,7 +32,7 @@
           <!-- Mensajes de error -->
           <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched)">
             <span *ngIf="email?.hasError('required')">El email es obligatorio.</span>
-            <span *ngIf="email?.hasError('email')">Ingresa un email válido.</span>
+            <span *ngIf="email?.hasError('pattern')">Por favor ingresa un email válido (ej. tu@email.com)</span>
           </mat-error>
         </mat-form-field>
 
@@ -72,9 +72,8 @@
     <mat-card-actions class="login-footer">
       <div class="footer-links">
         <span>¿Olvidaste tu contraseña? <a routerLink="/recuperar">Recupérala aquí</a></span>
-        <span>¿No tienes cuenta? <a routerLink="/usuarioinsert">Regístrate</a></span>
+        <span>¿No tienes cuenta? <a routerLink="/registrousuario">Regístrate</a></span>
       </div>
     </mat-card-actions>
   </mat-card>
 </div>
-        

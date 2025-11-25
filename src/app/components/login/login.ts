@@ -30,7 +30,7 @@ export class Login {
   constructor(private formBuilder: FormBuilder, private router: Router) {
     // Inicializamos el formulario con validaciones básicas
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]], // Validación de email estándar
+      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]], // Validación de email estándar
       password: ['', Validators.required],
     });
   }
