@@ -85,7 +85,7 @@ export class Billeterainsert implements OnInit{
           this.bS.setList(data);
         });
       });
-      this.router.navigate(['listarbilleteras']);
+      this.router.navigate(['menu/listarbilleteras']);
     }
   }
 }

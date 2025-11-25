@@ -86,7 +86,7 @@ export class Dispositivoinsert implements OnInit {
         })
       }
 
-      this.router.navigate(['listadispositivo'])
+      this.router.navigate(['menu/listadispositivo'])
     }
   }
 
