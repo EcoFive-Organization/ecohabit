@@ -129,6 +129,19 @@
         </mat-nav-list>
       </mat-expansion-panel>
 
+      <!-- Grupo: Suscripcion -->
+       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>credit_card</mat-icon> <span>Suscripcion</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarsuscripcion" routerLinkActive="active-link">Lista</a>
+          <a mat-list-item routerLink="/menu/listarsuscripcion/registrosuscripcion" routerLinkActive="active-link">Registrar</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
     </mat-nav-list>
 
     <!-- Footer del Menú -->
