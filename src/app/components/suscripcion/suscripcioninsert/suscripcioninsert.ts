@@ -72,8 +72,8 @@ export class Suscripcioninsert implements OnInit {
       id: [''],
       usuarioL: ['', Validators.required],
       planSuscripcionL: ['', Validators.required],
-      fechaInicio: [new Date(), Validators.required],
-      fechaFin: [fechaFinInicial, Validators.required],
+      fechaInicio: [{ value: this.today, disabled: true }, Validators.required],
+      fechaFin: [{ value: fechaFinInicial, disabled: true }, Validators.required],
       estado: ['', Validators.required],
     });
 
@@ -104,12 +104,14 @@ export class Suscripcioninsert implements OnInit {
       this.suscripcion.usuario = new Usuario();
       this.suscripcion.planSuscripcion = new PlanSuscripcion();
 
-      this.suscripcion.idSuscripcion = this.form.value.id;
-      this.suscripcion.usuario.idUsuario = this.form.value.usuarioL;
-      this.suscripcion.planSuscripcion.idPlanSuscripcion = this.form.value.planSuscripcionL;
-      this.suscripcion.fechaInicio = this.form.value.fechaInicio;
-      this.suscripcion.fechaFin = this.form.value.fechaFin;
-      this.suscripcion.estado = this.form.value.estado;
+      const formValues = this.form.getRawValue();
+
+      this.suscripcion.idSuscripcion = formValues.id;
+      this.suscripcion.usuario.idUsuario = formValues.usuarioL;
+      this.suscripcion.planSuscripcion.idPlanSuscripcion = formValues.planSuscripcionL;
+      this.suscripcion.fechaInicio = formValues.fechaInicio;
+      this.suscripcion.fechaFin = formValues.fechaFin;
+      this.suscripcion.estado = formValues.estado;
 
       this.sS.insert(this.suscripcion).subscribe((data) => {
         this.sS.list().subscribe((data) => {
