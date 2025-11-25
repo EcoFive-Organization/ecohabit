@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Plansuscripcionlistar } from './plansuscripcionlistar/plansuscripcionlistar';
-import { Menu } from '../menu/menu';
 
 @Component({
   selector: 'app-plansuscripcion',
-  imports: [RouterOutlet, Plansuscripcionlistar, Menu],
+  imports: [RouterOutlet, Plansuscripcionlistar],
   templateUrl: './plansuscripcion.html',
   styleUrl: './plansuscripcion.css',
 })

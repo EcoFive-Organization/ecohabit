@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Consumolistar } from './consumolistar/consumolistar';
-import { Menu } from '../menu/menu';
 
 @Component({
   selector: 'app-consumo',
-  imports: [RouterOutlet, Consumolistar, Menu],
+  imports: [RouterOutlet, Consumolistar],
   templateUrl: './consumo.html',
   styleUrl: './consumo.css',
 })

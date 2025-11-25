@@ -5,7 +5,7 @@ import { Menu } from '../menu/menu';
 
 @Component({
   selector: 'app-foro',
-  imports: [RouterOutlet, Forolistar, Menu],
+  imports: [RouterOutlet, Forolistar],
   templateUrl: './foro.html',
   styleUrl: './foro.css',
 })

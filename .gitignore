@@ -40,3 +40,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Firebase cache (No subir esto)
+.firebase/
+
+#Angular compilado (No subir esto)
+/dist
+/out-tsc

@@ -18,27 +18,27 @@
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
         <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
       </ng-container>
-      
+
       <!-- Ubicacion Column -->
       <ng-container matColumnDef="c4">
         <th mat-header-cell *matHeaderCellDef>Ubicacion</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.ubicacion}}
+          {{ element.ubicacion }}
         </td>
       </ng-container>
 
-    <!-- Nombre Usuario Column -->
+      <!-- Nombre Usuario Column -->
       <ng-container matColumnDef="cforaneanombre">
         <th mat-header-cell *matHeaderCellDef>Nombre Usuario</th>
-        <td mat-cell *matCellDef="let element">{{ element.usuario.nombre}}</td> <!--Para llamar al nombre de Usuario (fk)-->
+        <td mat-cell *matCellDef="let element">{{ element.usuario.nombre }}</td>
+        <!--Para llamar al nombre de Usuario (fk)-->
       </ng-container>
 
-    <!--Actualizar Column-->
-    <ng-container matColumnDef="c7">
+      <!--Actualizar Column-->
+      <ng-container matColumnDef="c7">
         <th mat-header-cell *matHeaderCellDef>Actualizar</th>
         <td mat-cell *matCellDef="let element">
-          <button  matButton
-            [routerLink]="['edits',element.idDispositivo]" >
+          <button matButton [routerLink]="['edits', element.idDispositivo]">
             <mat-icon>edit</mat-icon>
           </button>
         </td>
@@ -48,10 +48,8 @@
       <ng-container matColumnDef="c8">
         <th mat-header-cell *matHeaderCellDef>Eliminar</th>
         <td mat-cell *matCellDef="let element">
-          <button  matButton 
-            (click)="eliminar(element.idDispositivo)" >
-             <mat-icon>delete</mat-icon>
-
+          <button matButton (click)="eliminar(element.idDispositivo)">
+            <mat-icon>delete</mat-icon>
           </button>
         </td>
       </ng-container>
@@ -60,13 +58,7 @@
     </table>
 
     <!--Paginador-->
-    <mat-paginator
-      [pageSizeOptions]="[2, 5, 10, 20]"
-      showFirstLastButtons
-      aria-label="Select page"
-    >
+    <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]" showFirstLastButtons aria-label="Select page">
     </mat-paginator>
-
   </div>
 </div>
-
