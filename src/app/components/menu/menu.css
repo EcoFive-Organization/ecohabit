@@ -1,61 +1,167 @@
-/* 1. Estructura base */
+/* A. ESTRUCTURA GENERAL */
 .sidenav-container {
   height: 100vh;
+  background-color: #F5F5F5; /* Fondo gris claro para el contenido principal */
 }
 
 .sidenav {
-  width: 300px;
-  background-color: #fff;
-  border-right: 1px solid rgba(0,0,0,0.12);
+  width: 280px; /* Un poco más ancho para mejor lectura */
+  background-color: #FFFFFF;
+  border-right: 1px solid #ECEFF1;
+  display: flex;
+  flex-direction: column;
 }
 
+/* B. HEADER DEL MENÚ (BRANDING) */
 .sidenav-header {
-  padding: 20px;
-  background-color: #f5f5f5;
+  padding: 30px 20px;
   text-align: center;
-  font-weight: bold;
-  letter-spacing: 1px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #ECEFF1;
 }
 
-/* 2. SUAVIZAR EL CONTENIDO PRINCIPAL 
-   Esto hace que cuando el menú se oculte/muestre en PC, 
-   el contenido de la derecha se deslice suavemente. */
-mat-sidenav-content {
-  transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-/* 3. Estilos de los Paneles de Expansión (Acordeón) */
-mat-expansion-panel {
-  box-shadow: none !important;
-  background: transparent;
-  border-radius: 0 !important;
+.menu-logo {
+  width: 40px;
+  height: auto;
 }
 
-/* Animación visual al pasar el mouse por encima */
-mat-expansion-panel-header:hover, 
-mat-nav-list a[mat-list-item]:hover {
-  background-color: rgba(0, 0, 0, 0.04);
-  transition: background-color 0.2s ease;
+.app-name {
+  font-family: 'Montserrat', sans-serif; /* Guideline */
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #5FB963; /* Verde Principal */
+  margin: 0;
 }
 
-/* Indentación de submenús */
-mat-expansion-panel mat-nav-list a {
-  padding-left: 50px !important; /* Un poco más de sangría para que se note la jerarquía */
+.user-welcome {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
+  color: #90A4AE;
+  margin: 0;
+}
+
+/* C. LISTA DE NAVEGACIÓN */
+.nav-list {
+  padding-top: 10px;
+}
+
+/* Estilo base para items (links simples y títulos de acordeón) */
+mat-list-item, mat-expansion-panel-header {
+  font-family: 'Roboto', sans-serif;
+  color: #37474F; /* Gris Oscuro */
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
 }
 
 /* Iconos */
 mat-icon {
+  color: #78909C; /* Gris azulado suave para iconos inactivos */
   margin-right: 12px;
-  color: #555;
 }
 
-/* Link activo (opcional) */
+/* --- D. EXPANSION PANELS (ACORDEÓN) --- */
+
+/* Quitar bordes y sombras por defecto de Material */
+.menu-panel {
+  background: transparent !important;
+  border-radius: 0 !important;
+  margin: 0 !important; /* Quitar márgenes entre paneles */
+}
+
+/* Cabecera del acordeón */
+.menu-panel mat-expansion-panel-header {
+  height: 48px; /* Altura estándar de botón */
+  padding: 0 24px;
+}
+
+.menu-panel mat-expansion-panel-header:hover {
+  background-color: #F1F8E9; /* Verde muy suave al pasar el mouse */
+}
+
+/* Título del panel (texto e icono) */
+mat-panel-title {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+/* --- E. SUBMENÚS (LINKS INTERNOS) --- */
+.menu-panel mat-nav-list a {
+  padding-left: 64px !important; /* Indentación profunda para jerarquía */
+  font-size: 0.9rem;
+  color: #546E7A;
+  height: 40px;
+}
+
+/* Hover en submenús */
+.menu-panel mat-nav-list a:hover {
+  background-color: #FAFAFA;
+  color: #2E7D32;
+}
+
+/* --- F. ESTADO ACTIVO (Ruta Actual) --- */
+/* Para links directos y submenús */
 .active-link {
-  background-color: #e3f2fd;
-  color: #1976d2;
+  background-color: #E8F5E9 !important; /* Fondo verde claro */
+  color: #2E7D32 !important; /* Texto verde oscuro */
+  font-weight: 500;
+  border-right: 4px solid #5FB963; /* Indicador visual a la derecha */
 }
 
-.main-content {
+.active-link mat-icon {
+  color: #5FB963; /* Icono verde activo */
+}
+
+/* G. FOOTER DEL MENÚ */
+.sidenav-footer {
+  margin-top: auto; /* Empuja el footer al final */
   padding: 20px;
+  border-top: 1px solid #ECEFF1;
+}
+
+.logout-item {
+  color: #F44336 !important; /* Rojo de alerta para salir */
+  border-radius: 8px;
+}
+
+.logout-item:hover {
+  background-color: #FFEBEE; /* Fondo rojo muy suave */
+}
+
+.logout-item mat-icon {
+  color: #F44336;
+}
+
+/* H. ÁREA DE CONTENIDO PRINCIPAL */
+.top-toolbar {
+  background-color: #FFFFFF !important; /* Toolbar blanca limpia */
+  color: #37474F;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.toolbar-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.router-container {
+  padding: 24px; /* Espacio alrededor del contenido */
+  max-width: 1200px;
+  margin: 0 auto;
 }
