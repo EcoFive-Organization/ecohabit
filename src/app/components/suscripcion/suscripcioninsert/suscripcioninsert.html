@@ -1,6 +1,6 @@
 <div class="container">
   <br />
-  <div class="titulo"><h2>Registro de Consumo</h2></div>
+  <div class="titulo"><h2>Registro de Suscripcion</h2></div>
   <br />
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
@@ -60,7 +60,7 @@
       <!--Fecha Fin-->
       <mat-form-field>
         <mat-label>Fecha Fin</mat-label>
-        <input matInput [matDatepicker]="picker2" formControlName="fechaFin" required />
+        <input matInput [matDatepicker]="picker2" formControlName="fechaFin" required readonly/>
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
