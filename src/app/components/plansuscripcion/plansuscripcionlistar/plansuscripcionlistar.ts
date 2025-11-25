@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { PlanSuscripcion } from '../../../models/PlanSuscripcion';
 import { Plansuscripcionservice } from '../../../services/plansuscripcionservice';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-plansuscripcionlistar',
-  imports: [MatTableModule],
+  imports: [MatTableModule, MatCardModule, MatDividerModule, CommonModule],
   templateUrl: './plansuscripcionlistar.html',
   styleUrl: './plansuscripcionlistar.css',
 })

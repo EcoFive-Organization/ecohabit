@@ -1,36 +1,47 @@
 <div class="container">
-    <h2>Planes de Suscripciones</h2>
-    <div>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
- <!--- Note that these columns can be defined in any order.
-    The actual rendered columns are set as a property on the row definition" -->
- <!-- Position Column -->
-        <ng-container matColumnDef="c1">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.idPlanSuscripcion}} </td>
-        </ng-container>
+  
+  <!-- Título de la Sección -->
+  <div class="header-section">
+    <h2>Nuestros Planes</h2>
+    <p class="subtitle">Elige el plan perfecto para potenciar tu impacto ecológico</p>
+  </div>
 
- <!-- Name Column -->
-        <ng-container matColumnDef="c2">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        </ng-container>
+  <!-- Rejilla de Tarjetas -->
+  <div class="plans-grid">
+    
+    <!-- Iteramos sobre los planes -->
+    <mat-card class="plan-card" *ngFor="let plan of dataSource.data"> <!-- Asumiendo que dataSource tiene una propiedad .data -->
+      
+      <!-- Encabezado: Nombre del Plan -->
+      <div class="card-header-strip"></div>
+      <mat-card-header class="plan-header">
+        <mat-card-title class="plan-title">{{plan.nombre}}</mat-card-title>
+        <mat-card-subtitle class="plan-id">Plan #{{plan.idPlanSuscripcion}}</mat-card-subtitle>
+      </mat-card-header>
 
- <!-- Weight Column -->
+      <!-- Contenido: Precio y Descripción -->
+      <mat-card-content class="plan-content">
+        <div class="price-container">
+          <span class="currency">S/.</span>
+          <span class="amount">{{plan.costo}}</span>
+          <span class="period">/mes</span>
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <div class="features-list">
+          <p class="description">{{plan.descripcion}}</p>
+          <!-- Aquí podrías agregar una lista de características si tuvieras el dato separado -->
+          <!-- <div class="feature-item"><mat-icon>check</mat-icon> Beneficio 1</div> -->
+        </div>
+      </mat-card-content>
 
-        <ng-container matColumnDef="c3">
-            <th mat-header-cell *matHeaderCellDef> Costo S/.</th>
-            <td mat-cell *matCellDef="let element"> {{element.costo}} </td>
-        </ng-container>
+      <!-- Acciones: Botón de Selección -->
+      <mat-card-actions class="plan-actions">
+        <button mat-flat-button class="select-button">SELECCIONAR</button>
+      </mat-card-actions>
+      
+    </mat-card>
 
- <!-- Symbol Column -->
-
-        <ng-container matColumnDef="c4">
-            <th mat-header-cell *matHeaderCellDef> Descripcion </th>
-            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </div>
+  </div>
 </div>
