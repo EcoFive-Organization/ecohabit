@@ -63,7 +63,7 @@ export class Foroinsert implements OnInit {
           });
         });
       }
-      this.router.navigate([`listarforos`]);
+      this.router.navigate([`menu/listarforos`]);
     }
   }
   init() {

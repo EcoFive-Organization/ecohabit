@@ -97,7 +97,7 @@ export class Contenidoeducativoinsert implements OnInit {
           });
         });
       }
-      this.router.navigate([`listarcontenidoeducativo`]);
+      this.router.navigate([`menu/listarcontenidoeducativo`]);
     }
   }
 

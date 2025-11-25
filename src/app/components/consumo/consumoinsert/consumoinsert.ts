@@ -83,7 +83,7 @@ export class Consumoinsert implements OnInit {
         })
       })
 
-      this.router.navigate(['listarconsumo']);
+      this.router.navigate(['menu/listarconsumo']);
 
     }
   }
