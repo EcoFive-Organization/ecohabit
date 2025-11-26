@@ -1,13 +1,13 @@
 /* A. ESTRUCTURA GENERAL */
 .sidenav-container {
   height: 100vh;
-  background-color: #F5F5F5; /* Fondo gris claro para el contenido principal */
+  background-color: #F4F7F6; /* Fondo gris muy claro para el contenido */
 }
 
 .sidenav {
-  width: 280px; /* Un poco más ancho para mejor lectura */
+  width: 280px; /* Ancho cómodo */
   background-color: #FFFFFF;
-  border-right: 1px solid #ECEFF1;
+  border-right: 1px solid #E0E0E0;
   display: flex;
   flex-direction: column;
 }
@@ -17,7 +17,7 @@
   padding: 30px 20px;
   text-align: center;
   background-color: #FFFFFF;
-  border-bottom: 1px solid #ECEFF1;
+  border-bottom: 1px solid #F0F0F0;
 }
 
 .logo-container {
@@ -39,6 +39,7 @@
   font-size: 1.5rem;
   color: #5FB963; /* Verde Principal */
   margin: 0;
+  letter-spacing: 0.5px;
 }
 
 .user-welcome {
@@ -53,7 +54,7 @@
   padding-top: 10px;
 }
 
-/* Estilo base para items (links simples y títulos de acordeón) */
+/* Estilo base para items */
 mat-list-item, mat-expansion-panel-header {
   font-family: 'Roboto', sans-serif;
   color: #37474F; /* Gris Oscuro */
@@ -61,32 +62,31 @@ mat-list-item, mat-expansion-panel-header {
   transition: background-color 0.2s;
 }
 
-/* Iconos */
 mat-icon {
-  color: #78909C; /* Gris azulado suave para iconos inactivos */
+  color: #78909C; /* Gris azulado suave para iconos */
   margin-right: 12px;
 }
 
 /* --- D. EXPANSION PANELS (ACORDEÓN) --- */
 
-/* Quitar bordes y sombras por defecto de Material */
+/* Quitar estilos de tarjeta por defecto */
 .menu-panel {
   background: transparent !important;
   border-radius: 0 !important;
-  margin: 0 !important; /* Quitar márgenes entre paneles */
+  margin: 0 !important;
+  box-shadow: none !important;
 }
 
 /* Cabecera del acordeón */
 .menu-panel mat-expansion-panel-header {
-  height: 48px; /* Altura estándar de botón */
+  height: 48px;
   padding: 0 24px;
 }
 
 .menu-panel mat-expansion-panel-header:hover {
-  background-color: #F1F8E9; /* Verde muy suave al pasar el mouse */
+  background-color: #F1F8E9; /* Verde muy suave (Hover) */
 }
 
-/* Título del panel (texto e icono) */
 mat-panel-title {
   display: flex;
   align-items: center;
@@ -95,54 +95,60 @@ mat-panel-title {
 
 /* --- E. SUBMENÚS (LINKS INTERNOS) --- */
 .menu-panel mat-nav-list a {
-  padding-left: 64px !important; /* Indentación profunda para jerarquía */
+  padding-left: 64px !important; /* Indentación */
   font-size: 0.9rem;
   color: #546E7A;
   height: 40px;
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Quitar subrayado */
 }
 
 /* Hover en submenús */
 .menu-panel mat-nav-list a:hover {
   background-color: #FAFAFA;
-  color: #2E7D32;
+  color: #2E7D32; /* Verde Oscuro al pasar mouse */
 }
 
 /* --- F. ESTADO ACTIVO (Ruta Actual) --- */
-/* Para links directos y submenús */
 .active-link {
   background-color: #E8F5E9 !important; /* Fondo verde claro */
   color: #2E7D32 !important; /* Texto verde oscuro */
   font-weight: 500;
-  border-right: 4px solid #5FB963; /* Indicador visual a la derecha */
+  border-right: 4px solid #5FB963; /* Indicador lateral */
 }
 
 .active-link mat-icon {
-  color: #5FB963; /* Icono verde activo */
+  color: #5FB963; /* Icono verde */
 }
 
 /* G. FOOTER DEL MENÚ */
 .sidenav-footer {
-  margin-top: auto; /* Empuja el footer al final */
+  margin-top: auto; /* Empuja al final */
   padding: 20px;
   border-top: 1px solid #ECEFF1;
 }
 
 .logout-item {
-  color: #F44336 !important; /* Rojo de alerta para salir */
+  color: #D32F2F !important; /* Rojo Alerta */
   border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
 }
 
 .logout-item:hover {
-  background-color: #FFEBEE; /* Fondo rojo muy suave */
+  background-color: #FFEBEE; /* Fondo rojo suave */
 }
 
 .logout-item mat-icon {
-  color: #F44336;
+  color: #D32F2F;
 }
 
-/* H. ÁREA DE CONTENIDO PRINCIPAL */
+/* H. TOOLBAR Y CONTENIDO */
 .top-toolbar {
-  background-color: #FFFFFF !important; /* Toolbar blanca limpia */
+  background-color: #FFFFFF !important;
   color: #37474F;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: sticky;
@@ -161,7 +167,7 @@ mat-panel-title {
 }
 
 .router-container {
-  padding: 24px; /* Espacio alrededor del contenido */
+  padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
 }

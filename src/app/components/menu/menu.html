@@ -20,7 +20,8 @@
         <mat-icon>dashboard</mat-icon> <span>Dashboard</span>
       </a>
 
-      <!-- Grupo: Usuarios -->
+      @if (isAdmin()) {
+        <!-- Grupo: Usuarios -->
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -32,6 +33,8 @@
           <a mat-list-item routerLink="/registrousuario" routerLinkActive="active-link">Registrar Nuevo</a>
         </mat-nav-list>
       </mat-expansion-panel>
+      }
+      
 
       <!-- Grupo: Foros -->
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
@@ -41,8 +44,13 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link">Ver Foros</a>
+          @if (isClient()) {
+            <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link">Ver Foros</a>
+          }
+          @else if (isAdmin()) {
+            <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link">Ver Foros</a>
           <a mat-list-item routerLink="/menu/listarforos/registroforo" routerLinkActive="active-link">Crear Foro</a>
+          }
         </mat-nav-list>
       </mat-expansion-panel>
 
@@ -54,8 +62,13 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link">Catálogo</a>
+          @if (isClient()) {
+            <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link">Catálogo</a>
+          }
+          @else if (isAdmin()) {
+            <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link">Catálogo</a>
           <a mat-list-item routerLink="/menu/listarrecompensa/registrorecompensa" routerLinkActive="active-link">Nueva Recompensa</a>
+          }
         </mat-nav-list>
       </mat-expansion-panel>
 
@@ -72,8 +85,13 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link">Biblioteca</a>
+          @if (isClient()) {
+            <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link">Biblioteca</a>
+          }
+          @else if (isAdmin()) {
+            <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link">Biblioteca</a>
           <a mat-list-item routerLink="/menu/listarcontenidoeducativo/registrocontenidoeducativo" routerLinkActive="active-link">Publicar</a>
+          }
         </mat-nav-list>
       </mat-expansion-panel>
 
@@ -85,8 +103,13 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarbilleteras" routerLinkActive="active-link">Mi Saldo</a>
+          @if (isClient()) {
+            <a mat-list-item routerLink="/menu/listarbilleteras" routerLinkActive="active-link">Mi Saldo</a>
+          }
+          @else if (isAdmin()) {
+            <a mat-list-item routerLink="/menu/listarbilleteras" routerLinkActive="active-link">Mi Saldo</a>
           <a mat-list-item routerLink="/menu/listarbilleteras/registrobilleteras" routerLinkActive="active-link">Configurar</a>
+          }
         </mat-nav-list>
       </mat-expansion-panel>
 
