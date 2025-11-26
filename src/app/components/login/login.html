@@ -1,0 +1,71 @@
+<!-- 
+  HEADER: Cabecera limpia y minimalista, idéntica a la del registro.
+-->
+<header class="auth-header">
+  <nav>
+    <a routerLink="/" class="logo-link">
+      <!-- Asegúrate que esta ruta sea correcta para el icono de tu proyecto -->
+      <img src="assets/images/logo_ecohabit_sinletras.png" alt="Icono EcoHabit" id="icono" />
+      <span class="logo-text">EcoHabit</span>
+    </a>
+    <div class="header-actions">
+      <!-- Enlace a Registrarse -->
+      <a routerLink="/registrousuario" class="login-button">Registrarse</a>
+    </div>
+  </nav>
+</header>
+
+<!-- CONTENEDOR PRINCIPAL: Utiliza las mismas clases CSS que el registro -->
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header class="login-header">
+      <mat-card-title class="titulo">¡Hola de nuevo!</mat-card-title>
+      <mat-card-subtitle class="subtitulo">
+        Ingresa a tu cuenta para continuar cuidando el planeta
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      
+      <!-- Mensaje de error de Autenticación -->
+      <div *ngIf="mensaje" class="error-server-message">
+        {{ mensaje }}
+      </div>
+      
+      <!-- Llama a la función 'login' -->
+      <form (submit)="login()">
+
+        <!-- Campo Usuario -->
+        <mat-form-field class="full-width-field" appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input matInput [(ngModel)]="username" name="username" placeholder="usuario123" required />
+          <mat-icon matSuffix>person</mat-icon>
+          <!-- Puedes agregar validaciones de error aquí si usaras ReactiveForms -->
+        </mat-form-field>
+
+        <!-- Campo Contraseña -->
+        <mat-form-field class="full-width-field" appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="password" name="password" placeholder="••••••••" required />
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        
+        <!-- Botón de Iniciar Sesión (Verde Principal) -->
+        <button mat-flat-button class="login-submit-button" type="submit" [disabled]="!username || !password"> 
+          INGRESAR
+        </button>
+
+      </form>
+    </mat-card-content>
+
+    
+    <mat-card-actions class="login-footer">
+      <div class="footer-links">
+        <span>¿Olvidaste tu contraseña? <a routerLink="/recuperar">Recupérala aquí</a></span>
+        <span>¿No tienes cuenta? <a routerLink="/registrousuario">Regístrate</a></span>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

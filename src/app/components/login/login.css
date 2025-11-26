@@ -1,4 +1,4 @@
-/* --- INICIO: ESTILOS PARA LA NUEVA CABECERA (Header) --- */
+/* --- Estilos del Header (Reutilizados) --- */
 .auth-header {
   background-color: #FFFFFF; /* Fondo Blanco */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra ligera */
@@ -22,18 +22,19 @@
   max-width: 1200px; /* Máximo ancho del contenido */
 }
 
-.auth-header .logo-link {
+.logo-link {
   display: flex;
   align-items: center;
   text-decoration: none;
+  gap: 10px;
 }
 
-.auth-header #icono {
-  height: 40px; 
-  margin-right: 12px;
+#icono {
+  height: 40px; /* Ajusta según tu logo */
+  width: auto;
 }
 
-.auth-header .logo-text {
+.logo-text {
   /* Fuente Primaria de tus Guidelines */
   font-family: 'Montserrat', sans-serif; 
   font-size: 1.5rem; /* 24px */
@@ -43,7 +44,7 @@
   text-decoration: none; 
 }
 
-.auth-header .header-actions .login-button {
+.login-button {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   font-weight: 500;
@@ -55,15 +56,13 @@
   transition: all 0.3s ease;
 }
 
-.auth-header .header-actions .login-button:hover {
+.login-button:hover {
   color: #000;
-  background-color: #f0f0f0; /* Fondo ligero al pasar el mouse */
+  background-color: #f0f0f0;
 }
-/* --- FIN: ESTILOS PARA LA NUEVA CABECERA --- */
 
-
-/* Contenedor principal para centrar la tarjeta en la pantalla */
-.register-container {
+/* --- Estilos del Contenedor del Login --- */
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,8 +74,7 @@
   box-sizing: border-box;
 }
 
-/* La tarjeta principal que contiene el formulario */
-.register-card {
+.login-card {
   width: 100%;
   max-width: 450px; /* Ancho máximo del formulario */
   padding: 1.5rem 2rem; /* Espaciado interno */
@@ -84,14 +82,12 @@
   border-radius: 8px; 
 }
 
-/* El cabezal de la tarjeta */
-.register-header {
+.login-header {
   padding-bottom: 1.5rem;
   padding-left: 0; 
   padding-right: 0;
 }
 
-/* Título (Crea tu Cuenta EcoHabit) */
 .titulo {
   font-family: 'Montserrat', sans-serif; 
   font-size: 1.875rem; /* 30px */
@@ -101,7 +97,6 @@
   text-align: center;
 }
 
-/* Subtítulo (Únete a la comunidad...) */
 .subtitulo {
   font-family: 'Roboto', sans-serif; 
   font-size: 1rem; /* 16px */
@@ -112,14 +107,13 @@
   margin-bottom: 10px;
 }
 
-/* Hace que los campos de formulario ocupen todo el ancho */
+/* --- Estilos del Formulario --- */
 .full-width-field {
   width: 100%;
   padding-bottom: 1.2rem;
 }
 
-/* Estilo del botón de registro */
-button.register-button {
+.login-submit-button {
   width: 100%;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
@@ -131,20 +125,14 @@ button.register-button {
   transition: background-color 0.3s ease;
 }
 
-/* Hover del botón (Verde Oscuro de tus Guidelines) */
-button.register-button:not(:disabled):hover {
-  background-color: #388E3C;
-}
-
-/* Estado deshabilitado del botón (como el del mockup) */
-button.register-button:disabled {
+.login-submit-button:disabled {
   background-color: #e0e0e0; /* Gris claro */
   color: #a0a0a0;
   cursor: not-allowed;
 }
 
-/* Pie de la tarjeta (para el enlace de Iniciar Sesión) */
-.register-footer {
+/* --- Footer de la Tarjeta --- */
+.login-footer {
   text-align: center;
   padding: 1.5rem 0 1rem 0;
   margin: 0 auto;
@@ -153,7 +141,16 @@ button.register-button:disabled {
   color: #555;
 }
 
-.register-footer a {
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer-links a {
   /* Azul Oscuro de tus Guidelines */
   color: #0288D1;
   font-weight: 500;
@@ -165,8 +162,16 @@ button.register-button:disabled {
   margin-left: 4px; 
 }
 
-.register-footer a:hover {
+.footer-links a:hover {
   text-decoration: underline;
+}
+
+.error-server-message{
+  color: #F44336; /* Rojo de Alerta de tus Guidelines */
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 /* --- Ajustes finos de Angular Material --- */

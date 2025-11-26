@@ -121,7 +121,7 @@ export class Transaccioninsert implements OnInit {
           });
         });
       }
-      this.router.navigate(['listartransacciones']);
+      this.router.navigate(['menu/listartransacciones']);
     }
   }
   // Al momento de actualizar algún registro trae toda la data en los campos, la FK

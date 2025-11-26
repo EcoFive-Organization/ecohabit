@@ -18,12 +18,16 @@ import { Menu } from './components/menu/menu';
 import { Dispositivoinsert } from './components/dispositivo/dispositivoinsert/dispositivoinsert';
 import { Consumo } from './components/consumo/consumo';
 import { Consumoinsert } from './components/consumo/consumoinsert/consumoinsert';
+import { Login } from './components/login/login';
+import { Suscripcion } from './components/suscripcion/suscripcion';
+import { Suscripcioninsert } from './components/suscripcion/suscripcioninsert/suscripcioninsert';
 
 export const routes: Routes = [
   // Zona pública
   // Landing Page
   { path: '', component: Home, pathMatch: 'full' },
   { path: 'registrousuario', component: Usuarioinsert },
+  { path: `login`, component: Login},
 
   // Zona privada
   // Esta es ahora una ruta principal y reemplazará la página Home
@@ -109,6 +113,16 @@ export const routes: Routes = [
         component: Consumo,
         children: [{ path: 'registroconsumo', component: Consumoinsert }],
       },
+
+      // Suscripcion
+      {
+        path: 'listarsuscripcion',
+        component: Suscripcion,
+        children: [{
+          path: 'registrosuscripcion', component: Suscripcioninsert
+        }]
+      }
+
     ],
   },
 ];

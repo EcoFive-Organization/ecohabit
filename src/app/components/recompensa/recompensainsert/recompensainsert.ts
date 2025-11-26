@@ -77,7 +77,7 @@ export class Recompensainsert implements OnInit {
           });
         });
       }
-      this.router.navigate([`listarrecompensa`]);
+      this.router.navigate([`menu/listarrecompensa`]);
     }
   }
   init() {

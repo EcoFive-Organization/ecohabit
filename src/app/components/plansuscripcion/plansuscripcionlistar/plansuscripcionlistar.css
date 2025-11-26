@@ -1,70 +1,146 @@
-/* A. CONTENEDOR Y TIPOGRAFÍA BASE */
-
+/* A. CONTENEDOR Y LAYOUT */
 .container {
-    /* Centra y limita el ancho del contenido */
-    max-width: 90%; 
-    margin: 20px auto; 
-    padding: 1rem;
-    /* GUIDELINE: Fuente Secundaria (Roboto) y Color de texto general (Gris Oscuro) */
-    font-family: 'Roboto', sans-serif;
-    color: #37474F; 
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Roboto', sans-serif; /* Guideline: Fuente Secundaria */
 }
 
-/* TÍTULO (h2) */
-.container h2 {
-    /* GUIDELINE: Fuente Primaria (Montserrat) */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem; /* 24px */
-    color: #37474F;
-    margin-bottom: 1.5rem;
-    /* GUIDELINE: Separador con color principal */
-    border-bottom: 2px solid #5FB963; 
-    padding-bottom: 0.5rem;
-    /* Centrado */
-    text-align: center;
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive automático */
+  gap: 30px;
+  justify-content: center;
+  padding: 20px 0;
 }
 
-/* --- B. ESTILOS GENERALES DE LA TABLA (MAT-TABLE) --- */
-
-.mat-elevation-z8 {
-    width: 100%;
-    /* Sombra suave para mejor estética */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden; 
-    /* No se incluye 'border-radius' (según tu petición) */
+/* B. HEADER DE SECCIÓN */
+.header-section {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-/* CABECERA DE LA TABLA (TH) */
-.mat-header-cell {
-    /* GUIDELINE: Fondo Verde (como solicitaste) */
-    background-color: #388E3C; 
-    color: #FFFFFF; /* Texto Blanco */
-    /* GUIDELINE: Montserrat para títulos de columna */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
+.header-section h2 {
+  font-family: 'Montserrat', sans-serif; /* Guideline: Fuente Primaria */
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #37474F; /* Guideline: Gris Oscuro */
+  margin-bottom: 10px;
 }
 
-/* FILAS DE CONTENIDO (TD) */
-.mat-cell {
-    padding: 12px 16px;
-    font-size: 0.95rem;
-    color: #37474F;
+.subtitle {
+  font-size: 1.1rem;
+  color: #78909C;
 }
 
-/* GUIDELINE: Alternancia de colores para legibilidad */
-.mat-row:nth-child(even) {
-    background-color: #ECEFF1; 
+/* C. TARJETA DEL PLAN (CARD) */
+.plan-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Para que todas tengan la misma altura */
+  position: relative;
 }
 
-/* --- C. RESPONSIVE DESIGN --- */
+/* Efecto Hover: La tarjeta se levanta ligeramente */
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(95, 185, 99, 0.2); /* Sombra verde suave */
+}
 
-@media (max-width: 768px) {
-    .container {
-        padding: 0.5rem;
-    }
-    .mat-header-cell, .mat-cell {
-        padding: 8px; /* Reducir padding de las celdas */
-        font-size: 0.85rem;
-    }
+/* Decoración superior verde */
+.card-header-strip {
+  height: 8px;
+  background-color: #5FB963; /* Guideline: Verde Principal */
+  width: 100%;
+}
+
+/* D. ENCABEZADO DEL PLAN */
+.plan-header {
+  padding: 24px 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.plan-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2E7D32; /* Verde más oscuro para título */
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.plan-id {
+  font-size: 0.85rem;
+  color: #B0BEC5;
+  margin-top: 5px;
+}
+
+/* E. PRECIO Y CONTENIDO */
+.plan-content {
+  padding: 20px 24px;
+  text-align: center;
+  flex-grow: 1; /* Empuja el footer hacia abajo */
+}
+
+.price-container {
+  margin: 20px 0;
+  color: #37474F;
+}
+
+.currency {
+  font-size: 1.5rem;
+  vertical-align: top;
+  font-weight: 500;
+}
+
+.amount {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #37474F;
+  line-height: 1;
+}
+
+.period {
+  font-size: 1rem;
+  color: #90A4AE;
+}
+
+.description {
+  margin-top: 20px;
+  color: #546E7A;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* F. BOTÓN DE ACCIÓN */
+.plan-actions {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.select-button {
+  background-color: #5FB963; /* Guideline: Verde Principal */
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 32px; /* Botón grande y cómodo */
+  border-radius: 30px; /* Botón redondeado moderno */
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.select-button:hover {
+  background-color: #388E3C; /* Guideline: Verde Oscuro (Hover) */
 }

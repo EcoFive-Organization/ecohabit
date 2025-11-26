@@ -1,35 +1,173 @@
-/* El contenedor debe ocupar toda la altura visible */
+/* A. ESTRUCTURA GENERAL */
 .sidenav-container {
   height: 100vh;
+  background-color: #F4F7F6; /* Fondo gris muy claro para el contenido */
 }
 
 .sidenav {
-  width: 250px; /* Ancho del menú lateral */
+  width: 280px; /* Ancho cómodo */
+  background-color: #FFFFFF;
+  border-right: 1px solid #E0E0E0;
+  display: flex;
+  flex-direction: column;
 }
 
+/* B. HEADER DEL MENÚ (BRANDING) */
 .sidenav-header {
-  padding: 20px;
-  background-color: #f5f5f5; /* O el color de tu marca */
+  padding: 30px 20px;
   text-align: center;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #F0F0F0;
 }
 
-/* Ajustes para que el expansion panel parezca parte del menú y no una tarjeta flotante */
-mat-expansion-panel {
-  box-shadow: none !important;
-  background: transparent;
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-/* Indentación para los submenús para jerarquía visual */
-mat-expansion-panel mat-nav-list a {
-  padding-left: 40px !important;
+.menu-logo {
+  width: 40px;
+  height: auto;
+}
+
+.app-name {
+  font-family: 'Montserrat', sans-serif; /* Guideline */
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #5FB963; /* Verde Principal */
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.user-welcome {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
+  color: #90A4AE;
+  margin: 0;
 }
 
-/* Espacio entre iconos y texto */
+/* C. LISTA DE NAVEGACIÓN */
+.nav-list {
+  padding-top: 10px;
+}
+
+/* Estilo base para items */
+mat-list-item, mat-expansion-panel-header {
+  font-family: 'Roboto', sans-serif;
+  color: #37474F; /* Gris Oscuro */
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
 mat-icon {
-  margin-right: 10px;
+  color: #78909C; /* Gris azulado suave para iconos */
+  margin-right: 12px;
 }
 
-.main-content {
+/* --- D. EXPANSION PANELS (ACORDEÓN) --- */
+
+/* Quitar estilos de tarjeta por defecto */
+.menu-panel {
+  background: transparent !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Cabecera del acordeón */
+.menu-panel mat-expansion-panel-header {
+  height: 48px;
+  padding: 0 24px;
+}
+
+.menu-panel mat-expansion-panel-header:hover {
+  background-color: #F1F8E9; /* Verde muy suave (Hover) */
+}
+
+mat-panel-title {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+/* --- E. SUBMENÚS (LINKS INTERNOS) --- */
+.menu-panel mat-nav-list a {
+  padding-left: 64px !important; /* Indentación */
+  font-size: 0.9rem;
+  color: #546E7A;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Quitar subrayado */
+}
+
+/* Hover en submenús */
+.menu-panel mat-nav-list a:hover {
+  background-color: #FAFAFA;
+  color: #2E7D32; /* Verde Oscuro al pasar mouse */
+}
+
+/* --- F. ESTADO ACTIVO (Ruta Actual) --- */
+.active-link {
+  background-color: #E8F5E9 !important; /* Fondo verde claro */
+  color: #2E7D32 !important; /* Texto verde oscuro */
+  font-weight: 500;
+  border-right: 4px solid #5FB963; /* Indicador lateral */
+}
+
+.active-link mat-icon {
+  color: #5FB963; /* Icono verde */
+}
+
+/* G. FOOTER DEL MENÚ */
+.sidenav-footer {
+  margin-top: auto; /* Empuja al final */
   padding: 20px;
+  border-top: 1px solid #ECEFF1;
+}
+
+.logout-item {
+  color: #D32F2F !important; /* Rojo Alerta */
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+}
+
+.logout-item:hover {
+  background-color: #FFEBEE; /* Fondo rojo suave */
+}
+
+.logout-item mat-icon {
+  color: #D32F2F;
+}
+
+/* H. TOOLBAR Y CONTENIDO */
+.top-toolbar {
+  background-color: #FFFFFF !important;
+  color: #37474F;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.toolbar-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.router-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
