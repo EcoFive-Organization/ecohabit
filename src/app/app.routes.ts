@@ -21,6 +21,8 @@ import { Consumoinsert } from './components/consumo/consumoinsert/consumoinsert'
 import { Login } from './components/login/login';
 import { Suscripcion } from './components/suscripcion/suscripcion';
 import { Suscripcioninsert } from './components/suscripcion/suscripcioninsert/suscripcioninsert';
+import { Metodopago } from './components/metodopago/metodopago';
+import { Metodopagoinsert } from './components/metodopago/metodopagoinsert/metodopagoinsert';
 
 export const routes: Routes = [
   // Zona pública
@@ -120,6 +122,15 @@ export const routes: Routes = [
         component: Suscripcion,
         children: [{
           path: 'registrosuscripcion', component: Suscripcioninsert
+        }]
+      },
+      
+      // MetodoPago
+      {
+        path: 'listarmetodopago',
+        component: Metodopago,
+        children: [{
+          path: 'registrometodopago', component: Metodopagoinsert
         }]
       }
 

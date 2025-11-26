@@ -30,7 +30,11 @@
     "@angular/material": "^20.2.11",
     "@angular/platform-browser": "^20.2.0",
     "@angular/router": "^20.2.0",
+<<<<<<< HEAD
     "@auth0/angular-jwt": "^5.2.0",
+=======
+    "ngx-paypal": "^11.0.0",
+>>>>>>> 2e8dfa9ade1701f60ccc7495521f2b56fb05ec82
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
