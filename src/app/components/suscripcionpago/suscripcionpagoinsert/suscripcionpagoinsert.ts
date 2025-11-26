@@ -8,6 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Suscripcionpagoservices } from '../../../services/suscripcionpagoservices';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Suscripcion } from '../../../models/Suscripcion';
+import { MetodoPago } from '../../../models/MetodoPago';
+import { Suscripcionservice } from '../../../services/suscripcionservice';
+import { Metodopagoservice } from '../../../services/metodopagoservice';
 
 @Component({
   selector: 'app-suscripcionpagoinsert',
@@ -27,13 +31,15 @@ export class Suscripcionpagoinsert implements OnInit {
   edicion: boolean = false;
   id: number = 0;
   // Va a manejar varios softwares y los va a almacenar
-  listaUsuarios: Usuario[] = []
+  listasuscripciones: Suscripcion[] = []
+  listametodopago: MetodoPago[] = []
   constructor(
     private spS: Suscripcionpagoservices,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private uS: Usuarioservice
+    private sS: Suscripcionservice,
+    private mpS: Metodopagoservice
   ){}
   ngOnInit(): void {
       this.route.params.subscribe((data: Params)=>{
@@ -41,19 +47,52 @@ export class Suscripcionpagoinsert implements OnInit {
         this.edicion = data['id'] != null;
       });
 
-      this.uS.list().subscribe((data) => {
-      this.listaUsuarios = data})
+      this.sS.list().subscribe((data) => {
+      this.listasuscripciones = data})
 
-      this.uS.list().subscribe((data) => {
-      this.listaUsuarios = data})
+      this.mpS.list().subscribe((data) => {
+      this.listametodopago = data})
 
       this.form = this.formBuilder.group({
       id: [''],
-      monto:['',Validators.required],
+      monto:['',[Validators.required,Validators.min(1), Validators.pattern(/^[0-9]+$/)]],
       fecha:[new Date(),Validators.required],
-      estado:['',Validators.required],
-      usuarioL: ['', Validators.required],
-      saldo: ['', [Validators.required, Validators.min(1), Validators.pattern(/^[0-9]+$/)]] // FK de Software
+      estado:['',Validators.required,Validators.min(1),Validators.max(20)],
+      referenciaexterna:['',Validators.required,Validators.min(1),Validators.max(100)],
+      suscripcionL: ['', Validators.required],
+      metodopagoL:['',Validators.required]
     });
   }
+  aceptar(): void {
+      if (this.form.valid) {
+        this.susp.idSuscripcionPago = this.form.value.id;
+        this.susp.monto = this.form.value.monto;
+        this.susp.fecha = this.form.value.fecha;
+        this.susp.estado = this.form.value.estado;
+        this.susp.referenciaExterna = this.form.value.referenciaexterna;
+
+        // 1. Asegúrate de que el objeto 'usuario' dentro de 'billetera' exista.
+        // (Si tu clase Billetera no lo inicializa en el constructor, hazlo aquí)
+        if (!this.susp.suscripcion) {
+            this.susp.suscripcion = new Suscripcion();
+        }
+  
+        // 2. Asigna el ID del formulario al ID del objeto usuario.
+        // El backend solo necesita el ID para vincular la clave foránea.
+        this.susp.suscripcion.idSuscripcion = this.form.value.suscripcionL; 
+        
+        // --- FIN DE LA CORRECCIÓN ---
+        if (!this.susp.metodoPago) {
+            this.susp.metodoPago = new MetodoPago();
+        }
+        this.susp.metodoPago.idMetodoPago = this.form.value.metodopagoL; 
+
+        this.spS.insert(this.susp).subscribe(data => {
+          this.spS.list().subscribe((data) => {
+            this.spS.setList(data);
+          });
+        });
+        this.router.navigate(['menu/listarmetodospagos']);
+      }
+    }
 }

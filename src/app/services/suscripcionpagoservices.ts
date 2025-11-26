@@ -9,9 +9,11 @@ const base_url=environment.base
   providedIn: 'root',
 })
 export class Suscripcionpagoservices {
+
   private url = `${base_url}/suscripciones_pagos`;
   private listaCambio = new Subject<Suscripcionpago[]>();
   constructor (private http:HttpClient){}
+  
   list(){
     return this.http.get<Suscripcionpago[]>(this.url);
   }

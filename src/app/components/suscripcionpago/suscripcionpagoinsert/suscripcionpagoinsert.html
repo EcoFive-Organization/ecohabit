@@ -1,1 +1,102 @@
-<p>suscripcionpagoinsert works!</p>
+<div class="container">
+<br />
+<div class="titulo"><h2>Registro de Suscriones pagos</h2></div>
+<br />
+<div>
+    <form [formGroup]="form" (submit)="aceptar()">
+
+        <!--Monto Column-->
+    <mat-form-field>
+        <mat-label>Monto</mat-label>
+        <input matInput formControlName="monto" />
+        <mat-error>
+    @if (form.get('monto')?.hasError('required')) { El Monto es obligatorio!!!! }
+    @else if (form.get('monto')?.hasError('min')) { El valor mínimo debe ser mayor o igual a 1 }
+    @else if (form.get('monto')?.hasError('pattern')) { Solo se permiten números enteros positivos }
+        </mat-error>
+    </mat-form-field>
+    <br>
+
+    <!--Fecha -->
+      <mat-form-field>
+        <mat-label>Fecha </mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha" [max]="today" required [disabled]="true" readonly/>
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        @if (form.get('fecha')?.hasError('required')) {
+        <mat-error>La fecha es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      <br>
+
+    <!--estado Column-->
+    <mat-form-field>
+        <mat-label>--estado/mat-label>
+        <input matInput formControlName="estado" />
+        <mat-error>
+    @if (form.get('estado')?.hasError('required')) { El Estado es obligatorio!!!! }
+    @else if (form.get('estado')?.hasError('min')) { El valor minimo debe ser mayor o igual a 1 }
+    @else if (form.get('estado')?.hasError('max')) { El valor maximo debe ser menor o igual a 20 }
+        </mat-error>
+    </mat-form-field>
+    <br>
+
+    <!--Referencia Externa Column-->
+    <mat-form-field>
+        <mat-label>Referencia Externa</mat-label>
+        <input matInput formControlName="referenciaexterna" />
+        <mat-error>
+    @if (form.get('referenciaexterna')?.hasError('required')) { El Monto es obligatorio!!!! }
+    @else if (form.get('referenciaexterna')?.hasError('min')) { El valor minimo debe ser mayor o igual a 1 }
+    @else if (form.get('referenciaexterna')?.hasError('max')) { El valor maximo debe ser menor o igual a 100 }
+        </mat-error>
+    </mat-form-field>
+    <br>
+
+    <!--Suscripciones Column-->
+    <div>
+        <mat-form-field class="example-full-width">
+        <mat-label>Usuario:</mat-label>
+        <mat-select formControlName="suscripcionL" required>
+            @for (p of listasuscripciones; track p.idSuscripcion) {
+            <mat-option [value]="p.idSuscripcion">
+            {{ p.planSuscripcion }}
+            </mat-option>
+            }
+        </mat-select>
+
+        @if (form.get('suscripcionL')?.hasError('required')) {
+        <mat-error>El campo tipo es obligatorio.</mat-error>
+        }
+        </mat-form-field>
+    </div>
+    <br />
+
+    <!--Metodo Pago Column-->
+    <div>
+        <mat-form-field class="example-full-width">
+        <mat-label>Usuario:</mat-label>
+        <mat-select formControlName="metodopagoL" required>
+            @for (p of listametodopago; track p.idMetodoPago) {
+            <mat-option [value]="p.idMetodoPago">
+            {{ p.tipo }}
+            </mat-option>
+            }
+        </mat-select>
+
+        @if (form.get('metodopagoL')?.hasError('required')) {
+        <mat-error>El campo tipo es obligatorio.</mat-error>
+        }
+        </mat-form-field>
+    </div>
+    <br />
+
+    <!--Si edicion es true que se muestre el botón Actualizar, si no se muestra el de registrar-->
+    <div class="botonenviar">
+        <button matButton="elevated">Registrar</button>
+    </div>
+    </form>
+</div>
+</div>
