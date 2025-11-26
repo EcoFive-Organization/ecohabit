@@ -4,6 +4,9 @@ export class Transaccion{
     idTransaccion: number = 0;
     billetera: Billetera = new Billetera();
     tipo: string ='';
-    monto: number = 0;
+    montoPuntos: number = 0;
     fecha: Date = new Date();
+    montoDineroReal: number = 0
+    emailDestino: String = ""
+    referenciaPaypal: String = ""
 }

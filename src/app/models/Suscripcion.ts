@@ -6,6 +6,7 @@ export class Suscripcion {
     fechaInicio: Date = new Date();
     fechaFin: Date = new Date()
     estado: string = ""
+    paypalSuscripcionId: string = ""
     usuario: Usuario = new Usuario()
     planSuscripcion: PlanSuscripcion = new PlanSuscripcion()
 }

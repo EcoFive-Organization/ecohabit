@@ -3,4 +3,5 @@ export class PlanSuscripcion{
     nombre: string = ""
     costo: number = 0
     descripcion: string = ""
+    paypalPlanId: string = ""
 }
