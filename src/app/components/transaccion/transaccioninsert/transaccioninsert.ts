@@ -103,7 +103,7 @@ export class Transaccioninsert implements OnInit {
       // --- FIN DE LA CORRECCIÓN ---
 
       this.tra.tipo = this.form.value.tipo;
-      this.tra.monto = this.form.value.monto;
+      this.tra.montoPuntos = this.form.value.monto;
       this.tra.fecha = this.form.value.fecha;
 
       if (this.edicion) {
@@ -132,7 +132,7 @@ export class Transaccioninsert implements OnInit {
           id: new FormControl(data.idTransaccion),
           billeteraL: new FormControl(data.billetera.idBilletera),
           tipo: new FormControl(data.tipo),
-          monto: new FormControl(Number(data.monto ?? 0)), // para el slider
+          monto: new FormControl(Number(data.montoPuntos ?? 0)), // para el slider
           fecha: new FormControl(data.fecha)
         });
       });
