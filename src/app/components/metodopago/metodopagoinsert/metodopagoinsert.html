@@ -1,0 +1,60 @@
+<div class="container">
+  <br />
+  <div class="titulo"><h2>Registro de Contenido Educativo</h2></div>
+  <div>
+    <form [formGroup]="form" (submit)="aceptar()">
+      <!--Tipo Column-->
+      <mat-form-field>
+        <mat-label>Tipo</mat-label> <input matInput formControlName="tipo" />
+        <mat-error>
+          @if (form.get('tipo')?.hasError('required')) { El tipo del metodo de pago es
+          obligatorio!!!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <!--Detalles-->
+      <mat-form-field>
+        <mat-label>Detalles</mat-label>
+        <!-- Cambiado a <textarea> y añadido maxlength -->
+        <textarea
+          matInput
+          formControlName="detalles"
+          placeholder="Detalles del metodo de pago..."
+          maxlength="255"
+        ></textarea>
+        <!-- Añadido contador de caracteres -->
+        <mat-hint align="end">{{ form.get('detalles')?.value?.length || 0 }} / 255</mat-hint>
+        <mat-error>
+          @if (form.get('detalles')?.hasError('required')) { El Detalle es obligatoria!!!! } @if
+          (form.get('detalles')?.hasError('maxlength')) { El Detalle no debe exceder los 255
+          caracteres. }
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!--Fecha Registro-->
+      <mat-form-field>
+        <mat-label>Fecha Registro</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="fechaRegistro"
+          [disabled]="true"
+          readonly
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+          [disabled]="true"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br />
+
+      <div class="botonenviar"><button matButton="elevated">Registrar</button></div>
+    </form>
+  </div>
+</div>
