@@ -171,3 +171,7 @@ mat-panel-title {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+button[mat-menu-item] mat-icon {
+  margin-right: 12px;
+}

@@ -179,33 +179,34 @@
       </mat-expansion-panel>
 
     </mat-nav-list>
-
-    <!-- Footer del Menú -->
-    <div class="sidenav-footer">
-      <a mat-list-item routerLink="/" class="logout-item">
-        <mat-icon>logout</mat-icon> <span>Cerrar Sesión</span>
-      </a>
-    </div>
-
   </mat-sidenav>
 
   <!-- CONTENIDO PRINCIPAL -->
   <mat-sidenav-content class="content-area">
     
-    <!-- Toolbar Superior -->
     <mat-toolbar color="primary" class="top-toolbar">
       <button mat-icon-button (click)="sidenav.toggle()" class="menu-toggle">
         <mat-icon>menu</mat-icon>
       </button>
       <span class="toolbar-title">Panel de Administración</span>
       <span class="spacer"></span>
-      <!-- Aquí podrías poner un avatar o botón de perfil -->
-      <button mat-icon-button>
+      
+      <button mat-icon-button [matMenuTriggerFor]="menuPerfil">
         <mat-icon>account_circle</mat-icon>
       </button>
+
+      <mat-menu #menuPerfil="matMenu">
+        <button mat-menu-item routerLink="/" (click)="cerrar()">
+          <mat-icon style="color: #D32F2F;">logout</mat-icon> <span>Cerrar Sesión</span>
+        </button>
+        <button mat-menu-item>
+      Rol:
+      <span>{{ role }}</span>
+    </button>
+      </mat-menu>
+
     </mat-toolbar>
 
-    <!-- Router Outlet (Donde cargan las páginas) -->
     <div class="router-container">
       <router-outlet></router-outlet>
     </div>
