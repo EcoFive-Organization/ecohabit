@@ -10,25 +10,28 @@ const base_url = environment.base
   providedIn: 'root',
 })
 export class Suscripcionservice {
-  private url = `${base_url}/suscripciones`
-  private listaCambio = new Subject<Suscripcion[]>()
+  private url = `${base_url}/suscripciones`;
+  private listaCambio = new Subject<Suscripcion[]>();
 
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-  
   list() {
-    return this.http.get<Suscripcion[]>(this.url)
+    return this.http.get<Suscripcion[]>(this.url);
   }
 
-  insert(s: Suscripcion) {
-    return this.http.post(this.url, s, {responseType: 'text'})
+  insert(s: any) {
+    return this.http.post(this.url, s, { responseType: 'text' });
   }
 
   setList(listaNueva: Suscripcion[]) {
-    this.listaCambio.next(listaNueva)
+    this.listaCambio.next(listaNueva);
   }
 
   getList() {
     return this.listaCambio.asObservable();
+  }
+
+  verificarSuscripcion(idUsuario: number) {
+    return this.http.get<boolean>(`${this.url}/validar/${idUsuario}`);
   }
 }

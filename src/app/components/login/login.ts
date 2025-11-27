@@ -48,10 +48,22 @@ export class Login implements OnInit {
         request.username = this.username
         request.password = this.password
 
-        this.loginService.login(request).subscribe((data: any) => {
-          sessionStorage.setItem('token', data.jwttoken)
-          this.router.navigate(['menu'])
-        },
+    this.loginService.login(request).subscribe((data: any) => {
+      // 🔴 AGREGA ESTOS LOGS PARA DEPURAR
+      console.log('DATA RECIBIDA DEL BACKEND:', data);
+      console.log('INTENTANDO GUARDAR ID:', data.idUsuario);
+      
+      sessionStorage.setItem('token', data.jwttoken);
+
+      // Asegúrate de que la propiedad se llame exactamente igual que en el console.log
+      if (data.idUsuario) {
+        sessionStorage.setItem('idUsuario', data.idUsuario.toString());
+      } else {
+        console.error('¡ALERTA! No llegó el idUsuario');
+      }
+
+      this.router.navigate(['menu']);
+    },
         (error) => {
           this.mensaje = 'Credenciales incorrectas, intente de nuevo.'
           this.snackBar.open(this.mensaje, 'Cerrar', {duration: 3000})
