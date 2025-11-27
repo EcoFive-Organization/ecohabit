@@ -1,0 +1,125 @@
+/* --- A. Contenedor Principal y Título --- */
+.container {
+    max-width: 600px; 
+    margin: 30px auto; 
+    padding: 2rem 1.5rem;
+    font-family: 'Roboto', sans-serif; 
+    color: #37474F; 
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; 
+    color: #37474F; 
+    font-size: 1.5rem; /* 28px */
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #5FB963; /* Verde Principal */
+    padding-bottom: 0.5rem;
+}
+
+/* --- B. Contenedor de Tarjetas (Grid/Flex) --- */
+
+.card-container {
+    display: grid;
+    /* Usa un grid responsivo que muestre 2 o 3 columnas en escritorio y 1 en móvil */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 1rem 0;
+}
+
+/* --- C. Estilo de la Tarjeta Individual --- */
+
+.contenido-card {
+    /* GUIDELINE: Fondo Blanco, Sombra y Bordes */
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    min-height: 200px; /* Altura mínima para que no se vean vacías */
+    
+    /* Asegura que el contenido se organice bien */
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido-card:hover {
+    /* GUIDELINE: Indica interactividad con sombra/elevación */
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mat-card-header {
+    padding: 16px;
+    background-color: #ECEFF1; /* Gris Claro para el encabezado */
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 8px;
+}
+
+.mat-card-title.titulo {
+    /* Muestra el tipo de pago (ej. PayPal, Tarjeta) */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0288D1; /* Azul Oscuro para destacar el nombre */
+}
+
+.mat-card-subtitle {
+    /* Muestra el ID */
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.85rem;
+    color: #757575; 
+}
+
+.mat-card-content {
+    padding: 0 16px 16px 16px;
+    font-size: 0.95rem;
+    color: #37474F;
+    flex-grow: 1;
+}
+
+/* --- D. Iconos (simulando logo de método de pago) --- */
+
+.icon-container {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.icono-contenido {
+    /* GUIDELINE: Usar colores accesibles */
+    color: #5FB963; /* Verde Principal */
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+/* --- E. Paginador y Mensajes de No Data --- */
+
+.mat-paginator {
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.no-data-message {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 30px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+/* --- F. Ajustes de Responsividad --- */
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0.5rem;
+    }
+    .card-container {
+        /* Fuerza a una sola columna en móvil */
+        grid-template-columns: 1fr;
+    }
+    .container h2 {
+        font-size: 1.5rem;
+    }
+}
