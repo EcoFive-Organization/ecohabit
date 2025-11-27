@@ -1,0 +1,54 @@
+<div class="container">
+  <br />
+  <div class="titulo">
+    <h2>Registro de Rol</h2>
+  </div>
+  <br />
+
+  <div class="form-container">
+    <form [formGroup]="form" (submit)="aceptar()">
+      <!-- CAMPO 2: Usuario (Select) -->
+      <!-- Cambié formControlName="usuarioL" a "usuario" -->
+      <div class="form-field-container">
+        <mat-form-field class="example-full-width">
+          <mat-label>Asignar a Usuario:</mat-label>
+          <mat-select formControlName="usuario" required>
+            @for (p of listaUsuarios; track p.idUsuario) {
+              <mat-option [value]="p.idUsuario">
+                {{ p.nombre }}
+              </mat-option>
+            }
+          </mat-select>
+
+          @if (form.get('usuario')?.hasError('required')) {
+            <mat-error>Debes seleccionar un usuario.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      
+
+      <!-- CAMPO 1: Nombre del Rol (Input de texto) -->
+      <!-- Este campo faltaba y es requerido en tu TS -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre del Rol</mat-label>
+        <mat-select formControlName="nombreRol" required>
+          @for (r of roles; track r) {
+          <mat-option [value]="r">{{ r }}</mat-option> }
+        </mat-select>
+        <mat-error>
+          @if (form.get('nombreRol')?.hasError('required')) { El nombre del rol es obligatorio }
+        </mat-error>
+      </mat-form-field>
+      
+
+      <!-- BOTÓN REGISTRAR -->
+      <div class="botonenviar">
+        <!-- Agregué disabled para que no se pueda clickear si el form es inválido -->
+        <button matButton="elevated">
+          Registrar Rol
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

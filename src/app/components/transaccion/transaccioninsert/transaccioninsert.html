@@ -77,7 +77,7 @@
         <mat-label>Fecha</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="fecha" [max]="today" required [disabled]="true" readonly/>
         <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="true"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         @if (form.get('fecha')?.hasError('required')) {
         <mat-error>El campo fecha es obligatorio.</mat-error>

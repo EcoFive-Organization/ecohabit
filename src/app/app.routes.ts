@@ -23,6 +23,9 @@ import { Suscripcion } from './components/suscripcion/suscripcion';
 import { Suscripcioninsert } from './components/suscripcion/suscripcioninsert/suscripcioninsert';
 import { Metodopago } from './components/metodopago/metodopago';
 import { Metodopagoinsert } from './components/metodopago/metodopagoinsert/metodopagoinsert';
+import { seguridadGuard } from './guard/seguridad-guard';
+import { Rol } from './components/rol/rol';
+import { Rolinsert } from './components/rol/rolinsert/rolinsert';
 
 export const routes: Routes = [
   // Zona pública
@@ -49,6 +52,7 @@ export const routes: Routes = [
           // Los dos puntos indican que es una variable
           { path: 'perfil/:id', component: Usuarioinsert }, // Esta ruta sirve para cuando le demos al botón actualizar lleve al formulario de registro
         ],
+        canActivate: [seguridadGuard],
       },
       // Foro
       {
@@ -59,6 +63,7 @@ export const routes: Routes = [
           // Los dos puntos indican que es una variable
           { path: 'edits/:id', component: Foroinsert },
         ],
+        canActivate: [seguridadGuard],
       },
       // Recompensa
       {
@@ -69,6 +74,7 @@ export const routes: Routes = [
           // Los dos puntos indican que es una variable
           { path: 'edits/:id', component: Recompensainsert },
         ],
+        canActivate: [seguridadGuard],
       },
       // Contenido Educativo
       {
@@ -78,9 +84,12 @@ export const routes: Routes = [
           { path: 'registrocontenidoeducativo', component: Contenidoeducativoinsert },
           { path: 'edits/:id', component: Contenidoeducativoinsert },
         ],
+        canActivate: [seguridadGuard],
       },
       // Plan Suscripcion
-      { path: 'listarplansuscripcion', component: Plansuscripcion },
+      { path: 'listarplansuscripcion', component: Plansuscripcion,
+        canActivate: [seguridadGuard],
+      },
       // Billetera
       {
         path: 'listarbilleteras',
@@ -89,6 +98,7 @@ export const routes: Routes = [
           { path: 'registrobilleteras', component: Billeterainsert },
           { path: 'edits/:id', component: Billeterainsert },
         ],
+        canActivate: [seguridadGuard],
       },
       // Transaccion
       {
@@ -98,6 +108,7 @@ export const routes: Routes = [
           { path: 'registrotransacciones', component: Transaccioninsert },
           { path: 'edits/:id', component: Transaccioninsert },
         ],
+        canActivate: [seguridadGuard],
       },
       // Dispositivo
       {
@@ -107,6 +118,7 @@ export const routes: Routes = [
           { path: 'registrodispositivo', component: Dispositivoinsert },
           { path: 'edits/:id', component: Dispositivoinsert },
         ],
+        canActivate: [seguridadGuard],
       },
 
       // Consumo
@@ -114,6 +126,7 @@ export const routes: Routes = [
         path: 'listarconsumo',
         component: Consumo,
         children: [{ path: 'registroconsumo', component: Consumoinsert }],
+        canActivate: [seguridadGuard],
       },
 
       // Suscripcion
@@ -122,7 +135,8 @@ export const routes: Routes = [
         component: Suscripcion,
         children: [{
           path: 'registrosuscripcion', component: Suscripcioninsert
-        }]
+        }],
+        canActivate: [seguridadGuard],
       },
       
       // MetodoPago
@@ -131,9 +145,21 @@ export const routes: Routes = [
         component: Metodopago,
         children: [{
           path: 'registrometodopago', component: Metodopagoinsert
-        }]
+        }],
+        canActivate: [seguridadGuard],
+      },
+
+      // Rol
+      {
+        path:`listarroles`,
+        component: Rol,
+        children: [{
+          path:`registrorol`, component: Rolinsert
+        }],
+        canActivate: [seguridadGuard],
       }
 
     ],
+    canActivate: [seguridadGuard],
   },
 ];

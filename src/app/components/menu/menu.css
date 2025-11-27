@@ -1,18 +1,29 @@
-/* A. ESTRUCTURA GENERAL */
+/* ======================================================
+   1. ESTRUCTURA GENERAL
+   ====================================================== */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
 .sidenav-container {
   height: 100vh;
-  background-color: #F4F7F6; /* Fondo gris muy claro para el contenido */
+  background-color: #F4F7F6;
 }
 
 .sidenav {
-  width: 280px; /* Ancho cómodo */
+  width: 280px;
   background-color: #FFFFFF;
   border-right: 1px solid #E0E0E0;
   display: flex;
   flex-direction: column;
+  border-radius: 0;
 }
 
-/* B. HEADER DEL MENÚ (BRANDING) */
+/* ======================================================
+   2. HEADER DEL MENÚ
+   ====================================================== */
 .sidenav-header {
   padding: 30px 20px;
   text-align: center;
@@ -34,10 +45,10 @@
 }
 
 .app-name {
-  font-family: 'Montserrat', sans-serif; /* Guideline */
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
-  color: #5FB963; /* Verde Principal */
+  color: #5FB963;
   margin: 0;
   letter-spacing: 0.5px;
 }
@@ -49,42 +60,96 @@
   margin: 0;
 }
 
-/* C. LISTA DE NAVEGACIÓN */
+/* ======================================================
+   3. NAVEGACIÓN
+   ====================================================== */
 .nav-list {
   padding-top: 10px;
 }
 
-/* Estilo base para items */
-mat-list-item, mat-expansion-panel-header {
-  font-family: 'Roboto', sans-serif;
-  color: #37474F; /* Gris Oscuro */
-  font-size: 0.95rem;
-  transition: background-color 0.2s;
-}
-
 mat-icon {
-  color: #78909C; /* Gris azulado suave para iconos */
+  color: #78909C;
   margin-right: 12px;
 }
 
-/* --- D. EXPANSION PANELS (ACORDEÓN) --- */
+/* ------------------------------------------------------
+   A. ITEMS SUELTOS (Dashboard, Planes)
+   Clase: .menu-item-custom
+   ------------------------------------------------------ */
+a.menu-item-custom {
+  /* Dimensiones y Reset */
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 0 24px !important;
+  border-radius: 0 !important; 
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box;
 
-/* Quitar estilos de tarjeta por defecto */
+  /* Tipografía base */
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  color: #37474F !important;
+  
+  /* Flexbox principal */
+  display: flex !important;
+  align-items: center !important;
+  flex-direction: row !important; /* Asegurar dirección horizontal */
+}
+
+/* !!! SOLUCIÓN AL TEXTO ABAJO DEL ICONO !!! */
+/* Forzamos al contenedor interno de Material a comportarse como fila */
+a.menu-item-custom .mdc-list-item__content {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  width: 100%;
+  color: #000;
+}
+
+/* Aseguramos que el icono no rompa la línea */
+a.menu-item-custom mat-icon {
+  margin-right: 12px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Estados: Hover */
+a.menu-item-custom:hover {
+  background-color: #F1F8E9 !important;
+  color: #2E7D32 !important;
+}
+
+/* Estados: Active Link */
+a.menu-item-custom.active-link {
+  background-color: #E8F5E9 !important;
+  color: #2E7D32 !important;
+  border-right: 4px solid #5FB963;
+}
+a.menu-item-custom.active-link mat-icon {
+  color: #5FB963 !important;
+}
+
+/* ------------------------------------------------------
+   B. GRUPOS DESPLEGABLES (Expansion Panels)
+   ------------------------------------------------------ */
+/* Contenedor limpio */
 .menu-panel {
   background: transparent !important;
+  box-shadow: none !important;
   border-radius: 0 !important;
   margin: 0 !important;
-  box-shadow: none !important;
 }
 
-/* Cabecera del acordeón */
+/* Header del Acordeón */
 .menu-panel mat-expansion-panel-header {
-  height: 48px;
-  padding: 0 24px;
-}
-
-.menu-panel mat-expansion-panel-header:hover {
-  background-color: #F1F8E9; /* Verde muy suave (Hover) */
+  height: 48px !important;
+  padding: 0 24px !important;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #37474F;
 }
 
 mat-panel-title {
@@ -93,60 +158,86 @@ mat-panel-title {
   font-weight: 500;
 }
 
-/* --- E. SUBMENÚS (LINKS INTERNOS) --- */
+/* Hover Header */
+.menu-panel mat-expansion-panel-header:hover {
+  background-color: #F1F8E9 !important;
+  color: #2E7D32 !important;
+}
+
+/* !!! SOLUCIÓN DOBLE ILUMINACIÓN (Header) !!! */
+/* Quitamos el estilo de foco al hacer clic */
+.menu-panel mat-expansion-panel-header:focus,
+.menu-panel mat-expansion-panel-header:active,
+.menu-panel mat-expansion-panel-header.cdk-keyboard-focused,
+.menu-panel mat-expansion-panel-header.cdk-program-focused {
+  background-color: transparent !important;
+}
+
+/* ------------------------------------------------------
+   C. SUBMENÚS (Items hijos)
+   ------------------------------------------------------ */
 .menu-panel mat-nav-list a {
-  padding-left: 64px !important; /* Indentación */
+  padding-left: 64px !important;
+  height: 40px !important;
   font-size: 0.9rem;
   color: #546E7A;
-  height: 40px;
   display: flex;
   align-items: center;
-  text-decoration: none; /* Quitar subrayado */
+  text-decoration: none;
+  font-weight: 400;
+  border-radius: 0 !important;
+  outline: none; /* Quitar borde azul de foco */
 }
 
-/* Hover en submenús */
+/* Hover Submenú */
 .menu-panel mat-nav-list a:hover {
   background-color: #FAFAFA;
-  color: #2E7D32; /* Verde Oscuro al pasar mouse */
+  color: #2E7D32;
 }
 
-/* --- F. ESTADO ACTIVO (Ruta Actual) --- */
-.active-link {
-  background-color: #E8F5E9 !important; /* Fondo verde claro */
-  color: #2E7D32 !important; /* Texto verde oscuro */
+/* Activo Submenú */
+.menu-panel mat-nav-list a.active-link {
+  color: #2E7D32;
   font-weight: 500;
-  border-right: 4px solid #5FB963; /* Indicador lateral */
+  background-color: #FAFAFA; /* Gris muy claro */
+  border-right: 4px solid #5FB963;
 }
 
-.active-link mat-icon {
-  color: #5FB963; /* Icono verde */
+/* !!! SOLUCIÓN DOBLE ILUMINACIÓN (Submenús) !!! */
+/* Evita que el item anterior se quede "gris" por tener el foco */
+.menu-panel mat-nav-list a:focus,
+.menu-panel mat-nav-list a:active {
+  background-color: transparent !important;
 }
 
-/* G. FOOTER DEL MENÚ */
+/* Aseguramos que si está activo Y tiene foco, mantenga el color de activo */
+.menu-panel mat-nav-list a.active-link:focus {
+  background-color: #FAFAFA !important;
+}
+
+/* ======================================================
+   4. FOOTER & TOOLBAR
+   ====================================================== */
 .sidenav-footer {
-  margin-top: auto; /* Empuja al final */
+  margin-top: auto;
   padding: 20px;
   border-top: 1px solid #ECEFF1;
 }
 
 .logout-item {
-  color: #D32F2F !important; /* Rojo Alerta */
+  color: #D32F2F !important;
   border-radius: 8px;
   text-decoration: none;
   display: flex;
   align-items: center;
   padding: 10px 16px;
+  font-weight: 500;
 }
 
 .logout-item:hover {
-  background-color: #FFEBEE; /* Fondo rojo suave */
+  background-color: #FFEBEE;
 }
 
-.logout-item mat-icon {
-  color: #D32F2F;
-}
-
-/* H. TOOLBAR Y CONTENIDO */
 .top-toolbar {
   background-color: #FFFFFF !important;
   color: #37474F;
@@ -170,4 +261,8 @@ mat-panel-title {
   padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+button[mat-menu-item] mat-icon {
+  margin-right: 12px;
 }

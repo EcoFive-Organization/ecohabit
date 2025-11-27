@@ -16,7 +16,7 @@
     <mat-nav-list class="nav-list">
       
       <!-- Opción Simple: Dashboard/Inicio (Ejemplo) -->
-      <a mat-list-item routerLink="/menu/dashboard" routerLinkActive="active-link">
+      <a mat-list-item routerLink="/menu/dashboard" routerLinkActive="active-link" class="menu-item-custom">
         <mat-icon>dashboard</mat-icon> <span>Dashboard</span>
       </a>
 
@@ -29,7 +29,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listausuarios" routerLinkActive="active-link">Listar Usuarios</a>
+          <a mat-list-item routerLink="/menu/listausuarios" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Listar Usuarios</a>
           <a mat-list-item routerLink="/registrousuario" routerLinkActive="active-link">Registrar Nuevo</a>
         </mat-nav-list>
       </mat-expansion-panel>
@@ -45,10 +45,10 @@
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
           @if (isClient()) {
-            <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link">Ver Foros</a>
+            <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Foros</a>
           }
           @else if (isAdmin()) {
-            <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link">Ver Foros</a>
+            <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Foros</a>
           <a mat-list-item routerLink="/menu/listarforos/registroforo" routerLinkActive="active-link">Crear Foro</a>
           }
         </mat-nav-list>
@@ -63,17 +63,17 @@
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
           @if (isClient()) {
-            <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link">Catálogo</a>
+            <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Catálogo</a>
           }
           @else if (isAdmin()) {
-            <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link">Catálogo</a>
+            <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Catálogo</a>
           <a mat-list-item routerLink="/menu/listarrecompensa/registrorecompensa" routerLinkActive="active-link">Nueva Recompensa</a>
           }
         </mat-nav-list>
       </mat-expansion-panel>
 
       <!-- Opción Simple: Planes -->
-      <a mat-list-item routerLink="/menu/listarplansuscripcion" routerLinkActive="active-link">
+      <a mat-list-item routerLink="/menu/listarplansuscripcion" routerLinkActive="active-link" class="menu-item-custom">
         <mat-icon>card_membership</mat-icon> <span>Planes</span>
       </a>
 
@@ -86,10 +86,10 @@
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
           @if (isClient()) {
-            <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link">Biblioteca</a>
+            <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Biblioteca</a>
           }
           @else if (isAdmin()) {
-            <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link">Biblioteca</a>
+            <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Biblioteca</a>
           <a mat-list-item routerLink="/menu/listarcontenidoeducativo/registrocontenidoeducativo" routerLinkActive="active-link">Publicar</a>
           }
         </mat-nav-list>
@@ -104,10 +104,10 @@
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
           @if (isClient()) {
-            <a mat-list-item routerLink="/menu/listarbilleteras" routerLinkActive="active-link">Mi Saldo</a>
+            <a mat-list-item routerLink="/menu/listarbilleteras" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mi Saldo</a>
           }
           @else if (isAdmin()) {
-            <a mat-list-item routerLink="/menu/listarbilleteras" routerLinkActive="active-link">Mi Saldo</a>
+            <a mat-list-item routerLink="/menu/listarbilleteras" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mi Saldo</a>
           <a mat-list-item routerLink="/menu/listarbilleteras/registrobilleteras" routerLinkActive="active-link">Configurar</a>
           }
         </mat-nav-list>
@@ -121,7 +121,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listartransacciones" routerLinkActive="active-link">Historial</a>
+          <a mat-list-item routerLink="/menu/listartransacciones" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Historial</a>
           <a mat-list-item routerLink="/menu/listartransacciones/registrotransacciones" routerLinkActive="active-link">Nueva</a>
         </mat-nav-list>
       </mat-expansion-panel>
@@ -134,7 +134,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listadispositivo" routerLinkActive="active-link">Mis Equipos</a>
+          <a mat-list-item routerLink="/menu/listadispositivo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mis Equipos</a>
           <a mat-list-item routerLink="/menu/listadispositivo/registrodispositivo" routerLinkActive="active-link">Vincular</a>
         </mat-nav-list>
       </mat-expansion-panel>
@@ -147,7 +147,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarconsumo" routerLinkActive="active-link">Reportes</a>
+          <a mat-list-item routerLink="/menu/listarconsumo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Reportes</a>
           <a mat-list-item routerLink="/menu/listarconsumo/registroconsumo" routerLinkActive="active-link">Registrar</a>
         </mat-nav-list>
       </mat-expansion-panel>
@@ -160,7 +160,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarsuscripcion" routerLinkActive="active-link">Lista</a>
+          <a mat-list-item routerLink="/menu/listarsuscripcion" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Lista</a>
           <a mat-list-item routerLink="/menu/listarsuscripcion/registrosuscripcion" routerLinkActive="active-link">Registrar</a>
         </mat-nav-list>
       </mat-expansion-panel>
@@ -173,39 +173,53 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarmetodopago" routerLinkActive="active-link">Ver Metodos</a>
+          <a mat-list-item routerLink="/menu/listarmetodopago" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Metodos</a>
           <a mat-list-item routerLink="/menu/listarmetodopago/registrometodopago" routerLinkActive="active-link">Registrar</a>
         </mat-nav-list>
       </mat-expansion-panel>
 
+      <!-- Grupo: Rol -->
+       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>face</mat-icon> <span>Rol</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarroles" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Roles</a>
+          <a mat-list-item routerLink="/menu/listarroles/registrorol" routerLinkActive="active-link">Insertar Rol</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
     </mat-nav-list>
-
-    <!-- Footer del Menú -->
-    <div class="sidenav-footer">
-      <a mat-list-item routerLink="/" class="logout-item">
-        <mat-icon>logout</mat-icon> <span>Cerrar Sesión</span>
-      </a>
-    </div>
-
   </mat-sidenav>
 
   <!-- CONTENIDO PRINCIPAL -->
   <mat-sidenav-content class="content-area">
     
-    <!-- Toolbar Superior -->
     <mat-toolbar color="primary" class="top-toolbar">
       <button mat-icon-button (click)="sidenav.toggle()" class="menu-toggle">
         <mat-icon>menu</mat-icon>
       </button>
       <span class="toolbar-title">Panel de Administración</span>
       <span class="spacer"></span>
-      <!-- Aquí podrías poner un avatar o botón de perfil -->
-      <button mat-icon-button>
+      
+      <button mat-icon-button [matMenuTriggerFor]="menuPerfil">
         <mat-icon>account_circle</mat-icon>
       </button>
+
+      <mat-menu #menuPerfil="matMenu">
+        <button mat-menu-item routerLink="/" (click)="cerrar()">
+          <mat-icon style="color: #D32F2F;">logout</mat-icon> <span>Cerrar Sesión</span>
+        </button>
+        <button mat-menu-item>
+      Rol:
+      <span>{{ role }}</span>
+    </button>
+      </mat-menu>
+
     </mat-toolbar>
 
-    <!-- Router Outlet (Donde cargan las páginas) -->
     <div class="router-container">
       <router-outlet></router-outlet>
     </div>
