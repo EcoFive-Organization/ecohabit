@@ -1,14 +1,16 @@
-/* A. CONTENEDOR Y LAYOUT */
-.container {
+/* A. CONTENEDOR PRINCIPAL (Renombrado para evitar conflictos) */
+.planes-container {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
-  font-family: 'Roboto', sans-serif; /* Guideline: Fuente Secundaria */
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
 }
 
+/* Rejilla responsive */
 .plans-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive automático */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   justify-content: center;
   padding: 20px 0;
@@ -17,78 +19,95 @@
 /* B. HEADER DE SECCIÓN */
 .header-section {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem; /* Aumenté esto para separar más el encabezado del resto de la página */
+  padding: 0 20px;
 }
 
 .header-section h2 {
-  font-family: 'Montserrat', sans-serif; /* Guideline: Fuente Primaria */
-  font-size: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;       /* Un poco más grande para impactar */
   font-weight: 700;
-  color: #37474F; /* Guideline: Gris Oscuro */
-  margin-bottom: 10px;
+  color: #37474F;
+  margin-bottom: 20px;   /* <--- AQUÍ ESTÁ EL CAMBIO: Más espacio debajo del título */
+  line-height: 1.2;      /* Mejora la lectura */
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
   color: #78909C;
+  font-weight: 300;
+  margin-top: 0;         /* Quitamos el margen superior para que el H2 controle el espacio */
+  max-width: 600px;      /* Evita que el texto se estire demasiado a lo ancho */
+  margin-left: auto;     /* Centrado automático */
+  margin-right: auto;    /* Centrado automático */
 }
 
 /* C. TARJETA DEL PLAN (CARD) */
 .plan-card {
-  border-radius: 16px;
-  overflow: hidden;
+  border-radius: 16px !important; /* Forzamos el borde redondeado sobre Material */
   background-color: #FFFFFF;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* Flexbox para empujar el botón al final */
   display: flex;
   flex-direction: column;
-  height: 100%; /* Para que todas tengan la misma altura */
+  height: 100%;
   position: relative;
+  overflow: hidden; /* Mantiene la franja verde dentro del borde */
 }
 
-/* Efecto Hover: La tarjeta se levanta ligeramente */
 .plan-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(95, 185, 99, 0.2); /* Sombra verde suave */
+  box-shadow: 0 12px 30px rgba(95, 185, 99, 0.2);
 }
 
 /* Decoración superior verde */
 .card-header-strip {
   height: 8px;
-  background-color: #5FB963; /* Guideline: Verde Principal */
+  background-color: #5FB963;
   width: 100%;
+  flex-shrink: 0; /* Evita que desaparezca si falta espacio */
 }
 
 /* D. ENCABEZADO DEL PLAN */
-.plan-header {
+/* mat-card-header requiere ajustes especiales en Flexbox */
+.plan-header-custom {
   padding: 24px 24px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  justify-content: center; /* Centra el contenido horizontalmente */
 }
 
+/* Forzamos estilos sobre los componentes internos de Material */
 .plan-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #2E7D32; /* Verde más oscuro para título */
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #2E7D32;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .plan-id {
-  font-size: 0.85rem;
+  font-size: 0.85rem !important;
   color: #B0BEC5;
-  margin-top: 5px;
+  margin-top: 5px !important;
+  text-align: center;
 }
 
 /* E. PRECIO Y CONTENIDO */
 .plan-content {
   padding: 20px 24px;
   text-align: center;
-  flex-grow: 1; /* Empuja el footer hacia abajo */
+  flex-grow: 1; /* ESTO ES CLAVE: Empuja el footer hacia abajo */
+  display: flex;
+  flex-direction: column;
 }
 
 .price-container {
@@ -100,6 +119,8 @@
   font-size: 1.5rem;
   vertical-align: top;
   font-weight: 500;
+  position: relative;
+  top: 5px;
 }
 
 .amount {
@@ -113,6 +134,7 @@
 .period {
   font-size: 1rem;
   color: #90A4AE;
+  font-weight: 400;
 }
 
 .description {
@@ -124,23 +146,25 @@
 
 /* F. BOTÓN DE ACCIÓN */
 .plan-actions {
-  padding: 24px;
+  padding: 24px !important;
   display: flex;
   justify-content: center;
+  margin-top: auto; /* Refuerzo para empujar abajo */
 }
 
 .select-button {
-  background-color: #5FB963; /* Guideline: Verde Principal */
-  color: white;
-  font-family: 'Montserrat', sans-serif;
+  background-color: #5FB963 !important; /* Importante para ganar a estilos de botón Material */
+  color: white !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 600;
   font-size: 1rem;
-  padding: 12px 32px; /* Botón grande y cómodo */
-  border-radius: 30px; /* Botón redondeado moderno */
+  padding: 8px 32px !important; /* Ajuste para mat-flat-button */
+  border-radius: 30px !important;
   width: 100%;
+  height: 48px;
   transition: background-color 0.2s;
 }
 
 .select-button:hover {
-  background-color: #388E3C; /* Guideline: Verde Oscuro (Hover) */
+  background-color: #388E3C !important;
 }

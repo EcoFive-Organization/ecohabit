@@ -49,7 +49,7 @@ onPageChange(event: PageEvent) {
 }
   // Metodo eliminar, primero elimina y luego muestra la lista actualizada
   eliminar(id: number) {
-    const confirmacion = globalThis.confirm('¿Estás seguro de eliminar este foro');
+    const confirmacion = globalThis.confirm('¿Estás seguro de eliminar este foro?');
     if (confirmacion) {
       this.fS.delete(id).subscribe(() => {
         this.fS.list().subscribe((data) => {

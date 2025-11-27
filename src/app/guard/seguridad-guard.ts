@@ -2,14 +2,14 @@ import { CanActivateFn, Router } from '@angular/router';
 import { Loginservice } from '../services/loginservice';
 import { inject } from '@angular/core';
 // 1. Importar MatSnackBar
-import { MatSnackBar } from '@angular/material/snack-bar'; 
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const seguridadGuard: CanActivateFn = (route, state) => {
 
   const lService = inject(Loginservice);
   const router = inject(Router);
   // 2. Inyectar el servicio de notificaciones
-  const snackBar = inject(MatSnackBar); 
+  const snackBar = inject(MatSnackBar);
 
   const rpta = lService.verificar();
 

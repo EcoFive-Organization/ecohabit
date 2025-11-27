@@ -1,25 +1,18 @@
-<div class="container">
-  
-  <!-- Título de la Sección -->
-  <div class="header-section">
+<div class="planes-container"> <div class="header-section">
     <h2>Nuestros Planes</h2>
     <p class="subtitle">Elige el plan perfecto para potenciar tu impacto ecológico</p>
   </div>
 
-  <!-- Rejilla de Tarjetas -->
   <div class="plans-grid">
     
-    <!-- Iteramos sobre los planes -->
-    <mat-card class="plan-card" *ngFor="let plan of dataSource.data"> <!-- Asumiendo que dataSource tiene una propiedad .data -->
+    <mat-card class="plan-card" *ngFor="let plan of dataSource.data">
       
-      <!-- Encabezado: Nombre del Plan -->
       <div class="card-header-strip"></div>
-      <mat-card-header class="plan-header">
-        <mat-card-title class="plan-title">{{plan.nombre}}</mat-card-title>
+      
+      <mat-card-header class="plan-header-custom"> <mat-card-title class="plan-title">{{plan.nombre}}</mat-card-title>
         <mat-card-subtitle class="plan-id">Plan #{{plan.idPlanSuscripcion}}</mat-card-subtitle>
       </mat-card-header>
 
-      <!-- Contenido: Precio y Descripción -->
       <mat-card-content class="plan-content">
         <div class="price-container">
           <span class="currency">S/.</span>
@@ -31,12 +24,9 @@
         
         <div class="features-list">
           <p class="description">{{plan.descripcion}}</p>
-          <!-- Aquí podrías agregar una lista de características si tuvieras el dato separado -->
-          <!-- <div class="feature-item"><mat-icon>check</mat-icon> Beneficio 1</div> -->
         </div>
       </mat-card-content>
 
-      <!-- Acciones: Botón de Selección -->
       <mat-card-actions class="plan-actions">
         <button mat-flat-button class="select-button">SELECCIONAR</button>
       </mat-card-actions>
