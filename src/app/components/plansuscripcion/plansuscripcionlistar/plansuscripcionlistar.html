@@ -25,24 +25,23 @@
       </mat-card-content>
 
       <mat-card-actions class="plan-actions">
-        <button
-          mat-flat-button
-          class="select-button"
+
+        <button 
+          mat-flat-button 
+          class="select-button" 
           *ngIf="planSeleccionado !== plan"
-          (click)="seleccionarPlan(plan)"
-        >
-          SUSCRIBIRSE CON PAYPAL
+          [disabled]="esPremium" 
+          [class.premium-active]="esPremium"
+          (click)="seleccionarPlan(plan)">
+
+          {{ esPremium ? 'PLAN ACTIVO ✅' : 'SUSCRIBIRSE' }}
+
         </button>
 
-        <div *ngIf="planSeleccionado === plan" class="paypal-container">
-          <p class="confirm-text">
-            Vas a pagar: <strong>{{ plan.nombre }}</strong>
-          </p>
-
+        <div *ngIf="planSeleccionado === plan && !esPremium" class="paypal-wrapper">
           <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+           </div>
 
-          <button mat-button color="warn" (click)="planSeleccionado = null">Cancelar</button>
-        </div>
       </mat-card-actions>
     </mat-card>
   </div>
