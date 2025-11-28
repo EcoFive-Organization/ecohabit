@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+/* LAYOUT PRINCIPAL */
+.reporte-container {
+  padding: 2rem;
+  background-color: #ECEFF1; /* Gris Claro */
+  min-height: calc(100vh - 64px);
+  font-family: 'Roboto', sans-serif;
+  color: #37474F;
+}
+
+/* ENCABEZADO */
+.header-row {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: #37474F;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.subtitle {
+  color: #78909C;
+  margin-top: 5px;
+  font-size: 0.95rem;
+}
+
+/* GRID DE GRÁFICOS */
+.charts-grid {
+  display: grid;
+  /* Dos columnas en escritorio, una en móvil */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+/* TARJETAS */
+.chart-card {
+  padding: 1.5rem;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #ECEFF1;
+  padding-bottom: 1rem;
+}
+
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #37474F;
+  font-size: 1.1rem;
+}
+
+.chart-wrapper {
+  height: 300px; /* Altura fija para el gráfico */
+  display: flex;
+  justify-content: center;
+}
+
+/* COLORES */
+.blue-bg { background-color: rgba(3, 169, 244, 0.15); color: #03A9F4; }
+.green-bg { background-color: rgba(95, 185, 99, 0.15); color: #5FB963; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}

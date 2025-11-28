@@ -27,8 +27,8 @@
 
 h2 {
   margin: 0;
-  font-family: 'Montserrat', sans-serif; /* [cite: 61] Fuente Primaria */
-  font-size: 1.8rem; /* [cite: 64] Tamaño Desktop */
+  font-family: 'Montserrat', sans-serif;/* [cite: 61] Fuente Primaria */
+  font-size: 1.8rem;/* [cite: 64] Tamaño Desktop */
   color: #37474F; /* [cite: 27] Gris Oscuro */
   font-weight: 700;
 }

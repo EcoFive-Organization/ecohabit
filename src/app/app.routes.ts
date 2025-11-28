@@ -27,6 +27,8 @@ import { Rol } from './components/rol/rol';
 import { Rolinsert } from './components/rol/rolinsert/rolinsert';
 import { Dashboard } from './components/dashboard/dashboard';
 import { HistorialComponent } from './components/consumo/historial/historial';
+import { ReporteCantidadPublicacionForo } from './components/reporte-cantidad-publicacion-foro/reporte-cantidad-publicacion-foro';
+import { ReporteCantidadReaccionesPublicacion } from './components/reporte-cantidad-reacciones-publicacion/reporte-cantidad-reacciones-publicacion';
 
 export const routes: Routes = [
   // Zona pública
@@ -52,6 +54,7 @@ export const routes: Routes = [
           { path: 'registrousuario', component: Usuarioinsert },
           // Los dos puntos indican que es una variable
           { path: 'perfil/:id', component: Usuarioinsert }, // Esta ruta sirve para cuando le demos al botón actualizar lleve al formulario de registro
+          { path: 'reportes', component: ReporteUsuariosComponent} // NUEVA RUTA PARA EL REPORTE
         ],
         canActivate: [seguridadGuard],
       },
@@ -164,6 +167,20 @@ export const routes: Routes = [
         path:`dashboard`,
         component: Dashboard,
         canActivate: [seguridadGuard],
+      },
+
+      // Reporte de cantidad de publicaciones segun foro
+      {
+        path: 'reporte-cantidad-publicaciones-foro',
+        component: ReporteCantidadPublicacionForo,
+        canActivate: [seguridadGuard]
+      },
+
+      // Reporte de cantidad de reacciones según publicación
+      {
+        path: 'reporte-cantidad-reacciones-publicacion',
+        component: ReporteCantidadReaccionesPublicacion,
+        canActivate: [seguridadGuard]
       }
 
     ],
