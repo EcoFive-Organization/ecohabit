@@ -15,7 +15,8 @@
         <p>{{ element.descripcion }}</p>
       </mat-card-content>
 
-      <mat-card-actions align="end">
+      @if (isAdmin) {
+        <mat-card-actions align="end">
         <button mat-button [routerLink]="['edits', element.idForo]">
           <mat-icon>edit</mat-icon>
         </button>
@@ -23,6 +24,8 @@
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
+      }
+
     </mat-card>
   </div>
 

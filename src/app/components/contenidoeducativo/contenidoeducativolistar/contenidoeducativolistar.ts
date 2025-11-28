@@ -7,6 +7,7 @@ import { Contenidoeducativoservice } from '../../../services/contenidoeducativos
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { Loginservice } from '../../../services/loginservice';
 
 @Component({
   selector: 'app-contenidoeducativolistar',
@@ -20,12 +21,18 @@ export class Contenidoeducativolistar implements OnInit {
   pagedData: ContenidoEducativo[] = [];
   pageSize = 5;
   pageIndex = 0;
+  isAdmin: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private ceS: Contenidoeducativoservice) {}
+  constructor(private ceS: Contenidoeducativoservice,
+    private loginService: Loginservice
+  ) {}
 
   ngOnInit(): void {
+
+    this.isAdmin = this.loginService.showRole() === 'ADMIN'
+
       this.ceS.list().subscribe(data => {
         this.dataSource = data;
         this.updatePagedData();
