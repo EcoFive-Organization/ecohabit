@@ -7,7 +7,11 @@
     </div>
     <div class="actions">
        <button mat-stroked-button color="primary">Última Semana</button>
-       <button mat-flat-button color="accent" style="color: white;">Exportar</button>
+       
+       <!-- 🟢 BOTÓN CONECTADO A LA FUNCIÓN -->
+       <button mat-flat-button color="accent" style="color: white;" (click)="descargarExcel()">
+         Exportar <mat-icon>download</mat-icon>
+       </button>
     </div>
   </div>
 
@@ -51,8 +55,10 @@
       </div>
     </mat-card>
   </div>
+
   <br>
   <br>
+  
   <mat-card class="chart-section">
     <div class="chart-header">
       <h3>Comparativa de Consumo - Vista de Barras</h3>
