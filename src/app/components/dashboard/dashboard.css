@@ -252,6 +252,7 @@
 }
 
 .tip-button {
+  background-color: #FFFFFF;
   color: #2E7D32 !important; /* Texto verde */
   border-color: #2E7D32 !important;
   font-family: 'Montserrat', sans-serif !important;
