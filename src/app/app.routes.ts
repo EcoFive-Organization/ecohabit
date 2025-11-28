@@ -20,7 +20,6 @@ import { Consumo } from './components/consumo/consumo';
 import { Consumoinsert } from './components/consumo/consumoinsert/consumoinsert';
 import { Login } from './components/login/login';
 import { Suscripcion } from './components/suscripcion/suscripcion';
-import { Suscripcioninsert } from './components/suscripcion/suscripcioninsert/suscripcioninsert';
 import { Metodopago } from './components/metodopago/metodopago';
 import { Metodopagoinsert } from './components/metodopago/metodopagoinsert/metodopagoinsert';
 import { seguridadGuard } from './guard/seguridad-guard';
@@ -133,9 +132,6 @@ export const routes: Routes = [
       {
         path: 'listarsuscripcion',
         component: Suscripcion,
-        children: [{
-          path: 'registrosuscripcion', component: Suscripcioninsert
-        }],
         canActivate: [seguridadGuard],
       },
       

@@ -69,3 +69,45 @@
         font-size: 0.85rem;
     }
 }
+
+/* Estilos para la tarjeta del cliente */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.wallet-card {
+  width: 350px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #61d889 100%); /* Un fondo suave */
+}
+
+.saldo-display {
+  text-align: center;
+  margin: 20px 0;
+  color: #2c3e50;
+}
+
+.currency {
+  font-size: 1.5rem;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+.amount {
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Ajustes para el icono del avatar */
+.example-header-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2ba535; /* Color primario */
+  color: white;
+  border-radius: 50%;
+}

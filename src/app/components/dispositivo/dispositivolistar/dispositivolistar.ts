@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
 import { Dispositivo } from '../../../models/Dispositivo';
 import { Dispositivoservice } from '../../../services/dispositivoservice';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Loginservice } from '../../../services/loginservice';
 
 @Component({
   selector: 'app-dispositivolistar',
@@ -19,21 +20,28 @@ export class Dispositivolistar implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns: string[] = ['c1', 'c2', 'c4', 'cforaneanombre', 'c7', 'c8']
+  displayedColumns: string[] = ['c1', 'c2', 'c4', 'c7', 'c8']
 
-  constructor(private dS: Dispositivoservice) {}
+  constructor(private dS: Dispositivoservice, private loginService: Loginservice ) {}
 
   ngOnInit(): void {
-      this.dS.list().subscribe((data) => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
-      });
+    const role = this.loginService.showRole();
 
-      this.dS.getList().subscribe((data) => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
-      });
-      
+    // Si es ADMIN, agregamos la columna de usuario a la vista
+    if (role === 'ADMIN') {
+      // Insertamos la columna en la posición que quieras (ej: antes de editar)
+      this.displayedColumns.splice(3, 0, 'cforaneanombre');
+    }
+
+    this.dS.list().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+    });
+
+    this.dS.getList().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   ngAfterViewInit() {

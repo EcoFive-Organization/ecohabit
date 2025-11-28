@@ -1,125 +1,156 @@
-/* --- A. Contenedor Principal y Título --- */
+/* =========================================
+   ESTILOS ECOHABIT - GUÍA DE ESTILO CAP 4
+   ========================================= */
+
+/* Contenedor Principal */
 .container {
-    max-width: 600px; 
-    margin: 30px auto; 
-    padding: 2rem 1.5rem;
-    font-family: 'Roboto', sans-serif; 
-    color: #37474F; 
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif; /* Fuente secundaria */
 }
 
-.titulo {
-    text-align: center;
-    font-family: 'Montserrat', sans-serif; 
-    color: #37474F; 
-    font-size: 1.5rem; /* 28px */
-    margin-bottom: 2rem;
-    border-bottom: 2px solid #5FB963; /* Verde Principal */
-    padding-bottom: 0.5rem;
+/* Encabezados (Tipografía Montserrat) */
+.header-section {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-/* --- B. Contenedor de Tarjetas (Grid/Flex) --- */
-
-.card-container {
-    display: grid;
-    /* Usa un grid responsivo que muestre 2 o 3 columnas en escritorio y 1 en móvil */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 1rem 0;
+.titulo-principal {
+  font-family: 'Montserrat', sans-serif; /* Fuente Primaria */
+  color: #37474F; /* Gris Oscuro */
+  font-size: 36px; /* Desktop size según guía */
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-/* --- C. Estilo de la Tarjeta Individual --- */
-
-.contenido-card {
-    /* GUIDELINE: Fondo Blanco, Sombra y Bordes */
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    min-height: 200px; /* Altura mínima para que no se vean vacías */
-    
-    /* Asegura que el contenido se organice bien */
-    display: flex;
-    flex-direction: column;
+.subtitulo {
+  font-family: 'Roboto', sans-serif;
+  color: #78909C; /* Un tono más suave del Gris Oscuro */
+  font-size: 16px;
+  margin-top: 20px;
 }
 
-.contenido-card:hover {
-    /* GUIDELINE: Indica interactividad con sombra/elevación */
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+/* Grid de Tarjetas (Responsive) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 10px;
+  margin-bottom: 30px;
 }
 
-.mat-card-header {
-    padding: 16px;
-    background-color: #ECEFF1; /* Gris Claro para el encabezado */
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 8px;
+/* Tarjeta Individual */
+.payment-card {
+  background-color: #FFFFFF;
+  border-radius: 16px; /* Bordes suaves */
+  border: 1px solid #ECEFF1; /* Gris Claro */
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  /* Sombra suave inicial */
+  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.1);
 }
 
-.mat-card-title.titulo {
-    /* Muestra el tipo de pago (ej. PayPal, Tarjeta) */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #0288D1; /* Azul Oscuro para destacar el nombre */
+/* Efecto Hover (Interacción) */
+.payment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(95, 185, 99, 0.2); /* Sombra verdosa */
+  border-color: #5FB963; /* Borde Verde Principal al pasar el mouse */
 }
 
-.mat-card-subtitle {
-    /* Muestra el ID */
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.85rem;
-    color: #757575; 
+/* Encabezado con Icono */
+.card-icon-header {
+  background: linear-gradient(135deg, #f5f7fa 0%, #ECEFF1 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.mat-card-content {
-    padding: 0 16px 16px 16px;
-    font-size: 0.95rem;
-    color: #37474F;
-    flex-grow: 1;
-}
-
-/* --- D. Iconos (simulando logo de método de pago) --- */
-
-.icon-container {
-    text-align: center;
-    margin: 10px 0;
+.icon-circle {
+  background-color: #FFFFFF;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .icono-contenido {
-    /* GUIDELINE: Usar colores accesibles */
-    color: #5FB963; /* Verde Principal */
-    font-size: 48px;
-    width: 48px;
-    height: 48px;
+  color: #5FB963; /* Verde Principal */
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
 }
 
-/* --- E. Paginador y Mensajes de No Data --- */
-
-.mat-paginator {
-    margin-top: 20px;
-    border-radius: 8px;
+/* Cuerpo de la Tarjeta */
+.card-body {
+  padding: 20px;
+  text-align: center;
 }
 
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  color: #37474F; /* Gris Oscuro */
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.divider {
+  height: 3px;
+  width: 40px;
+  background-color: #5FB963; /* Verde Principal */
+  margin: 0 auto 15px auto;
+  border-radius: 2px;
+}
+
+.card-details {
+  font-family: 'Roboto', sans-serif;
+  color: #546E7A;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Paginador */
+.custom-paginator {
+  background-color: #F9FAFB;
+  border-radius: 8px;
+  color: #37474F;
+}
+
+/* Mensaje Sin Datos */
 .no-data-message {
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    padding: 30px;
-    border-radius: 4px;
-    margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #FFF3E0; /* Un fondo naranja muy suave */
+  border-radius: 8px;
+  border: 1px dashed #FF9800; /* Naranja de alerta suave */
+  color: #E65100;
+  margin-top: 20px;
 }
 
-/* --- F. Ajustes de Responsividad --- */
+.no-data-message mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
 
+/* Ajustes Mobile (Media Queries) */
 @media (max-width: 600px) {
-    .container {
-        padding: 0.5rem;
-    }
-    .card-container {
-        /* Fuerza a una sola columna en móvil */
-        grid-template-columns: 1fr;
-    }
-    .container h2 {
-        font-size: 1.5rem;
-    }
+  .titulo-principal {
+    font-size: 28px; /* Ajuste según guía Mobile */
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
 }

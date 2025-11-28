@@ -66,19 +66,19 @@
 
       <!--Nombre Usuario (FK)-->
       <!-- El value es el valor que va a capturar (lo que debe registrarse en BD), y el viewValue es lo que el usuario verá-->
-      <div>
+      <div *ngIf="isAdmin">
         <mat-form-field class="example-full-width">
           <mat-label>Nombre Usuario:</mat-label>
-          <mat-select formControlName="usuario" required>
-            @for (u of listaUsuarios; track u.idUsuario) { <!--Value-->
-            <mat-option [value]="u.idUsuario"> <!--Value-->
-              {{ u.nombre }} <!--View Value-->
+          <mat-select formControlName="usuario" [required]="isAdmin">
+            @for (u of listaUsuarios; track u.idUsuario) {
+            <mat-option [value]="u.idUsuario">
+              {{ u.nombre }}
             </mat-option>
             }
           </mat-select>
 
           @if (form.get('usuario')?.hasError('required')) {
-          <mat-error>El campo usuario es obligatorio.</mat-error>
+          <mat-error>El campo usuario es obligatorio para administradores.</mat-error>
           }
         </mat-form-field>
       </div>

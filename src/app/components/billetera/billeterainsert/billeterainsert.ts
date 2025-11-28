@@ -10,77 +10,83 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-
+import { Loginservice } from '../../../services/loginservice';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-billeterainsert',
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatNativeDateModule,
     MatOptionModule,
-    MatSelectModule],
+    MatSelectModule,
+    CommonModule,
+  ],
   templateUrl: './billeterainsert.html',
   styleUrl: './billeterainsert.css',
 })
-export class Billeterainsert implements OnInit{
+export class Billeterainsert implements OnInit {
   form: FormGroup = new FormGroup({});
   bil: Billetera = new Billetera();
   edicion: boolean = false;
 
   id: number = 0;
   // Va a manejar varios softwares y los va a almacenar
-  listaUsuarios: Usuario[] = []
+  listaUsuarios: Usuario[] = [];
+
+  isAdmin: boolean = false;
 
   constructor(
     private bS: Billeteraservice,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private uS: Usuarioservice // llamar al Software Service para usar el metodo listar en el selector de registro de licencia
-
+    private uS: Usuarioservice, // llamar al Software Service para usar el metodo listar en el selector de registro de licencia
+    private loginService: Loginservice
   ) {}
 
   // Esto se ejecuta ni bien inicia el
   ngOnInit(): void {
+    this.isAdmin = this.loginService.showRole() === 'ADMIN';
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
     });
 
-    // Ni bien inicia el componente la listaSoftwares se llena
-    this.uS.list().subscribe((data) => {
-      this.listaUsuarios = data
-    })
+    // 2. Solo cargar usuarios si es Admin
+    if (this.isAdmin) {
+      this.uS.list().subscribe((data) => {
+        this.listaUsuarios = data;
+      });
+    }
 
     this.form = this.formBuilder.group({
       id: [''],
-      usuarioL: ['', Validators.required],
-      saldo: ['', [Validators.required, Validators.min(1), Validators.pattern(/^[0-9]+$/)]] // FK de Software
+      usuarioL: ['', this.isAdmin ? Validators.required : null],
+      saldo: ['', [Validators.required, Validators.min(1), Validators.pattern(/^[0-9]+$/)]], // FK de Software
     });
   }
   aceptar(): void {
     if (this.form.valid) {
       this.bil.idBilletera = this.form.value.id;
-      
-      // --- ESTA ES LA CORRECCIÓN ---
 
-      // 1. Asegúrate de que el objeto 'usuario' dentro de 'billetera' exista.
-      // (Si tu clase Billetera no lo inicializa en el constructor, hazlo aquí)
       if (!this.bil.usuario) {
-          this.bil.usuario = new Usuario();
+        this.bil.usuario = new Usuario();
       }
 
-      // 2. Asigna el ID del formulario al ID del objeto usuario.
-      // El backend solo necesita el ID para vincular la clave foránea.
-      this.bil.usuario.idUsuario = this.form.value.usuarioL; 
-      
-      // --- FIN DE LA CORRECCIÓN ---
+      // Solo asignamos el ID del formulario si es ADMIN
+      if (this.isAdmin) {
+        this.bil.usuario.idUsuario = this.form.value.usuarioL;
+      }
+      // Si es CLIENT, esto va vacío y el Backend lo rellena con el Token
 
       this.bil.saldo = this.form.value.saldo;
 
-      this.bS.insert(this.bil).subscribe(data => {
+      this.bS.insert(this.bil).subscribe((data) => {
         this.bS.list().subscribe((data) => {
           this.bS.setList(data);
         });

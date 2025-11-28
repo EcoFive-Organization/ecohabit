@@ -74,7 +74,7 @@
 
       <!-- Opción Simple: Planes -->
       <a mat-list-item routerLink="/menu/listarplansuscripcion" routerLinkActive="active-link" class="menu-item-custom">
-        <mat-icon>card_membership</mat-icon> <span>Planes</span>
+        <mat-icon>card_membership</mat-icon> <span>Plan de Suscripción</span>
       </a>
 
       <!-- Grupo: Contenido Educativo -->
@@ -114,7 +114,8 @@
       </mat-expansion-panel>
 
       <!-- Grupo: Transacciones -->
-      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+       @if (isAdmin()) {
+        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>receipt_long</mat-icon> <span>Transacciones</span>
@@ -125,6 +126,20 @@
           <a mat-list-item routerLink="/menu/listartransacciones/registrotransacciones" routerLinkActive="active-link">Nueva</a>
         </mat-nav-list>
       </mat-expansion-panel>
+       }
+       @else if (isClient()) {
+        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>receipt_long</mat-icon> <span>Transacciones</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listartransacciones" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Historial</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+       }
+      
 
       <!-- Grupo: Dispositivos -->
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
@@ -140,20 +155,35 @@
       </mat-expansion-panel>
 
        <!-- Grupo: Consumo -->
-       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        @if (isAdmin()) {
+          <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>bolt</mat-icon> <span>Consumo</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarconsumo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Reportes</a>
+          <a mat-list-item routerLink="/menu/listarconsumo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mis Consumos</a>
           <a mat-list-item routerLink="/menu/listarconsumo/registroconsumo" routerLinkActive="active-link">Registrar</a>
         </mat-nav-list>
       </mat-expansion-panel>
+        }
+        @else if (isClient()) {
+          <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>bolt</mat-icon> <span>Consumo</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarconsumo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mis Consumos</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+        }
 
       <!-- Grupo: Suscripcion -->
-       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+       @if (isAdmin()) {
+         <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>credit_card</mat-icon> <span>Suscripcion</span>
@@ -161,12 +191,13 @@
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
           <a mat-list-item routerLink="/menu/listarsuscripcion" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Lista</a>
-          <a mat-list-item routerLink="/menu/listarsuscripcion/registrosuscripcion" routerLinkActive="active-link">Registrar</a>
         </mat-nav-list>
       </mat-expansion-panel>
+       }
 
       <!-- Grupo: MetodoPago -->
-       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+       @if (isAdmin()) {
+        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>credit_card</mat-icon> <span>Metodos de Pago</span>
@@ -177,9 +208,24 @@
           <a mat-list-item routerLink="/menu/listarmetodopago/registrometodopago" routerLinkActive="active-link">Registrar</a>
         </mat-nav-list>
       </mat-expansion-panel>
+       }
+       @else if (isClient()) {
+        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>credit_card</mat-icon> <span>Metodos de Pago</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarmetodopago" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Metodos</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+       }
+       
 
       <!-- Grupo: Rol -->
-       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+       @if (isAdmin()) {
+        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>face</mat-icon> <span>Rol</span>
@@ -190,6 +236,8 @@
           <a mat-list-item routerLink="/menu/listarroles/registrorol" routerLinkActive="active-link">Insertar Rol</a>
         </mat-nav-list>
       </mat-expansion-panel>
+       }
+       
 
     </mat-nav-list>
   </mat-sidenav>
