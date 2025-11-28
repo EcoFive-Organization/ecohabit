@@ -25,6 +25,7 @@ import { Metodopagoinsert } from './components/metodopago/metodopagoinsert/metod
 import { seguridadGuard } from './guard/seguridad-guard';
 import { Rol } from './components/rol/rol';
 import { Rolinsert } from './components/rol/rolinsert/rolinsert';
+import { Dashboard } from './components/dashboard/dashboard';
 
 export const routes: Routes = [
   // Zona pública
@@ -152,6 +153,13 @@ export const routes: Routes = [
         children: [{
           path:`registrorol`, component: Rolinsert
         }],
+        canActivate: [seguridadGuard],
+      },
+
+      // Dashboard
+      {
+        path:`dashboard`,
+        component: Dashboard,
         canActivate: [seguridadGuard],
       }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { Dispositivo } from '../models/Dispositivo';
 import { HttpClient } from '@angular/common/http';
 
@@ -45,4 +45,9 @@ export class Dispositivoservice {
     return this.http.delete(`${this.url}/${id}`, {responseType: 'text'});
   }
 
+  // *** FUNCIÓN ACTUALIZADA: Conexión con el nuevo endpoint Back-End ***
+  listByUserId(userId: number): Observable<Dispositivo[]> {
+    // Llama a tu endpoint recién creado: GET /dispositivos/usuario/{idUsuario}
+    return this.http.get<Dispositivo[]>(`${this.url}/usuario/${userId}`);
+  }
 }
