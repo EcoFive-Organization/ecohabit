@@ -41,7 +41,6 @@ interface ConsumptionSummary {
     MatTableModule,
     MatIconModule,
     MatButtonModule,
-    RouterLink,
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
