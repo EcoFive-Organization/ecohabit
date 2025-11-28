@@ -1,127 +1,118 @@
-/* A. CONTENEDOR Y TIPOGRAFÍA BASE */
+/* =========================================
+   ECOHABIT STYLE GUIDE - TABLA USUARIOS
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@300;400;500&display=swap');
 
-.container {
-    /* Centra y limita el ancho del contenido */
-    max-width: 90%; 
-    margin: 20px auto; 
-    padding: 1rem;
-    /* GUIDELINE: Fuente Secundaria (Roboto) y Color de texto general (Gris Oscuro) */
-    font-family: 'Roboto', sans-serif;
-    color: #37474F; 
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: #ECEFF1; /* Gris Claro EcoHabit */
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* TÍTULO (h2) */
-.container h2 {
-    /* GUIDELINE: Fuente Primaria (Montserrat) */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem; /* 24px */
-    color: #37474F;
-    margin-bottom: 1.5rem;
-    /* GUIDELINE: Separador con color principal */
-    border-bottom: 2px solid #5FB963; 
-    padding-bottom: 0.5rem;
+/* Encabezado */
+h2 {
+  text-align: center;
+  margin: 0 0 2rem 0;
+  font-size: 36px;
+  font-family: 'Montserrat', sans-serif;
+  color: #37474F;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
-/* --- B. ESTILOS GENERALES DE LA TABLA (MAT-TABLE) --- */
-
-.mat-elevation-z8 {
-    width: 100%;
-    /* Sombra suave y bordes para mejor estética */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px; 
-    overflow: hidden; 
+/* =========================================
+   FILTRO Y CONTENEDOR
+   ========================================= */
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
-/* CABECERA DE LA TABLA (TH) */
-.mat-header-cell {
-    /* GUIDELINE: Fondo Gris Oscuro */
-    background-color: #37474F; 
-    color: #FFFFFF; /* Texto Blanco */
-    /* GUIDELINE: Montserrat para títulos de columna */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
+.filter-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  padding: 0 4px;
 }
 
-/* FILAS DE CONTENIDO (TD) */
-.mat-cell {
-    padding: 12px 16px;
-    font-size: 0.95rem;
-    color: #37474F;
+.filter-field {
+  width: 100%;
+  max-width: 400px;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* GUIDELINE: Alternancia de colores para legibilidad */
-.mat-row:nth-child(even) {
-    background-color: #ECEFF1; 
+.filter-field mat-icon {
+  color: #37474F;
 }
 
-/* --- C. BOTONES DE ACCIÓN (ACTUALIZAR / ELIMINAR) --- */
-
-/* Selector para las columnas de acción */
-.mat-column-c3, .mat-column-c4 {
-    width: 80px; 
-    text-align: center;
+/* =========================================
+   TABLA
+   ========================================= */
+.table-container {
+  overflow-x: auto;
+  border-radius: 12px;
+  background-color: white;
+  margin-bottom: 2rem;
 }
 
-/* 1. Botón Actualizar (c3) - Acciones secundarias */
-.mat-column-c3 button {
-    /* Asegura que el fondo sea transparente, anulando el verde genérico del tema */
-    background-color: transparent !important; 
-    color: #5FB963; /* Color por defecto */
+table {
+  width: 100%;
 }
 
-.mat-column-c3 button mat-icon {
-    /* GUIDELINE: Azul Claro para el ícono [cite: 565-567] */
-    color: #5FB963;
-    margin: 0 auto;
+/* Cabecera Verde EcoHabit */
+th.mat-header-cell {
+  background-color: #5FB963; 
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-.mat-column-c3 button:hover {
-    /* Aplicamos un fondo sutil en hover */
-    background-color: #388E3C !important; 
+td.mat-cell {
+  font-family: 'Roboto', sans-serif;
+  color: #37474F;
+  padding: 16px;
+  border-bottom-color: #ECEFF1;
 }
 
-.mat-column-c3 button:hover mat-icon {
-    /* GUIDELINE: Azul Oscuro para hover [cite: 594-596] */
-    color: #FFFFFF !important; 
+tr.mat-row:hover {
+  background-color: rgba(95, 185, 99, 0.05); /* Verde muy suave al pasar mouse */
 }
 
-/* 2. Botón Eliminar (c4) - Acciones de peligro */
-.mat-column-c4 button {
-    /* Asegura que el fondo sea transparente */
-    background-color: transparent !important;
-    color: #F44336; /* Color por defecto */
+/* =========================================
+   BOTONES DE ACCIÓN
+   ========================================= */
+.btn-edit, .btn-delete {
+  transition: all 0.3s ease !important;
+  background-color: transparent;
 }
 
-.mat-column-c4 button mat-icon {
-    /* GUIDELINE: Rojo de Alerta para acciones destructivas [cite: 581-583] */
-    color: #F44336;
-    margin: 0 auto;
+/* BOTÓN VER PERFIL (Verde) */
+.btn-edit { color: #5FB963 !important; }
+.btn-edit:hover { 
+  background-color: #388E3C !important; 
+  color: white !important; 
 }
 
-.mat-column-c4 button:hover {
-    /* Aplicamos un fondo rojo muy sutil al hacer hover */
-    background-color: #F44336 !important; 
+/* BOTÓN ELIMINAR (Rojo) */
+.btn-delete { color: #F44336 !important; }
+.btn-delete:hover { 
+  background-color: #F44336 !important; 
+  color: white !important; 
 }
 
-.mat-column-c4 button:hover mat-icon {
-    /* Rojo más oscuro al hacer hover */
-    color: #FFFFFF !important; 
+/* =========================================
+   PAGINADOR
+   ========================================= */
+mat-paginator {
+  background-color: transparent !important;
+  display: flex;
+  justify-content: center;
 }
 
-/* --- D. RESPONSIVE DESIGN --- */
-
-@media (max-width: 768px) {
-    .container {
-        padding: 0.5rem;
-    }
-    .mat-header-cell, .mat-cell {
-        padding: 8px; /* Reducir padding de las celdas */
-        font-size: 0.85rem;
-    }
-}
-
-.button .mat-icon {
-    margin: 0 auto;
-    text-align: center;
+@media (max-width: 600px) {
+  h2 { font-size: 28px; }
+  .filter-field { max-width: 100%; }
 }

@@ -1,52 +1,66 @@
-<div class="container">
-  <h2>Lista de Usuarios</h2>
-  <div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <!-- Nombre Column -->
-      <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef>Nombre</th>
-        <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
-      </ng-container>
+<div class="main-container">
+  
+  <div class="header-actions">
+    <h2>Lista de Usuarios</h2>
+  </div>
 
-      <!-- Email Column -->
-      <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef>Email</th>
-        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
-      </ng-container>
-
-      <!-- Actualizar Column -->
-      <ng-container matColumnDef="c3" class="modificar">
-        <th mat-header-cell *matHeaderCellDef>Ver Perfil</th>
-        <td mat-cell *matCellDef="let element">
-          <button matButton [routerLink]="['perfil', element.idUsuario]"> <!--Se captura el idUsuario para actualizar esa fila-->
-            <mat-icon>person</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <!-- Eliminar Column -->
-      <ng-container matColumnDef="c4" class="eliminar">
-        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-        <td mat-cell *matCellDef="let element">
-          <button matButton (click)="eliminar(element.idUsuario)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <!-- Fila de encabezado -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <!-- Fila de contenido -->
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-
-    <!--Paginador-->
-    <mat-paginator
-      [pageSizeOptions]="[2, 5, 10, 20]"
-      showFirstLastButtons
-      aria-label="Select page"
-    >
-    </mat-paginator>
+  <div class="table-wrapper">
     
+    <div class="filter-container">
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Buscar usuario por nombre, email o ID...</mat-label>
+        <input matInput (keyup)="filtrar($event)" placeholder="Ej. Juan Perez" #input>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="table-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        
+        <ng-container matColumnDef="c1">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="c2">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="c3">
+          <th mat-header-cell *matHeaderCellDef>Ver Perfil</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button class="btn-edit" [routerLink]="['perfil', element.idUsuario]" matTooltip="Ver Perfil">
+              <mat-icon>person</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c4">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button class="btn-delete" (click)="eliminar(element.idUsuario)" matTooltip="Eliminar Usuario">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4" style="text-align: center; padding: 20px;">
+            No se encontraron usuarios que coincidan con "{{input.value}}"
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Seleccionar página">
+    </mat-paginator>
+
   </div>
 </div>

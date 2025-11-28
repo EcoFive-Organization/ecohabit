@@ -986,3 +986,32 @@ nav ul li.Registrarse a:hover {
 nav ul li.IniciarSesion {
   margin-left: 70px; /* Empuja el botón un poco a la derecha */
 }
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    /* GUIDELINE APLICADA: Fondo Gris Claro */
+    background-color: #ECEFF1;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    z-index: 1001; /* Asegura que flote sobre el contenido */
+  }
+  
+  nav ul.active {
+    display: flex;
+  }
+  
+  nav ul li {
+    margin: 10px 0;
+  }
+  
+  .hamburguesa {
+    display: block;
+  }
+}

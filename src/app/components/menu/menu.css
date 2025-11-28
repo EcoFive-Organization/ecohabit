@@ -266,3 +266,55 @@ mat-panel-title {
 button[mat-menu-item] mat-icon {
   margin-right: 12px;
 }
+
+/* ======================================================
+   5. [cite_start]RESPONSIVE - ECOHABIT STYLE GUIDE [cite: 44-47]
+   Adaptación para móviles y tablets (Mobile First approach)
+   ====================================================== */
+
+@media (max-width: 768px) {
+  
+  /* 1. Ajuste del Sidebar para Móviles */
+  .sidenav {
+    /* Reducimos ligeramente el ancho para pantallas pequeñas */
+    width: 260px;
+    /* Aseguramos que no exceda el ancho de la pantalla en dispositivos muy angostos */
+    max-width: 85vw; 
+  }
+
+  /* 2. Ajuste del Toolbar (Barra Superior) */
+  .top-toolbar {
+    padding: 0 8px; /* Reducimos padding lateral para ganar espacio */
+  }
+
+  .toolbar-title {
+    font-size: 1rem; /* Reducimos la fuente del título para que quepa bien */
+    margin-left: 8px;
+  }
+
+  /* Ocultamos el texto "Rol:..." del menú de perfil en móviles si es necesario, 
+     o simplemente ajustamos los márgenes */
+  .spacer {
+    display: flex; /* Asegura que el spacer siga funcionando */
+  }
+
+  /* 3. Área de Contenido Principal (Router Outlet) */
+  .router-container {
+    /* Reducimos el padding "generoso" de escritorio a algo más compacto */
+    padding: 16px; 
+    /* Maximizamos el ancho disponible */
+    max-width: 100%;
+  }
+
+  /* 4. Mejoras de Usabilidad Táctil (Touch Targets) */
+  /* Hacemos los botones del menú un poco más altos para dedos */
+  a.menu-item-custom,
+  .menu-panel mat-expansion-panel-header {
+    height: 56px !important; /* 48px -> 56px estándar Android */
+  }
+
+  /* Ajuste de íconos en móvil */
+  mat-icon {
+    margin-right: 16px; /* Más espacio entre icono y texto */
+  }
+}

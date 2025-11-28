@@ -139,10 +139,10 @@
         </mat-nav-list>
       </mat-expansion-panel>
        }
-      
 
       <!-- Grupo: Dispositivos -->
-      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+      @if (isAdmin()) {
+        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>devices</mat-icon> <span>Dispositivos</span>
@@ -153,6 +153,20 @@
           <a mat-list-item routerLink="/menu/listadispositivo/registrodispositivo" routerLinkActive="active-link">Vincular</a>
         </mat-nav-list>
       </mat-expansion-panel>
+      }
+      @else if (isClient()) {
+        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>devices</mat-icon> <span>Dispositivos</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listadispositivo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mis Dispositivos</a>
+          <a mat-list-item routerLink="/menu/listadispositivo/registrodispositivo" routerLinkActive="active-link">Vincular</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      }
 
        <!-- Grupo: Consumo -->
         @if (isAdmin()) {

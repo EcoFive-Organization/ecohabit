@@ -13,25 +13,18 @@ import { CommonModule } from '@angular/common'; // Para *ngIf
   selector: 'app-home',
   standalone: true, // Lo marcamos como standalone
   imports: [
-    CommonModule, // <-- Añadido
-    MatButtonModule, 
     RouterLink,
-    MatIconModule,    // <-- Añadido
-    MatMenuModule,    // <-- Añadido
-    MatToolbarModule, // <-- Añadido
-    MatDividerModule  // <-- Añadido
+    MatButtonModule, 
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
-  
-  // Esta función permite que los enlaces del menú 
-  // hagan scroll suave a la sección
-  scrollTo(section: string) {
-    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
-  }
+  // Variable para controlar si el menú está abierto o cerrado
+  menuActive: boolean = false;
 
-  // Las propiedades isMenuVisible y toggleMenu() ya no son necesarias
-  // MatMenu maneja esto automáticamente.
+  // Función que se ejecuta al dar click en la hamburguesa
+  toggleMenu() {
+    this.menuActive = !this.menuActive;
+  }
 }
