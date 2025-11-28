@@ -1,0 +1,41 @@
+<div class="reporte-container">
+  
+  <div class="header-row">
+    <div>
+      <h2>Reportes de Usuarios</h2>
+      <p class="subtitle">Análisis de roles y estados de la comunidad EcoHabit</p>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    
+    <mat-card class="chart-card">
+      <div class="card-header">
+        <div class="icon-circle blue-bg"><mat-icon>pie_chart</mat-icon></div>
+        <span class="card-title">Distribución por Roles</span>
+      </div>
+      <div class="chart-wrapper">
+        <canvas baseChart
+          [data]="pieChartData"
+          [options]="pieChartOptions"
+          [type]="pieChartType">
+        </canvas>
+      </div>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <div class="card-header">
+        <div class="icon-circle green-bg"><mat-icon>bar_chart</mat-icon></div>
+        <span class="card-title">Usuarios Activos vs Inactivos</span>
+      </div>
+      <div class="chart-wrapper">
+        <canvas baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [type]="barChartType">
+        </canvas>
+      </div>
+    </mat-card>
+
+  </div>
+</div>

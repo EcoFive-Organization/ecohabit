@@ -27,6 +27,7 @@ import { Rol } from './components/rol/rol';
 import { Rolinsert } from './components/rol/rolinsert/rolinsert';
 import { Dashboard } from './components/dashboard/dashboard';
 import { HistorialComponent } from './components/consumo/historial/historial';
+import { ReporteUsuariosComponent } from './components/usuario/reporte-usuarios/reporte-usuarios';
 
 export const routes: Routes = [
   // Zona pública
@@ -52,6 +53,7 @@ export const routes: Routes = [
           { path: 'registrousuario', component: Usuarioinsert },
           // Los dos puntos indican que es una variable
           { path: 'perfil/:id', component: Usuarioinsert }, // Esta ruta sirve para cuando le demos al botón actualizar lleve al formulario de registro
+          { path: 'reportes', component: ReporteUsuariosComponent} // NUEVA RUTA PARA EL REPORTE
         ],
         canActivate: [seguridadGuard],
       },

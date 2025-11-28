@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { Usuario } from '../models/Usuario';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { UsuarioRolCountDTO } from '../models/UsuarioRolCountDTO';
+import { UsuarioRolStatusDTO } from '../models/UsuarioRolStatusDTO';
 
 
 const base_url = environment.base
@@ -50,4 +52,13 @@ export class Usuarioservice {
     return this.http.delete(`${this.url}/${id}`, {responseType: 'text'})
   }
 
+  // 🟢 REPORTE 1: Cantidad de usuarios por Rol
+  getUsuariosPorRol() {
+    return this.http.get<UsuarioRolCountDTO[]>(`${this.url}/roles`);
+  }
+
+  // 🟢 REPORTE 2: Cantidad de usuarios por Rol y Estado
+  getUsuariosPorEstadoRol() {
+    return this.http.get<UsuarioRolStatusDTO[]>(`${this.url}/estados_roles`);
+  }
 }
