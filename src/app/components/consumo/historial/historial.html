@@ -1,0 +1,79 @@
+<div class="historial-container">
+  
+  <div class="header-row">
+    <div>
+      <h2>Historial de Consumo</h2>
+      <p class="subtitle">Visualiza y analiza tu consumo de recursos en diferentes periodos</p>
+    </div>
+    <div class="actions">
+       <button mat-stroked-button color="primary">Última Semana</button>
+       <button mat-flat-button color="accent" style="color: white;">Exportar</button>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    <mat-card class="stat-card">
+      <div class="card-header">
+        <div class="icon-circle blue-bg"><mat-icon>water_drop</mat-icon></div>
+        <span class="card-title">Agua</span>
+        <mat-icon class="trend-icon down">trending_down</mat-icon>
+      </div>
+      <div class="card-content">
+        <p class="label">Total (semana)</p>
+        <h3 class="blue-text">{{ resumen.agua.total }} {{ resumen.agua.unidad }}</h3>
+        <p class="trend-text green">↓ 5% vs. periodo anterior</p>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <div class="card-header">
+        <div class="icon-circle yellow-bg"><mat-icon>bolt</mat-icon></div>
+        <span class="card-title">Electricidad</span>
+        <mat-icon class="trend-icon up">trending_up</mat-icon>
+      </div>
+      <div class="card-content">
+        <p class="label">Total (semana)</p>
+        <h3 class="yellow-text">{{ resumen.electricidad.total }} {{ resumen.electricidad.unidad }}</h3>
+        <p class="trend-text red">↑ 8% vs. periodo anterior</p>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <div class="card-header">
+        <div class="icon-circle orange-bg"><mat-icon>local_fire_department</mat-icon></div>
+        <span class="card-title">Gas</span>
+        <mat-icon class="trend-icon down">trending_down</mat-icon>
+      </div>
+      <div class="card-content">
+        <p class="label">Total (semana)</p>
+        <h3 class="orange-text">{{ resumen.gas.total }} {{ resumen.gas.unidad }}</h3>
+        <p class="trend-text green">↓ 2% vs. periodo anterior</p>
+      </div>
+    </mat-card>
+  </div>
+  <br>
+  <br>
+  <mat-card class="chart-section">
+    <div class="chart-header">
+      <h3>Comparativa de Consumo - Vista de Barras</h3>
+    </div>
+    <div class="chart-wrapper">
+      <canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [type]="barChartType">
+      </canvas>
+    </div>
+  </mat-card>
+
+  <div class="analysis-box">
+    <div class="analysis-icon">
+      <mat-icon>insights</mat-icon>
+    </div>
+    <div class="analysis-text">
+      <h4>Análisis de tu Consumo</h4>
+      <p>Has reducido tu consumo de agua en un 5% esta semana. ¡Excelente trabajo! Para seguir mejorando, intenta reducir el tiempo en la ducha.</p>
+    </div>
+  </div>
+
+</div>

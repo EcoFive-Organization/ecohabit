@@ -6,7 +6,11 @@ import { HttpClient } from '@angular/common/http';
 
 
 const base_url = environment.base
-
+export interface ConsumoGraficoDTO {
+  fecha: string;
+  tipo: string;
+  total: number;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -33,4 +37,9 @@ export class Consumoservice {
     return this.listaCambio.asObservable();
   }
 
+  // 🟢 NUEVO MÉTODO: Obtiene los datos agrupados por día para el gráfico
+  getGraficoSemanal() {
+    // Llamará a: http://localhost:8080/consumos/grafico-semanal
+    return this.http.get<ConsumoGraficoDTO[]>(`${this.url}/grafico-semanal`);
+  }
 }

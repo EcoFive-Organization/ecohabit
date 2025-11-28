@@ -26,6 +26,7 @@ import { seguridadGuard } from './guard/seguridad-guard';
 import { Rol } from './components/rol/rol';
 import { Rolinsert } from './components/rol/rolinsert/rolinsert';
 import { Dashboard } from './components/dashboard/dashboard';
+import { HistorialComponent } from './components/consumo/historial/historial';
 
 export const routes: Routes = [
   // Zona pública
@@ -125,7 +126,9 @@ export const routes: Routes = [
       {
         path: 'listarconsumo',
         component: Consumo,
-        children: [{ path: 'registroconsumo', component: Consumoinsert }],
+        children: [
+          { path: 'registroconsumo', component: Consumoinsert},
+          { path:`historial`, component: HistorialComponent}],
         canActivate: [seguridadGuard],
       },
 
