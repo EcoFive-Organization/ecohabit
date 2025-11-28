@@ -10,6 +10,7 @@ import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 // 2. Importamos el interceptor que acabamos de crear
 import { authInterceptor } from './custom/auth.interceptor'; // Ajusta la ruta si lo guardaste en otro lado
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +20,6 @@ export const appConfig: ApplicationConfig = {
 
     // 3. Configuramos el HttpClient con el interceptor
     provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
+    provideCharts(withDefaultRegisterables())
   ],
 };
