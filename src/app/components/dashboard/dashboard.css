@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+/* LAYOUT PRINCIPAL */
+.dashboard-wrapper {
+  padding: 2rem;
+  background-color: #ECEFF1; 
+  min-height: calc(100vh - 64px); 
+  font-family: 'Roboto', sans-serif; 
+}
+
+/* ENCABEZADO */
+.header-section {
+  margin-bottom: 2rem;
+}
+
+.breadcrumb {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  color: #78909C; 
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-section h1 {
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 1.8rem;
+  color: #37474F; 
+  font-weight: 700;
+  margin: 0;
+}
+
+/* CARDS */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px; 
+  margin-bottom: 3rem;
+}
+
+.custom-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(55, 71, 79, 0.08);
+  border: 1px solid rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(55, 71, 79, 0.12);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value-section {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: baseline;
+}
+
+.main-value {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 1;
+  margin-right: 8px;
+}
+
+.unit-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.trend-section {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #78909C;
+  gap: 6px;
+}
+
+.trend-section mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.trend-section .up { color: #F44336; }   
+.trend-section .down { color: #5FB963; } 
+
+.card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #ECEFF1;
+  background-color: #FAFAFA;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.history-link {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.history-link:hover {
+  opacity: 0.75;
+}
+
+.history-link mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+/* TABLA */
+.data-table-section h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  color: #37474F;
+  margin-bottom: 1rem;
+  margin-left: 5px;
+}
+
+.custom-table {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.custom-table th.mat-header-cell {
+  background-color: #FFFFFF;
+  color: #78909C; 
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid #ECEFF1;
+  padding: 1.5rem;
+}
+
+.custom-table td.mat-cell {
+  padding: 1rem 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  color: #37474F;
+  border-bottom: 1px solid #ECEFF1;
+  font-size: 0.95rem;
+}
+
+.custom-table .bold-text {
+  font-weight: 500;
+  color: #263238; 
+}
+
+.no-data-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: white;
+  color: #78909C;
+  padding: 3rem;
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  border: 1px dashed #B0BEC5;
+}
+
+/* 🟢 ESTILOS NUEVOS: CONSEJO DEL DÍA */
+.tip-section {
+  margin-top: 30px;
+  background-color: rgba(95, 185, 99, 0.12); /* Verde Principal al 12% opacidad */
+  border: 1px solid rgba(95, 185, 99, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tip-icon-container {
+  background-color: #5FB963; /* Verde Principal */
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(95, 185, 99, 0.3);
+}
+
+.tip-content {
+  flex: 1;
+}
+
+.tip-content h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #2E7D32; /* Verde más oscuro para texto */
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.tip-content p {
+  font-family: 'Roboto', sans-serif;
+  color: #37474F;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.tip-button {
+  color: #2E7D32 !important; /* Texto verde */
+  border-color: #2E7D32 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* Responsive para la sección de consejos */
+@media (max-width: 600px) {
+  .tip-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .tip-button {
+    width: 100%;
+  }
+}

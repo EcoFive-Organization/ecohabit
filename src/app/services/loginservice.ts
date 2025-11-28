@@ -30,4 +30,12 @@ export class Loginservice {
     return decodedToken?.role;
   }
 
+  // *** MÉTODO AÑADIDO: NECESARIO PARA EL DASHBOARD ***
+  // Devuelve el objeto payload del token
+  decodeToken(token: string): any {
+    const helper = new JwtHelperService();
+    // Asume que el payload tiene una propiedad 'id' o 'sub' con el ID del usuario
+    return helper.decodeToken(token);
+  }
+
 }
