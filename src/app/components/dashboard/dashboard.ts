@@ -99,35 +99,35 @@ export class Dashboard implements OnInit, OnDestroy {
 
   initializeSummaryStructure(): void {
     this.summaryData = [
-      { 
-        id: 'agua', 
-        title: 'AGUA', 
-        value: 0, 
-        unit: 'L', 
-        trend: 'flat', 
-        trendValue: 0, 
-        color: '#03A9F4', 
-        icon: 'water_drop' 
+      {
+        id: 'agua',
+        title: 'AGUA',
+        value: 0,
+        unit: 'L',
+        trend: 'flat',
+        trendValue: 0,
+        color: '#03A9F4',
+        icon: 'water_drop'
+      },
+      {
+        id: 'electricidad',
+        title: 'ELECTRICIDAD',
+        value: 0,
+        unit: 'W',
+        trend: 'flat',
+        trendValue: 0,
+        color: '#FFC107',
+        icon: 'bolt'
       },
       { 
-        id: 'electricidad', 
-        title: 'ELECTRICIDAD', 
-        value: 0, 
-        unit: 'W', 
-        trend: 'flat', 
-        trendValue: 0, 
-        color: '#FFC107', 
-        icon: 'bolt' 
-      },
-      { 
-        id: 'gas', 
-        title: 'GAS', 
-        value: 0, 
-        unit: 'm³', 
-        trend: 'flat', 
-        trendValue: 0, 
-        color: '#FF9800', 
-        icon: 'local_fire_department' 
+        id: 'gas',
+        title: 'GAS',
+        value: 0,
+        unit: 'm³',
+        trend: 'flat',
+        trendValue: 0,
+        color: '#FF9800',
+        icon: 'local_fire_department'
       },
     ];
   }
