@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Foro } from '../models/Foro';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { CantidadPublicacionForoDTO } from '../models/CantidadPublicacionForoDTO';
 
 const base_url = environment.base
 
@@ -43,4 +44,10 @@ export class Foroservice {
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`, { responseType: `text` });
   }
+
+  // Cantidad de publicaciones por foro
+  getQuantity(): Observable<CantidadPublicacionForoDTO[]> {
+    return this.http.get<CantidadPublicacionForoDTO[]>(`${this.url}/cantidades`)
+  }
+
 }

@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 
-// Imports añadidos desde tu menu.ts
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDividerModule } from '@angular/material/divider';
-import { CommonModule } from '@angular/common'; // Para *ngIf
-
 @Component({
   selector: 'app-home',
   standalone: true, // Lo marcamos como standalone

@@ -27,7 +27,8 @@ import { Rol } from './components/rol/rol';
 import { Rolinsert } from './components/rol/rolinsert/rolinsert';
 import { Dashboard } from './components/dashboard/dashboard';
 import { HistorialComponent } from './components/consumo/historial/historial';
-import { ReporteUsuariosComponent } from './components/usuario/reporte-usuarios/reporte-usuarios';
+import { ReporteCantidadPublicacionForo } from './components/reporte-cantidad-publicacion-foro/reporte-cantidad-publicacion-foro';
+import { ReporteCantidadReaccionesPublicacion } from './components/reporte-cantidad-reacciones-publicacion/reporte-cantidad-reacciones-publicacion';
 
 export const routes: Routes = [
   // Zona pública
@@ -166,6 +167,20 @@ export const routes: Routes = [
         path:`dashboard`,
         component: Dashboard,
         canActivate: [seguridadGuard],
+      },
+
+      // Reporte de cantidad de publicaciones segun foro
+      {
+        path: 'reporte-cantidad-publicaciones-foro',
+        component: ReporteCantidadPublicacionForo,
+        canActivate: [seguridadGuard]
+      },
+
+      // Reporte de cantidad de reacciones según publicación
+      {
+        path: 'reporte-cantidad-reacciones-publicacion',
+        component: ReporteCantidadReaccionesPublicacion,
+        canActivate: [seguridadGuard]
       }
 
     ],
