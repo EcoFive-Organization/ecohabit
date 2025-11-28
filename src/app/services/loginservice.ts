@@ -41,4 +41,14 @@ export class Loginservice {
     return helper.decodeToken(token);
   }
 
+  // Agrega esto en Loginservice para el reporte de cantidad reacciones
+  getId() {
+    let token = sessionStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    return decodedToken?.id; // Asegúrate que en tu Backend el claim se llame "id"
+  }
 }

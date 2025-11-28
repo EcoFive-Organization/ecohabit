@@ -34,7 +34,7 @@
         </mat-nav-list>
       </mat-expansion-panel>
       }
-      
+
 
       <!-- Grupo: Foros -->
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
@@ -50,7 +50,20 @@
           @else if (isAdmin()) {
             <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Foros</a>
           <a mat-list-item routerLink="/menu/listarforos/registroforo" routerLinkActive="active-link">Crear Foro</a>
+          <a mat-list-item routerLink="/menu/reporte-cantidad-publicaciones-foro" routerLinkActive="active-link">Ver Reporte</a>
           }
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <!-- Grupo: Publicación -->
+        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon> contacts</mat-icon> <span>Publicaciones</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/reporte-cantidad-reacciones-publicacion" routerLinkActive="active-link">Ver Gráfico</a>
         </mat-nav-list>
       </mat-expansion-panel>
 
