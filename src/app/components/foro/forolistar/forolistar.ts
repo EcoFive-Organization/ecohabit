@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { Loginservice } from '../../../services/loginservice';
 
 @Component({
   selector: 'app-forolistar',
@@ -19,12 +20,18 @@ export class Forolistar implements OnInit {
   pagedData: Foro[] = [];
   pageSize = 5;
   pageIndex = 0;
+  isAdmin: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private fS: Foroservice) {}
+  constructor(private fS: Foroservice,
+    private loginService: Loginservice
+  ) {}
 
   ngOnInit(): void {
+
+    this.isAdmin = this.loginService.showRole() === 'ADMIN'
+
     this.fS.list().subscribe((data) => {
       this.dataSource = data;
       this.updatePagedData();

@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
+import { Loginservice } from '../../../services/loginservice';
 
 @Component({
   selector: 'app-recompensalistar',
@@ -30,12 +31,18 @@ export class Recompensalistar implements OnInit {
   pagedData: Recompensa[] = [];
   pageSize = 5;
   pageIndex = 0;
+  isAdmin: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private rS: Recompensaservice) {}
+  constructor(private rS: Recompensaservice,
+    private loginService: Loginservice
+  ) {}
 
   ngOnInit(): void {
+
+    this.isAdmin = this.loginService.showRole() === 'ADMIN';
+    
     this.rS.list().subscribe((data) => {
       this.dataSource = data;
       this.updatePagedData()

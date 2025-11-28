@@ -31,8 +31,8 @@
           <span class="label-puntos">EcoPuntos</span>
         </div>
       </mat-card-content>
-
-      <mat-card-actions align="end">
+      @if(isAdmin) {
+        <mat-card-actions align="end">
         <button mat-icon-button class="btn-edit" [routerLink]="['edits', element.idRecompensa]" matTooltip="Editar recompensa">
           <mat-icon>edit</mat-icon>
         </button>
@@ -41,6 +41,8 @@
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
+      }
+      
     </mat-card>
   </div>
 
