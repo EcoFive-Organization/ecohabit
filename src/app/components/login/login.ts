@@ -62,7 +62,7 @@ export class Login implements OnInit {
         console.error('¡ALERTA! No llegó el idUsuario');
       }
 
-      this.router.navigate(['menu']);
+      this.router.navigate(['menu/dashboard']);
     },
         (error) => {
           this.mensaje = 'Credenciales incorrectas, intente de nuevo.'
