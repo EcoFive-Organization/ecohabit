@@ -1,141 +1,239 @@
-/* A. CONTENEDOR Y TIPOGRAFÍA BASE */
+/* =========================================
+   ECOHABIT STYLE GUIDE - DISPOSITIVOS
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@300;400;500&display=swap');
 
-.container {
-    /* Centra y limita el ancho del contenido */
-    max-width: 90%; 
-    margin: 20px auto; 
-    padding: 1rem;
-    /* GUIDELINE: Fuente Secundaria (Roboto) y Color de texto general (Gris Oscuro) */
-    font-family: 'Roboto', sans-serif;
-    color: #37474F; 
+/* Contenedor del filtro */
+.filter-container {
+  display: flex;
+  justify-content: flex-start; /* O center si prefieres */
+  margin-bottom: 1rem;
+  padding: 0 4px;
 }
 
-/* TÍTULO (h1) */
-.container h1 {
-    /* GUIDELINE: Fuente Primaria (Montserrat) */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem; /* 24px */
-    color: #37474F;
-    margin-bottom: 1.5rem;
-    /* GUIDELINE: Separador con color principal */
-    border-bottom: 2px solid #5FB963; 
-    padding-bottom: 0.5rem;
-    /* Centrado */
-    text-align: center;
+/* Estilo del campo de texto */
+.filter-field {
+  width: 100%;
+  max-width: 400px; /* Que no sea infinito */
+  font-family: 'Roboto', sans-serif;
 }
 
-/* --- B. ESTILOS GENERALES DE LA TABLA (MAT-TABLE) --- */
-
-.mat-elevation-z8 {
-    width: 100%;
-    /* Sombra suave y bordes para mejor estética */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px; 
-    overflow: hidden; 
+/* Ajuste para que el icono de lupa se vea bien */
+.filter-field mat-icon {
+  color: #37474F;
 }
 
-/* CABECERA DE LA TABLA (TH) */
-.mat-header-cell {
-    /* GUIDELINE: Fondo Verde */
-    background-color: #388E3C; 
-    color: #FFFFFF; /* Texto Blanco */
-    /* GUIDELINE: Montserrat para títulos de columna */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
+/* Ajuste del contenedor de la tabla para que no pegue con el filtro */
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
-/* FILAS DE CONTENIDO (TD) */
-.mat-cell {
-    padding: 12px 16px;
-    font-size: 0.95rem;
-    color: #37474F;
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: #ECEFF1;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* GUIDELINE: Alternancia de colores para legibilidad */
-.mat-row:nth-child(even) {
-    background-color: #ECEFF1; 
+/* Encabezado */
+h2 {
+  text-align: center;
+  margin: 0 0 2rem 0;
+  font-size: 36px;
+  font-family: 'Montserrat', sans-serif;
+  color: #37474F;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
-/* --- C. BOTONES DE ACCIÓN (ACTUALIZAR / ELIMINAR) --- */
-
-/* Selector para las columnas de acción - ADAPTADO a c7 y c8 */
-.mat-column-c7, .mat-column-c8 {
-    width: 80px; 
-    text-align: center;
+/* =========================================
+   ESTILOS DE TABLA (Vista Admin)
+   ========================================= */
+.table-container {
+  overflow-x: auto;
+  border-radius: 12px;
+  background-color: white;
+  margin-bottom: 2rem;
 }
 
-/* Estilo base para los botones de ícono en las acciones */
-.mat-column-c7 button,
-.mat-column-c8 button {
-    /* Asegura que el fondo sea transparente */
-    background-color: transparent !important; 
-    border-radius: 50%; /* Los hace circulares */
-    transition: background-color 0.3s ease, color 0.3s ease;
+table {
+  width: 100%;
 }
 
-/* 1. Botón Actualizar (c7) */
-.mat-column-c7 button mat-icon {
-    /* GUIDELINE: Verde para el ícono */
-    color: #5FB963; 
+th.mat-header-cell {
+  background-color: #5FB963; /* Verde EcoHabit en cabecera */
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-.mat-column-c7 button:hover {
-    /* Aplicamos un fondo verde en hover */
-    background-color: #388E3C !important; 
+td.mat-cell {
+  font-family: 'Roboto', sans-serif;
+  color: #37474F;
+  padding: 16px;
 }
 
-.mat-column-c7 button:hover mat-icon {
-    /* Ícono blanco en hover */
-    color: #FFFFFF !important; 
+tr.mat-row:hover {
+  background-color: rgba(95, 185, 99, 0.05); /* Hover verde suave */
 }
 
-/* 2. Botón Eliminar (c8) */
-.mat-column-c8 button mat-icon {
-    /* GUIDELINE: Rojo de Alerta para acciones destructivas */
-    color: #F44336; 
+/* =========================================
+   ESTILOS DE CARDS (Vista Client)
+   ========================================= */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 0 16px;
+  justify-content: center;
 }
 
-.mat-column-c8 button:hover {
-    /* Aplicamos un fondo rojo al hacer hover */
-    background-color: #F44336 !important; 
+.contenido-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08);
+  border: 1px solid rgba(55, 71, 79, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
-.mat-column-c8 button:hover mat-icon {
-    /* Ícono blanco en hover */
-    color: #FFFFFF !important; 
+.contenido-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(95, 185, 99, 0.15);
+  border-color: rgba(95, 185, 99, 0.3);
 }
 
-/* --- D. ESTILOS DEL PAGINADOR --- */
-
-/* Usamos '.container mat-paginator' para que sea más específico */
-.container mat-paginator {
-    /* Sombra y bordes (a juego con la tabla) */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-top: 20px; /* Espacio entre la tabla y el paginador */
-    
-    /* Fondo blanco para que la sombra se vea bien */
-    background-color: #ffffff; 
-
-    /* GUIDELINE: Asegura que el paginador use la fuente correcta */
-    font-family: 'Roboto', sans-serif;
-    color: #37474F;
+/* Header Card */
+mat-card-header {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
 }
 
-/* --- E. RESPONSIVE DESIGN --- */
+.avatar-header {
+  background-color: #E0F2F1; /* Verde muy claro */
+  color: #00695C;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-@media (max-width: 768px) {
-    .container {
-        padding: 0.5rem;
-    }
-    .mat-header-cell, .mat-cell {
-        padding: 8px; /* Reducir padding de las celdas */
-        font-size: 0.85rem;
-    }
+mat-card-title.nombre {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  color: #37474F;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-    /* Ajusta el paginador en móviles */
-    mat-paginator {
-        font-size: 0.85rem;
-    }
+mat-card-subtitle {
+  font-family: 'Roboto', sans-serif !important;
+  color: #78909C;
+}
+
+/* Icono Hero (Central) */
+.icon-container {
+  text-align: center;
+  margin: 0 16px;
+  height: 120px;
+  background-color: rgba(3, 169, 244, 0.05); /* Fondo azul muy suave */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icono-hero {
+  font-size: 80px !important;
+  width: 80px !important;
+  height: 80px !important;
+  color: #0288D1; /* Azul Acento para tecnología */
+}
+
+/* Contenido */
+.contenido-card mat-card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.ubicacion-texto {
+  font-size: 15px;
+  color: #546E7A;
+  margin-top: 10px;
+}
+
+/* =========================================
+   BOTONES DE ACCIÓN (Común para Tabla y Cards)
+   ========================================= */
+mat-card-actions {
+  padding: 8px 16px !important;
+  border-top: 1px solid #ECEFF1;
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn-edit, .btn-delete {
+  transition: all 0.3s ease !important;
+  background-color: transparent;
+}
+
+/* EDITAR (Verde) */
+.btn-edit { color: #5FB963 !important; }
+.btn-edit:hover { 
+  background-color: #388E3C !important; 
+  color: white !important; 
+}
+
+/* ELIMINAR (Rojo) */
+.btn-delete { color: #F44336 !important; }
+.btn-delete:hover { 
+  background-color: #F44336 !important; 
+  color: white !important; 
+}
+
+/* =========================================
+   UTILIDADES
+   ========================================= */
+.no-data-container {
+  text-align: center;
+  padding: 3rem;
+  color: #90A4AE;
+  background-color: white;
+  border-radius: 12px;
+  border: 2px dashed #CFD8DC;
+  margin-top: 20px;
+}
+
+.no-data-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+mat-paginator {
+  background-color: transparent !important;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .card-container { grid-template-columns: 1fr; }
+  h2 { font-size: 28px; }
 }

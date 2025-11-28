@@ -1,0 +1,156 @@
+/* =========================================
+   ESTILOS ECOHABIT - GUÍA DE ESTILO CAP 4
+   ========================================= */
+
+/* Contenedor Principal */
+.container {
+  padding: 30px;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif; /* Fuente secundaria */
+}
+
+/* Encabezados (Tipografía Montserrat) */
+.header-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.titulo-principal {
+  font-family: 'Montserrat', sans-serif; /* Fuente Primaria */
+  color: #37474F; /* Gris Oscuro */
+  font-size: 36px; /* Desktop size según guía */
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  font-family: 'Roboto', sans-serif;
+  color: #78909C; /* Un tono más suave del Gris Oscuro */
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* Grid de Tarjetas (Responsive) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+/* Tarjeta Individual */
+.payment-card {
+  background-color: #FFFFFF;
+  border-radius: 16px; /* Bordes suaves */
+  border: 1px solid #ECEFF1; /* Gris Claro */
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  /* Sombra suave inicial */
+  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.1);
+}
+
+/* Efecto Hover (Interacción) */
+.payment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(95, 185, 99, 0.2); /* Sombra verdosa */
+  border-color: #5FB963; /* Borde Verde Principal al pasar el mouse */
+}
+
+/* Encabezado con Icono */
+.card-icon-header {
+  background: linear-gradient(135deg, #f5f7fa 0%, #ECEFF1 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-circle {
+  background-color: #FFFFFF;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.icono-contenido {
+  color: #5FB963; /* Verde Principal */
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+
+/* Cuerpo de la Tarjeta */
+.card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  color: #37474F; /* Gris Oscuro */
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.divider {
+  height: 3px;
+  width: 40px;
+  background-color: #5FB963; /* Verde Principal */
+  margin: 0 auto 15px auto;
+  border-radius: 2px;
+}
+
+.card-details {
+  font-family: 'Roboto', sans-serif;
+  color: #546E7A;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Paginador */
+.custom-paginator {
+  background-color: #F9FAFB;
+  border-radius: 8px;
+  color: #37474F;
+}
+
+/* Mensaje Sin Datos */
+.no-data-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #FFF3E0; /* Un fondo naranja muy suave */
+  border-radius: 8px;
+  border: 1px dashed #FF9800; /* Naranja de alerta suave */
+  color: #E65100;
+  margin-top: 20px;
+}
+
+.no-data-message mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+/* Ajustes Mobile (Media Queries) */
+@media (max-width: 600px) {
+  .titulo-principal {
+    font-size: 28px; /* Ajuste según guía Mobile */
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+}

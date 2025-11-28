@@ -1,0 +1,116 @@
+/* --- A. Contenedor y Tipografía Base --- */
+
+.container {
+    /* Centra y limita el ancho del contenido para formularios */
+    max-width: 600px; 
+    margin: 30px auto; 
+    padding: 2rem 1.5rem;
+    /* GUIDELINE: Fuente Secundaria (Roboto) */
+    font-family: 'Roboto', sans-serif; 
+    color: #37474F; /* Gris Oscuro */
+    
+    /* Fondo y Sombra de Tarjeta */
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.titulo h2 {
+    text-align: center;
+    /* GUIDELINE: Fuente Primaria (Montserrat) para títulos */
+    font-family: 'Montserrat', sans-serif; 
+    color: #37474F; 
+    font-size: 1.75rem; /* 28px */
+    margin-bottom: 2rem;
+    /* Separador con color principal */
+    border-bottom: 2px solid #5FB963; /* Verde Principal */
+    padding-bottom: 0.5rem;
+}
+
+/* --- B. Estilos de los Campos (mat-form-field y Textarea) --- */
+
+.form-container {
+    padding: 0 1rem;
+}
+
+/* Wrapper general para los campos */
+.example-full-width {
+    width: 100%;
+    /* Margen ajustado para respirar entre campos */
+    margin-bottom: 1rem; 
+}
+
+/* GUIDELINE: Asegura que las etiquetas usen Roboto y el color correcto */
+:host ::ng-deep .mat-mdc-form-field .mdc-floating-label {
+    font-family: 'Roboto', sans-serif;
+    color: #37474F; 
+}
+
+/* Estilo para el Textarea (Detalles) */
+:host ::ng-deep textarea.mat-mdc-input {
+    min-height: 80px; /* Altura mínima para que se vea bien como textarea */
+    resize: vertical;
+}
+
+
+/* GUIDELINE: Estilo para mensajes de error (Rojo de Alerta) */
+.mat-error {
+    color: #F44336; /* Rojo de Alerta */
+    font-size: 0.75rem;
+    display: block;
+    padding-top: 4px;
+}
+
+/* GUIDELINE: Color del borde del campo en estado de error */
+:host ::ng-deep .mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-notched-outline__trailing {
+    border-color: #F44336 !important;
+}
+
+/* --- C. Botón de Envío --- */
+
+.botonenviar {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.botonenviar button {
+    /* GUIDELINE: Color Verde Principal (#5FB963) */
+    background-color: #5FB963;
+    color: white;
+
+    /* GUIDELINE: Tipografía Montserrat */
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;
+
+    padding: 0.75rem 1.5rem; 
+    font-size: 1rem; 
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+    width: 60%;
+    min-width: 200px; 
+}
+
+.botonenviar button:hover {
+    /* GUIDELINE: Color Verde Oscuro para hover (#388E3C) */
+    background-color: #388E3C; 
+}
+
+/* --- D. Ajustes Responsive --- */
+
+@media (max-width: 600px) {
+    .container {
+        margin: 10px auto;
+        padding: 1rem;
+    }
+    .titulo h2 {
+        font-size: 1.5rem;
+    }
+    .botonenviar button {
+        width: 90%;
+    }
+}

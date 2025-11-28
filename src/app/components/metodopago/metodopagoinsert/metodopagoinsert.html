@@ -1,10 +1,10 @@
 <div class="container">
   <br />
-  <div class="titulo"><h2>Registro de Contenido Educativo</h2></div>
+  <div class="titulo"><h2>Registro de Metodo de Pago</h2></div>
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
       <!--Tipo Column-->
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>Tipo</mat-label> <input matInput formControlName="tipo" />
         <mat-error>
           @if (form.get('tipo')?.hasError('required')) { El tipo del metodo de pago es
@@ -14,7 +14,7 @@
       <br />
 
       <!--Detalles-->
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>Detalles</mat-label>
         <!-- Cambiado a <textarea> y añadido maxlength -->
         <textarea
@@ -35,7 +35,7 @@
       <br />
 
       <!--Fecha Registro-->
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>Fecha Registro</mat-label>
         <input
           matInput

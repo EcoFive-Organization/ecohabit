@@ -11,6 +11,7 @@ import { Usuario } from '../../../models/Usuario';
 import { Dispositivoservice } from '../../../services/dispositivoservice';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Usuarioservice } from '../../../services/usuarioservice';
+import { Loginservice } from '../../../services/loginservice';
 
 @Component({
   selector: 'app-dispositivoinsert',
@@ -32,35 +33,44 @@ export class Dispositivoinsert implements OnInit {
   // Lista de tipos
   tipos: string[] = ['Agua', 'Electricidad', 'Gas']
 
+  isAdmin: boolean = false;
+
   constructor(
     private dS: Dispositivoservice,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private uS: Usuarioservice
+    private uS: Usuarioservice,
+    private loginService: Loginservice
   ) {}
 
   // Esto se ejecuta ni bien inicia el programa
   ngOnInit(): void {
-      this.route.params.subscribe((data: Params) => {
-        this.id = data['id'];
-        this.edicion = data['id'] != null;
-        this.init();
-      })
+    this.isAdmin = this.loginService.showRole() === 'ADMIN';
 
-      // Ni bien inicia el componente la listaSoftwares se llena
-      this.uS.list().subscribe((data => {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init();
+    });
+
+    // Solo cargamos usuarios si es Admin (Optimización)
+    if (this.isAdmin) {
+      this.uS.list().subscribe((data) => {
         this.listaUsuarios = data;
-      }))
+      });
+    }
 
-      this.form = this.formBuilder.group({
-        id: [''],
-        nombre: ['', Validators.required],
-        tipo: ['', Validators.required],
-        ubicacion: ['', Validators.required],
-        fechaRegistro: [new Date(), Validators.required],
-        usuario: ['', Validators.required] // FK de Usuario
-      })
+    this.form = this.formBuilder.group({
+      id: [''],
+      nombre: ['', Validators.required],
+      tipo: ['', Validators.required],
+      ubicacion: ['', Validators.required],
+      fechaRegistro: [new Date(), Validators.required],
+      // 4. Validación Condicional
+      // Si es Admin, usuario es required. Si es Client, no.
+      usuario: ['', this.isAdmin ? Validators.required : null], // FK de Usuario
+    });
   }
 
   aceptar(): void {
@@ -70,23 +80,28 @@ export class Dispositivoinsert implements OnInit {
       this.dispositivo.tipo = this.form.value.tipo;
       this.dispositivo.ubicacion = this.form.value.ubicacion;
       this.dispositivo.fechaRegistro = this.form.value.fechaRegistro;
-      this.dispositivo.usuario.idUsuario = this.form.value.usuario; // FK de Usuario
+
+      // Solo asignamos si el campo existe (Admin)
+      if (this.form.value.usuario) {
+        this.dispositivo.usuario.idUsuario = this.form.value.usuario;
+      }
+      // Nota: Si es CLIENT, esto va vacío, pero el Backend lo rellena con el Token.
 
       if (this.edicion) {
         this.dS.update(this.dispositivo).subscribe(() => {
           this.dS.list().subscribe((data) => {
             this.dS.setList(data);
-          })
-        })
+          });
+        });
       } else {
         this.dS.insert(this.dispositivo).subscribe((data) => {
           this.dS.list().subscribe((data) => {
             this.dS.setList(data);
-          })
-        })
+          });
+        });
       }
 
-      this.router.navigate(['menu/listadispositivo'])
+      this.router.navigate(['menu/listadispositivo']);
     }
   }
 
@@ -100,9 +115,8 @@ export class Dispositivoinsert implements OnInit {
           tipo: new FormControl(data.tipo),
           ubicacion: new FormControl(data.ubicacion),
           fechaRegistro: new FormControl(data.fechaRegistro),
-          usuario: new FormControl(data.usuario.idUsuario)
-
-        })
+          usuario: new FormControl(this.isAdmin ? data.usuario.idUsuario : ''),
+        });
       })
     }
   }

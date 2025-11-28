@@ -12,6 +12,7 @@ import { Suscripcion } from '../../../models/Suscripcion';
 import { MetodoPago } from '../../../models/MetodoPago';
 import { Suscripcionservice } from '../../../services/suscripcionservice';
 import { Metodopagoservice } from '../../../services/metodopagoservice';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-suscripcionpagoinsert',
@@ -21,7 +22,8 @@ import { Metodopagoservice } from '../../../services/metodopagoservice';
     MatButtonModule,
     MatNativeDateModule,
     MatOptionModule,
-    MatSelectModule],
+    MatSelectModule,
+  MatDatepickerModule],
   templateUrl: './suscripcionpagoinsert.html',
   styleUrl: './suscripcionpagoinsert.css',
 })
@@ -30,6 +32,7 @@ export class Suscripcionpagoinsert implements OnInit {
   susp: Suscripcionpago = new Suscripcionpago();
   edicion: boolean = false;
   id: number = 0;
+  today = new Date()
   // Va a manejar varios softwares y los va a almacenar
   listasuscripciones: Suscripcion[] = []
   listametodopago: MetodoPago[] = []

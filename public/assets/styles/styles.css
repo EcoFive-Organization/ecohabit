@@ -945,3 +945,73 @@ footer div.footer_main {
     margin: 0 10px;
   }
 }
+
+/* =========================================
+   CORRECCIÓN BOTONES LOGIN Y REGISTRO
+   ========================================= */
+
+/* 1. Estilo específico para el botón "Iniciar Sesión" (Botón Verde Sólido) */
+nav ul li.IniciarSesion a {
+  /* Si quieres que se vea como un botón de borde (outline) verde: */
+  border: 2px solid #5FB963;
+  color: #5FB963 !important;   /* Texto Verde */
+  background-color: transparent;
+  font-weight: 500;
+}
+
+nav ul li.IniciarSesion a:hover {
+  background-color: #5FB963;   /* Fondo se llena de verde */
+  color: #FFFFFF !important;   /* Texto cambia a blanco */
+  transform: translateY(-2px); /* Efecto de elevación */
+}
+
+/* 2. Estilo específico para "Registrarse" (Borde o Texto diferente) */
+/* Corregimos el nombre de la clase: antes tenías .registro, ahora usamos .Registrarse */
+
+nav ul li.Registrarse a {
+  /* Si quieres que se vea como un botón de borde (outline) verde: */
+  border: 2px solid #5FB963;
+  color: #5FB963 !important;   /* Texto Verde */
+  background-color: transparent;
+  font-weight: 500;
+}
+
+nav ul li.Registrarse a:hover {
+  background-color: #5FB963;   /* Fondo se llena de verde */
+  color: #FFFFFF !important; 
+  transform: translateY(-2px); /* Efecto de elevación */ 
+}
+
+/* 3. Separación extra para alejarlos del menú principal (Opcional) */
+nav ul li.IniciarSesion {
+  margin-left: 70px; /* Empuja el botón un poco a la derecha */
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    /* GUIDELINE APLICADA: Fondo Gris Claro */
+    background-color: #ECEFF1;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    z-index: 1001; /* Asegura que flote sobre el contenido */
+  }
+  
+  nav ul.active {
+    display: flex;
+  }
+  
+  nav ul li {
+    margin: 10px 0;
+  }
+  
+  .hamburguesa {
+    display: block;
+  }
+}

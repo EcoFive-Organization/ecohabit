@@ -6,10 +6,10 @@
     <form [formGroup]="form" (submit)="aceptar()">
 
       <!--Usuario Column-->
-      <div>
+      <div *ngIf="isAdmin">
         <mat-form-field class="example-full-width">
           <mat-label>Usuario:</mat-label>
-          <mat-select formControlName="usuarioL" required>
+          <mat-select formControlName="usuarioL" [required]="isAdmin">
             @for (p of listaUsuarios; track p.idUsuario) {
             <mat-option [value]="p.idUsuario">
               {{ p.nombre }}
@@ -18,11 +18,11 @@
           </mat-select>
 
           @if (form.get('usuarioL')?.hasError('required')) {
-          <mat-error>El campo tipo es obligatorio.</mat-error>
+          <mat-error>El usuario es obligatorio.</mat-error>
           }
         </mat-form-field>
       </div>
-      <br />
+      <br *ngIf="isAdmin"/>
 
       <!--Saldo Column-->
       <mat-form-field>

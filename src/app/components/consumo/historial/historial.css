@@ -1,0 +1,245 @@
+/* =========================================
+   1. IMPORTACIÓN DE FUENTES (Guideline 60-66)
+   Montserrat (Títulos) y Roboto (Cuerpo)
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+/* =========================================
+   2. LAYOUT PRINCIPAL (Guideline 23, 31, 59)
+   ========================================= */
+.historial-container {
+  padding: 2rem; /* Espaciado generoso */
+  background-color: #ECEFF1; /* [cite: 31] Gris Claro para fondos secundarios */
+  min-height: calc(100vh - 64px);
+  font-family: 'Roboto', sans-serif; /* [cite: 62] Fuente secundaria */
+  color: #37474F; /* [cite: 27] Gris Oscuro para texto general */
+}
+
+/* =========================================
+   3. ENCABEZADO (Guideline 61, 64)
+   ========================================= */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif; /* [cite: 61] Fuente Primaria */
+  font-size: 1.8rem; /* [cite: 64] Tamaño Desktop */
+  color: #37474F; /* [cite: 27] Gris Oscuro */
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #78909C; /* Variación suave del gris para jerarquía */
+  margin-top: 5px;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* =========================================
+   4. BOTONES MATERIAL (Guideline 11, 15, 88)
+   Sobreescritura de estilos de Angular Material
+   ========================================= */
+
+/* Botón "Exportar" (Sólido) */
+button.mat-mdc-flat-button {
+  background-color: #5FB963 !important; /* [cite: 11] Verde Principal */
+  color: #FFFFFF !important; /* [cite: 23] Blanco */
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* Botón "Última Semana" (Borde) */
+button.mat-mdc-outlined-button {
+  color: #37474F !important; /* Texto Gris Oscuro */
+  border-color: #CFD8DC !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* =========================================
+   5. TARJETAS DE RESUMEN (Guideline 23, 68)
+   ========================================= */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive */
+  gap: 24px; /* [cite: 59] Espaciado generoso */
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  padding: 1.5rem;
+  background-color: #FFFFFF;/* [cite: 23] Fondo Blanco */
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08); /* Sombra suave */
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Círculos de iconos */
+.icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px; /* Bordes redondeados modernos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+/* Títulos de Tarjetas */
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #37474F;
+  font-size: 1rem;
+  flex-grow: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Valores y Etiquetas */
+.label {
+  font-size: 0.85rem;
+  color: #90A4AE;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  margin: 0 0 5px 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.trend-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* =========================================
+   6. COLORES ESPECÍFICOS (Guideline 19, 35, 40, 44)
+   ========================================= */
+
+/* AGUA: Azul Claro */
+.blue-bg { background-color: rgba(3, 169, 244, 0.15); color: #03A9F4;} /* [cite: 20] */
+.blue-text { color: #03A9F4; }
+
+/* ELECTRICIDAD: Amarillo/Ámbar */
+/* Usamos una variante más legible del amarillo sobre blanco */
+.yellow-bg { background-color: rgba(255, 193, 7, 0.15); color: #FFC107; } 
+.yellow-text { color: #FFC107; }
+
+/* GAS: Naranja */
+.orange-bg { background-color: rgba(255, 152, 0, 0.15); color: #FF9800;} /* [cite: 45] */
+.orange-text { color: #FF9800; }
+
+/* TENDENCIAS */
+/* Bajar consumo es BUENO -> Verde */
+.green { color: #5FB963;} /* [cite: 11] */
+
+/* Subir consumo es MALO -> Rojo */
+.red { color: #F44336;} /* [cite: 35] */
+
+/* Iconos de tendencia en header */
+.trend-icon { font-size: 24px; width: 24px; height: 24px; }
+.trend-icon.down { color: #5FB963; }
+.trend-icon.up { color: #F44336; }
+
+
+/* =========================================
+   7. SECCIÓN GRÁFICO
+   ========================================= */
+.chart-section {
+  padding: 2rem;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  min-height: 400px;
+  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08);
+}
+
+.chart-header h3 {
+  font-size: 1.2rem;
+  color: #37474F;
+  margin-bottom: 1.5rem;
+}
+
+.chart-wrapper {
+  height: 350px;
+  position: relative;
+}
+
+/* =========================================
+   8. ANÁLISIS AUTOMÁTICO (Estilo Insight)
+   ========================================= */
+.analysis-box {
+  /* Fondo Verde Principal con mucha transparencia */
+  background-color: rgba(95, 185, 99, 0.12); 
+  border: 1px solid rgba(95, 185, 99, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: start;
+  gap: 15px;
+}
+
+.analysis-icon {
+  background-color: #5FB963; /* [cite: 11] Verde Principal Sólido */
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(95, 185, 99, 0.3);
+}
+
+.analysis-text h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  color: #2E7D32; /* Verde Oscuro para contraste de texto */
+  font-size: 1.1rem;
+}
+
+.analysis-text p {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  color: #37474F;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

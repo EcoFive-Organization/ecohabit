@@ -9,4 +9,6 @@ export class Suscripcion {
     paypalSuscripcionId: string = ""
     usuario: Usuario = new Usuario()
     planSuscripcion: PlanSuscripcion = new PlanSuscripcion()
+    nombreUsuario: string = ""
+    nombrePlan: string = ""
 }

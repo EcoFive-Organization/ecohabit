@@ -1,40 +1,39 @@
-<div>
-  <h2>Lista de Metodos de Pago</h2>
-
-  <div class="card-container">
-
-    <mat-card *ngFor="let element of pagedData" class="mat-elevation-z8 contenido-card">
-
-      <mat-card-header>
-        <mat-card-title class="titulo">{{ element.tipo }}</mat-card-title>
-        <mat-card-subtitle>
-          ID: {{ element.idMetodoPago }}
-        </mat-card-subtitle>
-        </mat-card-header>
-      <div class="icon-container">
-        <mat-icon class="icono-contenido">book</mat-icon>
-      </div>
-      <mat-card-content>
-        <p>{{ element.detalles }}</p>
-      </mat-card-content>
-
-    </mat-card>
-
+<div class="container">
+  <div class="header-section">
+    <h1 class="titulo-principal">Métodos de Pago Disponibles</h1>
+    <p class="subtitulo">Gestiona las formas de pago aceptadas en la plataforma</p>
   </div>
 
-  <!-- Paginador -->
+  <div class="card-grid">
+    <mat-card *ngFor="let element of pagedData" class="payment-card">
+      
+      <div class="card-icon-header">
+        <div class="icon-circle">
+          <mat-icon class="icono-contenido">credit_card</mat-icon>
+        </div>
+      </div>
+
+      <mat-card-content class="card-body">
+        <h3 class="card-title">{{ element.tipo }}</h3>
+        <div class="divider"></div>
+        <p class="card-details">{{ element.detalles }}</p>
+      </mat-card-content>
+      
+      </mat-card>
+  </div>
+
   <mat-paginator
     [length]="dataSource.length"
     [pageSize]="pageSize"
     [pageSizeOptions]="[2, 5, 10, 20]"
     (page)="onPageChange($event)"
     showFirstLastButtons
+    class="custom-paginator"
   >
   </mat-paginator>
 
-  <!-- Mensaje cuando no hay datos -->
   <div *ngIf="!dataSource || dataSource.length === 0" class="no-data-message">
-    No hay contenidos para mostrar.
+    <mat-icon>info</mat-icon>
+    <p>No hay métodos de pago registrados actualmente.</p>
   </div>
-
 </div>

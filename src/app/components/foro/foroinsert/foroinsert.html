@@ -1,31 +1,29 @@
 <div class="container">
   <br />
-  <div class="titulo"><h2>Registro de Foro</h2></div>
+  <div><h2 class="titulo">Registro de Foro</h2></div>
   <br />
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
       <!--Si edicion está en true que se muestre el campo ID, si es false no se muestra (osea para registrar, no actualizar)-->
       @if(edicion) {
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>ID</mat-label>
         <input matInput formControlName="codigo" readonly />
         <!--readonly para bloquear la caja de texto, el id no debe ser modificado-->
       </mat-form-field>
       }
-      <br />
 
       <!--Nombre Column-->
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>Titulo</mat-label>
         <input matInput formControlName="titulo" />
         <mat-error>
           @if (form.get('titulo')?.hasError('required')) { El titulo del foro es obligatorio!!!! }
         </mat-error>
       </mat-form-field>
-      <br>
 
       <!--Email Column-->
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>Descripcion</mat-label>
         <textarea
           matInput
@@ -38,7 +36,6 @@
           @if (form.get('descripcion')?.hasError('required')) { La descripcion es obligatoria!!!! }
         </mat-error>
       </mat-form-field>
-      <br />
 
       <!--Si edicion es true que se muestre el botón Actualizar, si no se muestra el de registrar-->
       @if(edicion) {

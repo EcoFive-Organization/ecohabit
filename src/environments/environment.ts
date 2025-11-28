@@ -1,4 +1,6 @@
-export const environment={
-    production:false,
-    base:'http://localhost:8080'
-}
+export const environment = {
+  production: false,
+  base: 'http://localhost:8080',
+  paypalClientId:
+    'ARGhbols4-H3OSEelx9kL9Of8LpCB_JCvU2vxnQjO3avsPFR3d8WmyITT85vc8mjwlhBUIyYrdaCFgZO',
+};
