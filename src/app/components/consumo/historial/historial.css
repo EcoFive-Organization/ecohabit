@@ -11,7 +11,7 @@
   padding: 2rem; /* Espaciado generoso */
   background-color: #ECEFF1; /* [cite: 31] Gris Claro para fondos secundarios */
   min-height: calc(100vh - 64px);
-  font-family: 'Roboto', sans-serif;/* [cite: 62] Fuente secundaria */
+  font-family: 'Roboto', sans-serif; /* [cite: 62] Fuente secundaria */
   color: #37474F; /* [cite: 27] Gris Oscuro para texto general */
 }
 
@@ -27,9 +27,9 @@
 
 h2 {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;/* [cite: 61] Fuente Primaria */
-  font-size: 1.8rem;/* [cite: 64] Tamaño Desktop */
-  color: #37474F;/* [cite: 27] Gris Oscuro */
+  font-family: 'Montserrat', sans-serif; [cite_start]/* [cite: 61] Fuente Primaria */
+  font-size: 1.8rem; [cite_start]/* [cite: 64] Tamaño Desktop */
+  color: #37474F; [cite_start]/* [cite: 27] Gris Oscuro */
   font-weight: 700;
 }
 
@@ -52,8 +52,8 @@ h2 {
 
 /* Botón "Exportar" (Sólido) */
 button.mat-mdc-flat-button {
-  background-color: #5FB963 !important;/* [cite: 11] Verde Principal */
-  color: #FFFFFF !important;/* [cite: 23] Blanco */
+  background-color: #5FB963 !important; [cite_start]/* [cite: 11] Verde Principal */
+  color: #FFFFFF !important; [cite_start]/* [cite: 23] Blanco */
   font-family: 'Montserrat', sans-serif !important;
   font-weight: 600 !important;
 }
@@ -155,7 +155,7 @@ h3 {
 
 /* TENDENCIAS */
 /* Bajar consumo es BUENO -> Verde */
-.green { color: #5FB963; } /* [cite: 11] */
+.green { color: #5FB963; [cite_start]} /* [cite: 11] */
 
 /* Subir consumo es MALO -> Rojo */
 .red { color: #F44336;} /* [cite: 35] */
