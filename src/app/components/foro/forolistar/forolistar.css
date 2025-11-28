@@ -1,91 +1,193 @@
-.card-container {
-  display: flex; /* Activa Flexbox */
-  flex-wrap: wrap; /* Permite que las tarjetas pasen a la siguiente línea */
-  gap: 16px; /* Espacio entre tarjetas */
-  padding: 16px; /* Espacio alrededor del contenedor */
-  justify-content: center; /* Opcional: centra las tarjetas */
+/* =========================================
+   ECOHABIT STYLE GUIDE - FOROS
+   ========================================= */
+
+/* 1. Importación de Fuentes Oficiales [cite: 532, 607-608] */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: #ECEFF1; /* Gris Claro (Fondo oficial) */
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif; /* Fuente cuerpo */
 }
 
+/* =========================================
+   2. ENCABEZADOS Y TEXTO (Montserrat)
+   ========================================= */
+h2 {
+  text-align: center;
+  margin: 20px auto 40px auto;
+  font-size: 36px; /* Tamaño Desktop */
+  font-family: 'Montserrat', sans-serif; /* Fuente Títulos */
+  color: #37474F; /* Gris Oscuro */
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* =========================================
+   3. LAYOUT DE TARJETAS
+   ========================================= */
+.card-container {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 24px; /* Spacing generoso [cite: 605] */
+  padding: 16px; 
+  justify-content: center;
+}
+
+/* =========================================
+   4. ESTILO DE TARJETA (Clean & Flat)
+   ========================================= */
 .foro-card {
   flex: 1 1 300px;
-  min-width: 280px; /* Ancho mínimo antes de que se rompa */
-  max-width: 400px; /* Ancho máximo */
+  min-width: 280px; 
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border-radius: 16px; /* Bordes suaves */
+  /* Reemplazo de z8 por una sombra más moderna y suave */
+  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08); 
+  border: 1px solid rgba(55, 71, 79, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+/* Efecto Hover Interactivo */
+.foro-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(95, 185, 99, 0.15); /* Sombra Verdosa EcoHabit */
+}
+
+/* Header de la tarjeta */
+mat-card-header {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+mat-card-title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  color: #37474F;
+  line-height: 1.4;
+}
+
+mat-card-subtitle {
+  font-family: 'Roboto', sans-serif !important;
+  color: #78909C; /* Gris secundario */
+  margin-top: 4px;
+}
+
+/* =========================================
+   5. ICONOGRAFÍA (Tu estructura, colores oficiales)
+   ========================================= */
+.icon-container {
+  text-align: center;
+  margin: 10px auto;
+  width: 100%;
+  /* Fondo verde muy tenue para resaltar el ícono */
+  background-color: rgba(95, 185, 99, 0.05); 
+  padding: 15px 0;
+}
+
+.icon-container .icono-foro {
+  font-size: 150px; /* Tamaño grande mantenido */
+  width: auto;
+  height: auto;
+  color: #5FB963; /* Verde Principal Oficial  */
+  padding: 5px;
+  /* Eliminamos el borde duro para un look más moderno */
+}
+
+/* =========================================
+   6. CONTENIDO DEL FORO
+   ========================================= */
+mat-card-content p {
+  text-align: center; /* O left, según prefieras */
+  margin: 20px 16px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #546E7A; /* Gris azulado para lectura */
+  line-height: 1.6;
+}
+
+/* =========================================
+   7. PAGINADOR Y MENSAJES
+   ========================================= */
+mat-paginator {
+  background-color: transparent !important;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
 }
 
 .no-data-message {
   text-align: center;
-  padding: 24px;
-  font-style: italic;
-  color: #777;
+  padding: 3rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #78909C;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  margin-top: 20px;
+  border: 2px dashed #CFD8DC; /* Estilo "Empty State" */
 }
 
-h2 {
-  text-align: center;
-  margin: 20px auto;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 30px;
-}
+/* =========================================
+   8. BOTONES (INTACTOS - TU CÓDIGO)
+   ========================================= */
 
-p {
-  text-align: center;
-  margin: 20px auto;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 15px;
-}
-
-/* 1. Estilos para el CONTENEDOR del ícono */
-.icon-container {
-  text-align: center;
-  margin: 0 auto;
-}
-
-/* 2. Estilos para el ÍCONO GRANDE en específico */
-.icon-container .icono-foro {
-  font-size: 150px;
-  width: auto;
-  height: auto;
-  color: darkgreen;
-  padding: 5px;
-  border-radius: 25px;
-}
-
-/* --- ✅ CSS CORREGIDO Y AÑADIDO PARA BOTONES --- */
-
-/* 1. REEMPLAZO para tu regla ".mat-icon" */
-/* Hacemos que solo los íconos DENTRO de los botones de acción sean de 20px */
-/* Esto evita conflictos con tu ícono grande de 150px */
+/* REEMPLAZO para tu regla ".mat-icon" dentro de botones */
 .foro-card mat-card-actions .mat-icon {
   font-size: 20px;
   margin: 0 auto;
 }
-/* 2. AÑADIDO: Transición suave para los botones */
+
+/* Transición suave para los botones */
 .foro-card mat-card-actions button[mat-button] {
-  /* Animación suave de 0.3s para el fondo y el color */
   transition: background-color 0.3s ease, color 0.3s ease;
-  /* (Opcional) Asegura que el ícono y el texto se centren bien */
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 4px; /* Agregado suave para el hover */
 }
 
-/* 3. AÑADIDO: Hover para el botón de EDITAR (verde) */
-/* Apuntamos al botón que NO tiene color="warn" */
+/* Hover para el botón de EDITAR (verde) */
 .foro-card mat-card-actions button[mat-button]:not([color="warn"]):hover {
-  background-color: #388E3C; /* Un verde que combina con tu ícono */
-  color: white; /* El color del ícono y texto será blanco */
+  background-color: #388E3C; 
+  color: white; 
 }
 
-/* 4. AÑADIDO: Hover para el botón de ELIMINAR (rojo) */
-/* Apuntamos al botón que SÍ tiene color="warn" */
+/* Hover para el botón de ELIMINAR (rojo) */
 .foro-card mat-card-actions button[mat-button][color="warn"]:hover {
-  background-color: #f44336; /* Rojo estándar de Material */
+  background-color: #f44336; 
   color: white;
 }
 
+/* Colores base */
 .foro-card mat-card-actions button[mat-button]:not([color="warn"]) {
   color: #5FB963;
 }
 
 .foro-card mat-card-actions button[mat-button] {
-  color: #f44336; /* Rojo estándar de Material */
+  color: #f44336; 
+}
+
+/* Espaciado del contenedor de acciones */
+mat-card-actions {
+  padding: 8px 16px !important;
+  border-top: 1px solid #ECEFF1; /* Línea separadora sutil */
+}
+
+/* Ajuste Responsive */
+@media (max-width: 600px) {
+  h2 {
+    font-size: 28px;
+  }
+  .card-container {
+    padding: 8px;
+  }
 }
