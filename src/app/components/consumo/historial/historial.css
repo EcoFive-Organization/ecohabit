@@ -9,7 +9,7 @@
    ========================================= */
 .historial-container {
   padding: 2rem; /* Espaciado generoso */
-  background-color: #ECEFF1; /* [cite: 31] Gris Claro para fondos secundarios */
+  background-color: #ECEFF1; * Gris Claro para fondos secundarios */
   min-height: calc(100vh - 64px);
   font-family: 'Roboto', sans-serif; /* [cite: 62] Fuente secundaria */
   color: #37474F; /* [cite: 27] Gris Oscuro para texto general */
@@ -146,7 +146,7 @@ h3 {
    ========================================= */
 
 /* AGUA: Azul Claro */
-[cite_start].blue-bg { background-color: rgba(3, 169, 244, 0.15); color: #03A9F4;} /* [cite: 20] */
+.blue-bg { background-color: rgba(3, 169, 244, 0.15); color: #03A9F4;} /* [cite: 20] */
 .blue-text { color: #03A9F4; }
 
 /* ELECTRICIDAD: Amarillo/Ámbar */
@@ -155,7 +155,7 @@ h3 {
 .yellow-text { color: #FFC107; }
 
 /* GAS: Naranja */
-[cite_start].orange-bg { background-color: rgba(255, 152, 0, 0.15); color: #FF9800;} /* [cite: 45] */
+.orange-bg { background-color: rgba(255, 152, 0, 0.15); color: #FF9800;} /* [cite: 45] */
 .orange-text { color: #FF9800; }
 
 /* TENDENCIAS */
