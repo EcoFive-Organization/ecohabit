@@ -46,4 +46,14 @@ export class Contenidoeducativoservice {
     return this.http.delete(`${this.url}/${id}`, { responseType: `text` });
   }
 
+  // NUEVO: Método para obtener solo lecturas
+  getLecturas() {
+    return this.http.get<ContenidoEducativo[]>(`${this.url}/lecturas`);
+  }
+
+  // NUEVO: Método para obtener solo videos
+  getVideos() {
+    return this.http.get<ContenidoEducativo[]>(`${this.url}/videos`);
+  }
+
 }

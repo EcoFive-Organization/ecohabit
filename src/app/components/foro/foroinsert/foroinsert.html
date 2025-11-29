@@ -1,6 +1,12 @@
 <div class="container">
   <br />
-  <div><h2 class="titulo">Registro de Foro</h2></div>
+  @if (edicion) {
+    <div><h2 class="titulo">Actualizar Foro</h2></div>
+  }
+  @else {
+    <div><h2 class="titulo">Registro de Foro</h2></div>
+  }
+  
   <br />
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
