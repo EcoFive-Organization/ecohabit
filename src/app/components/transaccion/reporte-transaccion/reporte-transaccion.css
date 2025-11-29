@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+.reporte-container {
+padding: 2rem;
+background-color: #ECEFF1;
+min-height: calc(100vh - 64px);
+font-family: 'Roboto', sans-serif;
+color: #37474F;
+}
+
+.header-row {
+margin-bottom: 2rem;
+}
+
+h2 {
+margin: 0;
+font-family: 'Montserrat', sans-serif;
+color: #37474F;
+font-weight: 700;
+font-size: 1.8rem;
+}
+
+.subtitle {
+color: #78909C;
+margin-top: 5px;
+font-size: 0.95rem;
+}
+
+/* GRID LAYOUT */
+.dashboard-grid {
+display: grid;
+  grid-template-columns: 1fr 1.5fr; /* El gráfico ocupa menos, la tabla más */
+gap: 24px;
+}
+
+/* TARJETAS COMUNES */
+.chart-card, .table-card {
+padding: 1.5rem;
+background-color: #FFFFFF;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08);
+border: 1px solid rgba(0,0,0,0.03);
+}
+
+.card-header {
+display: flex;
+align-items: center;
+margin-bottom: 1.5rem;
+border-bottom: 1px solid #ECEFF1;
+padding-bottom: 1rem;
+}
+
+.icon-circle {
+width: 40px;
+height: 40px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 12px;
+}
+
+.card-title {
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+color: #37474F;
+font-size: 1.1rem;
+}
+
+/* GRÁFICO */
+.chart-wrapper {
+height: 300px;
+display: flex;
+justify-content: center;
+}
+
+/* TABLA */
+.table-container {
+overflow: auto;
+}
+
+table {
+width: 100%;
+}
+
+th.mat-header-cell {
+font-family: 'Montserrat', sans-serif;
+font-weight: 600;
+color: #78909C;
+font-size: 0.85rem;
+}
+
+td.mat-cell {
+font-family: 'Roboto', sans-serif;
+color: #37474F;
+border-bottom: 1px solid #ECEFF1;
+}
+
+.bold-text {
+font-weight: 500;
+}
+
+.amount-text {
+font-weight: 600;
+  color: #2E7D32; /* Verde dinero */
+}
+
+/* COLORES */
+.green-bg { background-color: rgba(95, 185, 99, 0.15); color: #5FB963; }
+.blue-bg { background-color: rgba(3, 169, 244, 0.15); color: #03A9F4; }
+
+/* Responsive */
+@media (max-width: 900px) {
+.dashboard-grid {
+    grid-template-columns: 1fr;
+}
+}

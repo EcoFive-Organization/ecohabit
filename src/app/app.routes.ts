@@ -30,6 +30,8 @@ import { HistorialComponent } from './components/consumo/historial/historial';
 import { ReporteCantidadPublicacionForo } from './components/reporte-cantidad-publicacion-foro/reporte-cantidad-publicacion-foro';
 import { ReporteCantidadReaccionesPublicacion } from './components/reporte-cantidad-reacciones-publicacion/reporte-cantidad-reacciones-publicacion';
 import { ReporteUsuariosComponent } from './components/usuario/reporte-usuarios/reporte-usuarios';
+import { ReporteTransaccion } from './components/transaccion/reporte-transaccion/reporte-transaccion';
+import { ReporteCantidadTipoConsumo } from './components/consumo/reporte-cantidad-tipo-consumo/reporte-cantidad-tipo-consumo';
 
 export const routes: Routes = [
   // Zona pública
@@ -112,6 +114,8 @@ export const routes: Routes = [
         children: [
           { path: 'registrotransacciones', component: Transaccioninsert },
           { path: 'edits/:id', component: Transaccioninsert },
+          // 🟢 NUEVA RUTA DE REPORTE
+        { path: 'reportes', component: ReporteTransaccion },
         ],
         canActivate: [seguridadGuard],
       },
@@ -132,7 +136,9 @@ export const routes: Routes = [
         component: Consumo,
         children: [
           { path: 'registroconsumo', component: Consumoinsert},
-          { path:`historial`, component: HistorialComponent}],
+          { path:`historial`, component: HistorialComponent},
+        // 🟢 NUEVA RUTA
+          { path: 'reporte-cantidad', component: ReporteCantidadTipoConsumo}],
         canActivate: [seguridadGuard],
       },
 

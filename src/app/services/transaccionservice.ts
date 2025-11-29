@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 import { Transaccion } from '../models/Transaccion';
 import { HttpClient } from '@angular/common/http';
+import { CantidadTransaccionesDTO } from '../models/CantidadtRansaccionesDTO';
+import { MontoTransaccionesDTO } from '../models/MontoTransaccionesDTO';
 
 const base_url=environment.base
 
@@ -39,5 +41,16 @@ export class Transaccionservice {
   }
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
+  }
+
+  // 🟢 REPORTE 1: Detalles completos (Ideal para Tabla + Gráfico de Barras)
+  getDetallesTransaccionesPorTipo() {
+    return this.http.get<CantidadTransaccionesDTO[]>(`${this.url}/DetallesTransaccionesPorTipo`);
+  }
+
+  // 🟢 REPORTE 2: Solo Montos (Ideal para Pie Chart)
+  // OJO: Respeté el nombre del endpoint tal cual está en tu backend "/MontoTransaciones"
+  getMontoTransacciones() {
+    return this.http.get<MontoTransaccionesDTO[]>(`${this.url}/MontoTransaciones`);
   }
 }

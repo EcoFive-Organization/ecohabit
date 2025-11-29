@@ -1,0 +1,26 @@
+<div class="reporte-container">
+<div class="header-row">
+    <div>
+    <h2>Distribución de Consumos</h2>
+    <p class="subtitle">Cantidad de registros ingresados por cada tipo de servicio</p>
+    </div>
+</div>
+<div class="cards-grid">
+    <mat-card class="chart-card">
+    <div class="card-header">
+        <div class="icon-circle green-bg"><mat-icon>pie_chart</mat-icon></div>
+        <div class="header-text">
+        <span class="card-title">Participación por Tipo</span>
+        <span class="card-subtitle">Total Registros: {{ totalRegistros }}</span>
+        </div>
+    </div>
+    <div class="chart-wrapper">
+        <canvas baseChart
+        [data]="pieChartData"
+        [options]="pieChartOptions"
+        [type]="pieChartType">
+        </canvas>
+    </div>
+    </mat-card>
+    </div>
+</div>
