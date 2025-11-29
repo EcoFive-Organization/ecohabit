@@ -220,3 +220,35 @@ mat-paginator {
     grid-template-columns: 1fr;
   }
 }
+
+/* Contenedor de filtros */
+.filtros-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Botones de filtro base */
+.filtros-container button {
+  border: 1px solid #CFD8DC;
+  color: #546E7A;
+  border-radius: 20px; /* Bordes redondos estilo "Chip" */
+  transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  padding: 0 20px;
+}
+
+/* Estilo cuando un filtro está ACTIVO */
+.filtros-container button.filtro-activo {
+  background-color: #5FB963 !important; /* Verde EcoHabit */
+  color: white !important;
+  border-color: #5FB963;
+  box-shadow: 0 4px 6px rgba(95, 185, 99, 0.2);
+}
+
+/* Hover suave */
+.filtros-container button:hover:not(.filtro-activo) {
+  background-color: #ECEFF1;
+  border-color: #B0BEC5;
+}

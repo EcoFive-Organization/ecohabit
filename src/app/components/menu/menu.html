@@ -282,8 +282,15 @@
       <button mat-icon-button (click)="sidenav.toggle()" class="menu-toggle">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="toolbar-title">Panel de Administración</span>
+      @if (isAdmin()) {
+        <span class="toolbar-title">Panel de Administración</span>
       <span class="spacer"></span>
+      }
+      @else if (isClient()) {
+        <span class="toolbar-title">Panel de Cliente</span>
+      <span class="spacer"></span>
+      }
+      
       
       <button mat-icon-button [matMenuTriggerFor]="menuPerfil">
         <mat-icon>account_circle</mat-icon>
