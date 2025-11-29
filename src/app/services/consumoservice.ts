@@ -6,8 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { CantidadConsumoDTO } from '../models/CantidadConsumoDTO';
 import { CantConsumoDispDTO } from '../models/CantConsumoDispDTO';
 
-
-const base_url = environment.base
+const base_url = environment.base;
 export interface ConsumoGraficoDTO {
   fecha: string;
   tipo: string;
@@ -20,15 +19,14 @@ export class Consumoservice {
   private url = `${base_url}/consumos`;
   private listaCambio = new Subject<Consumo[]>();
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   list() {
     return this.http.get<Consumo[]>(this.url);
   }
 
   insert(c: Consumo) {
-    return this.http.post(this.url, c, {responseType: 'text'});
+    return this.http.post(this.url, c, { responseType: 'text' });
   }
 
   setList(listaNueva: Consumo[]) {
@@ -40,9 +38,8 @@ export class Consumoservice {
   }
 
   // 🟢 NUEVO MÉTODO: Obtiene los datos agrupados por día para el gráfico
-  getGraficoSemanal() {
-    // Llamará a: http://localhost:8080/consumos/grafico-semanal
-    return this.http.get<ConsumoGraficoDTO[]>(`${this.url}/grafico-semanal`);
+  getGraficoSemanal(weeksAgo: number = 0) {
+    return this.http.get<ConsumoGraficoDTO[]>(`${this.url}/grafico-semanal?weeksAgo=${weeksAgo}`);
   }
 
   // 🟢 NUEVO MÉTODO PARA EL REPORTE

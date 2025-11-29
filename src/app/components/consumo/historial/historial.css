@@ -58,6 +58,11 @@ button.mat-mdc-flat-button {
   font-weight: 600 !important;
 }
 
+button.mat-mdc-flat-button:disabled {
+  background-color: #B0BEC5 !important; /* Gris deshabilitado */
+  color: #ECEFF1 !important;
+}
+
 /* Botón "Última Semana" (Borde) */
 button.mat-mdc-outlined-button {
   color: #37474F !important; /* Texto Gris Oscuro */
@@ -141,7 +146,7 @@ h3 {
    ========================================= */
 
 /* AGUA: Azul Claro */
-.blue-bg { background-color: rgba(3, 169, 244, 0.15); color: #03A9F4;} /* [cite: 20] */
+[cite_start].blue-bg { background-color: rgba(3, 169, 244, 0.15); color: #03A9F4;} /* [cite: 20] */
 .blue-text { color: #03A9F4; }
 
 /* ELECTRICIDAD: Amarillo/Ámbar */
@@ -150,20 +155,20 @@ h3 {
 .yellow-text { color: #FFC107; }
 
 /* GAS: Naranja */
-.orange-bg { background-color: rgba(255, 152, 0, 0.15); color: #FF9800;} /* [cite: 45] */
+[cite_start].orange-bg { background-color: rgba(255, 152, 0, 0.15); color: #FF9800;} /* [cite: 45] */
 .orange-text { color: #FF9800; }
 
 /* TENDENCIAS */
 /* Bajar consumo es BUENO -> Verde */
-.green { color: #5FB963;} /* [cite: 11] */
+[cite_start].green { color: #5FB963;} /* [cite: 11] */
+.down { color: #5FB963; }
 
 /* Subir consumo es MALO -> Rojo */
-.red { color: #F44336;} /* [cite: 35] */
+[cite_start].red { color: #F44336;} /* [cite: 35] */
+.up { color: #F44336; }
 
 /* Iconos de tendencia en header */
 .trend-icon { font-size: 24px; width: 24px; height: 24px; }
-.trend-icon.down { color: #5FB963; }
-.trend-icon.up { color: #F44336; }
 
 
 /* =========================================
@@ -228,6 +233,63 @@ h3 {
   margin: 0;
   color: #37474F;
   line-height: 1.5;
+}
+
+/* =========================================
+   9. ESTADO SIN DATOS (Empty State)
+   ========================================= */
+.no-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-color: #FFFFFF; /* [cite: 23] */
+  border-radius: 12px;
+  text-align: center;
+  border: 2px dashed #CFD8DC; /* Borde discontinuo para indicar vacío */
+  margin-top: 2rem;
+}
+
+.no-data-icon-circle {
+  width: 80px;
+  height: 80px;
+  background-color: #ECEFF1; /* [cite: 31] Gris Claro */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.no-data-icon-circle mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: #90A4AE; /* Gris suave para icono deshabilitado */
+}
+
+.no-data-container h3 {
+  font-family: 'Montserrat', sans-serif; /* [cite: 61] */
+  font-size: 1.5rem;
+  color: #37474F; /* [cite: 27] */
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.no-data-container p {
+  color: #78909C;
+  font-family: 'Roboto', sans-serif; /* [cite: 62] */
+  font-size: 1rem;
+  margin: 0;
+}
+
+.sub-hint {
+  font-size: 0.9rem;
+  margin-top: 10px !important;
+  color: #5FB963 !important; /* [cite: 11] Verde Principal para la acción */
+  font-weight: 600;
+  cursor: pointer;
 }
 
 /* Responsive adjustments */

@@ -6,78 +6,113 @@
       <p class="subtitle">Visualiza y analiza tu consumo de recursos en diferentes periodos</p>
     </div>
     <div class="actions">
-       <!-- 🟢 BOTÓN CONECTADO A LA FUNCIÓN -->
-       <button mat-flat-button color="accent" style="color: white;" (click)="descargarExcel()">
-         Exportar archivo Excel<mat-icon>download</mat-icon>
+       <button mat-flat-button color="accent" style="color: white;" (click)="descargarExcel()" [disabled]="!hasData">
+         Exportar Excel <mat-icon>download</mat-icon>
        </button>
     </div>
   </div>
 
-  <div class="cards-grid">
-    <mat-card class="stat-card">
-      <div class="card-header">
-        <div class="icon-circle blue-bg"><mat-icon>water_drop</mat-icon></div>
-        <span class="card-title">Agua</span>
-        <mat-icon class="trend-icon down">trending_down</mat-icon>
-      </div>
-      <div class="card-content">
-        <p class="label">Total (semana)</p>
-        <h3 class="blue-text">{{ resumen.agua.total }} {{ resumen.agua.unidad }}</h3>
-        <p class="trend-text green">↓ 5% vs. periodo anterior</p>
-      </div>
-    </mat-card>
-
-    <mat-card class="stat-card">
-      <div class="card-header">
-        <div class="icon-circle yellow-bg"><mat-icon>bolt</mat-icon></div>
-        <span class="card-title">Electricidad</span>
-        <mat-icon class="trend-icon up">trending_up</mat-icon>
-      </div>
-      <div class="card-content">
-        <p class="label">Total (semana)</p>
-        <h3 class="yellow-text">{{ resumen.electricidad.total }} {{ resumen.electricidad.unidad }}</h3>
-        <p class="trend-text red">↑ 8% vs. periodo anterior</p>
-      </div>
-    </mat-card>
-
-    <mat-card class="stat-card">
-      <div class="card-header">
-        <div class="icon-circle orange-bg"><mat-icon>local_fire_department</mat-icon></div>
-        <span class="card-title">Gas</span>
-        <mat-icon class="trend-icon down">trending_down</mat-icon>
-      </div>
-      <div class="card-content">
-        <p class="label">Total (semana)</p>
-        <h3 class="orange-text">{{ resumen.gas.total }} {{ resumen.gas.unidad }}</h3>
-        <p class="trend-text green">↓ 2% vs. periodo anterior</p>
-      </div>
-    </mat-card>
-  </div>
-
-  <br>
-  <br>
+  @if (hasData) {
+    <div class="cards-grid">
+      <mat-card class="stat-card">
+        <div class="card-header">
+          <div class="icon-circle blue-bg"><mat-icon>water_drop</mat-icon></div>
+          <span class="card-title">Agua</span>
+          <mat-icon class="trend-icon" 
+            [class.up]="resumen.agua.tendencia === 'up'" 
+            [class.down]="resumen.agua.tendencia === 'down'">
+            {{ resumen.agua.tendencia === 'up' ? 'trending_up' : (resumen.agua.tendencia === 'down' ? 'trending_down' : 'remove') }}
+          </mat-icon>
+        </div>
+        <div class="card-content">
+          <p class="label">Total (semana)</p>
+          <h3 class="blue-text">{{ resumen.agua.total }} {{ resumen.agua.unidad }}</h3>
+          
+          <p class="trend-text"
+             [class.red]="resumen.agua.tendencia === 'up'"
+             [class.green]="resumen.agua.tendencia === 'down'">
+             {{ resumen.agua.tendencia === 'up' ? '↑' : (resumen.agua.tendencia === 'down' ? '↓' : '=') }} 
+             {{ resumen.agua.porcentaje }}% vs. semana anterior
+          </p>
+        </div>
+      </mat-card>
   
-  <mat-card class="chart-section">
-    <div class="chart-header">
-      <h3>Comparativa de Consumo - Vista de Barras</h3>
+      <mat-card class="stat-card">
+        <div class="card-header">
+          <div class="icon-circle yellow-bg"><mat-icon>bolt</mat-icon></div>
+          <span class="card-title">Electricidad</span>
+          <mat-icon class="trend-icon" 
+            [class.up]="resumen.electricidad.tendencia === 'up'" 
+            [class.down]="resumen.electricidad.tendencia === 'down'">
+            {{ resumen.electricidad.tendencia === 'up' ? 'trending_up' : (resumen.electricidad.tendencia === 'down' ? 'trending_down' : 'remove') }}
+          </mat-icon>
+        </div>
+        <div class="card-content">
+          <p class="label">Total (semana)</p>
+          <h3 class="yellow-text">{{ resumen.electricidad.total }} {{ resumen.electricidad.unidad }}</h3>
+          <p class="trend-text"
+             [class.red]="resumen.electricidad.tendencia === 'up'"
+             [class.green]="resumen.electricidad.tendencia === 'down'">
+             {{ resumen.electricidad.tendencia === 'up' ? '↑' : (resumen.electricidad.tendencia === 'down' ? '↓' : '=') }} 
+             {{ resumen.electricidad.porcentaje }}% vs. semana anterior
+          </p>
+        </div>
+      </mat-card>
+  
+      <mat-card class="stat-card">
+        <div class="card-header">
+          <div class="icon-circle orange-bg"><mat-icon>local_fire_department</mat-icon></div>
+          <span class="card-title">Gas</span>
+          <mat-icon class="trend-icon" 
+            [class.up]="resumen.gas.tendencia === 'up'" 
+            [class.down]="resumen.gas.tendencia === 'down'">
+            {{ resumen.gas.tendencia === 'up' ? 'trending_up' : (resumen.gas.tendencia === 'down' ? 'trending_down' : 'remove') }}
+          </mat-icon>
+        </div>
+        <div class="card-content">
+          <p class="label">Total (semana)</p>
+          <h3 class="orange-text">{{ resumen.gas.total }} {{ resumen.gas.unidad }}</h3>
+          <p class="trend-text"
+             [class.red]="resumen.gas.tendencia === 'up'"
+             [class.green]="resumen.gas.tendencia === 'down'">
+             {{ resumen.gas.tendencia === 'up' ? '↑' : (resumen.gas.tendencia === 'down' ? '↓' : '=') }} 
+             {{ resumen.gas.porcentaje }}% vs. semana anterior
+          </p>
+        </div>
+      </mat-card>
     </div>
-    <div class="chart-wrapper">
-      <canvas baseChart
-        [data]="barChartData"
-        [options]="barChartOptions"
-        [type]="barChartType">
-      </canvas>
+  
+    <mat-card class="chart-section">
+      <div class="chart-header"><h3>Comparativa de Consumo - Vista de Barras</h3></div>
+      <div class="chart-wrapper">
+        <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="barChartType"></canvas>
+      </div>
+    </mat-card>
+  
+    <div class="analysis-box">
+      <div class="analysis-icon"><mat-icon>insights</mat-icon></div>
+      <div class="analysis-text">
+        <h4>Análisis de tu Consumo</h4>
+        <p>
+          @if (resumen.agua.tendencia === 'down' || resumen.electricidad.tendencia === 'down') {
+            ¡Vas por buen camino! Has reducido tu consumo en comparación con la semana pasada.
+          } @else {
+            Hemos detectado un aumento en tu consumo. Revisa el Dashboard para monitorear tus dispositivos en tiempo real.
+          }
+        </p>
+      </div>
     </div>
-  </mat-card>
-
-  <div class="analysis-box">
-    <div class="analysis-icon">
-      <mat-icon>insights</mat-icon>
+  } 
+  
+  @else {
+    <div class="no-data-container">
+      <div class="no-data-icon-circle">
+        <mat-icon>bar_chart_off</mat-icon>
+      </div>
+      <h3>No hay datos disponibles esta semana</h3>
+      <p>Aún no se han registrado consumos para la semana actual.</p>
+      <p class="sub-hint" routerLink="/menu/dashboard" routerLinkActive="active-link">Ve al Dashboard para simular o registrar nuevos consumos.</p>
     </div>
-    <div class="analysis-text">
-      <h4>Análisis de tu Consumo</h4>
-      <p>Has reducido tu consumo de agua en un 5% esta semana. ¡Excelente trabajo! Para seguir mejorando, intenta reducir el tiempo en la ducha.</p>
-    </div>
-  </div>
+  }
 
 </div>
