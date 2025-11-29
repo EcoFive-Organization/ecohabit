@@ -29,7 +29,8 @@
         <mat-label>Tipo</mat-label>
         <input matInput formControlName="tipo" />
         <mat-error>
-          @if (form.get('tipo')?.hasError('required')) { El Tipo es obligatorio!!!! }
+          @if (form.get('tipo')?.hasError('required')) { El Tipo es obligatorio }
+          @if (form.get('tipo')?.hasError('pattern')) { Solo se permite texto. }
         </mat-error>
       </mat-form-field>
       <br>
@@ -37,12 +38,10 @@
       <!--Valor Column-->
       <mat-form-field>
         <mat-label>Valor</mat-label>
-        <input matInput formControlName="valor" />
+        <input matInput type="number" formControlName="valor" placeholder="0.00" required min="0.1" step="0.1"/>
         <mat-error>
-          @if (form.get('valor')?.hasError('required')) { El Valor es obligatorio!!!! }
-          @else if (form.get('valor')?.hasError('min')) {
-            El valor mínimo debe ser mayor o igual a 1
-          }
+          @if (form.get('valor')?.hasError('required')) { El Valor es obligatorio }
+          @if (form.get('valor')?.hasError('min')) { Debe ser mayor a 0 }
         </mat-error>
       </mat-form-field>
       <br>
@@ -69,9 +68,10 @@
       <!--Origen Consumo Column-->
       <mat-form-field>
         <mat-label>Origen Consumo</mat-label>
-        <input matInput formControlName="origenConsumo" />
+        <input matInput formControlName="origenConsumo" placeholder="Ej. Cocina" required />
         <mat-error>
-          @if (form.get('origenConsumo')?.hasError('required')) { El Origen del Consumo es obligatorio!!!! }
+          @if (form.get('origenConsumo')?.hasError('required')) { El Origen es obligatorio }
+          @if (form.get('origenConsumo')?.hasError('pattern')) { Solo se permite texto (sin números). }
         </mat-error>
       </mat-form-field>
       <br>
@@ -93,12 +93,12 @@
       <!--Umbral Column-->
       <mat-form-field>
         <mat-label>Umbral de Consumo</mat-label>
-        <input matInput formControlName="umbral" />
+        <input matInput type="number" formControlName="umbral" placeholder="0.00" required min="0.1" step="0.1"/>
         <mat-error>
-          @if (form.get('umbral')?.hasError('required')) { El Umbral de Consumo es obligatorio!!!! }
-          @else if (form.get('umbral')?.hasError('min')) {
-            El valor mínimo debe ser mayor o igual a 1
-          }
+          <mat-error>
+          @if (form.get('umbral')?.hasError('required')) { El Umbral es obligatorio }
+          @if (form.get('umbral')?.hasError('min')) { Debe ser mayor a 0 }
+        </mat-error>
         </mat-error>
       </mat-form-field>
       <br>

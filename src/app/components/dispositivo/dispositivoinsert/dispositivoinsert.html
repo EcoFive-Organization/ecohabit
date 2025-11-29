@@ -2,28 +2,29 @@
   <div style="text-align: center; margin: 3%">
     <h2>{{ edicion ? 'Editar Dispositivo' : 'Registrar Dispositivo' }}</h2>
   </div>
-  <div style="text-align: center; ">
+  <div style="text-align: center">
     <form [formGroup]="form" (submit)="aceptar()" class="example-form">
       @if (edicion) {
       <!--Codigo-->
       <mat-form-field>
         <mat-label>Código</mat-label>
-        <input matInput formControlName="id" required readonly/>
+        <input matInput formControlName="id" required readonly />
 
         @if (form.get('id')?.hasError('required')) {
         <mat-error>El campo id es obligatorio.</mat-error>
         }
       </mat-form-field>
       }
-      <br>
+      <br />
       <!--Nombre-->
       <mat-form-field>
         <mat-label>Dispositivo</mat-label>
         <input matInput formControlName="nombre" required />
 
-        @if (form.get('nombre')?.hasError('required')) {
-        <mat-error>El campo nombre es obligatorio.</mat-error>
-        }
+        <mat-error>
+          @if (form.get('nombre')?.hasError('required')) { El campo nombre es obligatorio. } @if
+          (form.get('nombre')?.hasError('minlength')) { Debe tener al menos 4 caracteres. }
+        </mat-error>
       </mat-form-field>
       <br />
       <!--Tipo-->
@@ -37,22 +38,31 @@
           @if (form.get('tipo')?.hasError('required')) { El tipo es obligatorio!!!! }
         </mat-error>
       </mat-form-field>
-      <br>
+      <br />
 
       <!--Ubicacion-->
       <mat-form-field>
         <mat-label>Ubicacion</mat-label>
         <input matInput formControlName="ubicacion" required />
-        @if (form.get('ubicacion')?.hasError('required')) {
-        <mat-error>El campo ubicacion es obligatorio.</mat-error>
-        }
+        <mat-error>
+          @if (form.get('ubicacion')?.hasError('required')) { La ubicación es obligatoria. } @if
+          (form.get('ubicacion')?.hasError('pattern')) { Solo se permite texto (Ej. Cocina). }
+        </mat-error>
       </mat-form-field>
-      <br>
+      <br />
 
       <!--Fecha Registro-->
       <mat-form-field>
         <mat-label>Fecha Registro</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaRegistro" [max]="today" required [disabled]="true" readonly/>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="fechaRegistro"
+          [max]="today"
+          required
+          [disabled]="true"
+          readonly
+        />
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -61,8 +71,7 @@
         <mat-error>El campo fecha es obligatorio.</mat-error>
         }
       </mat-form-field>
-      <br>
-
+      <br />
 
       <!--Nombre Usuario (FK)-->
       <!-- El value es el valor que va a capturar (lo que debe registrarse en BD), y el viewValue es lo que el usuario verá-->
