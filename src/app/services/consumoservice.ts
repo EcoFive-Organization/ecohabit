@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { Consumo } from '../models/Consumo';
 import { HttpClient } from '@angular/common/http';
 import { CantidadConsumoDTO } from '../models/CantidadConsumoDTO';
+import { CantConsumoDispDTO } from '../models/CantConsumoDispDTO';
 
 
 const base_url = environment.base
@@ -47,5 +48,10 @@ export class Consumoservice {
   // 🟢 NUEVO MÉTODO PARA EL REPORTE
   getCantidadPorTipoConsumo() {
     return this.http.get<CantidadConsumoDTO[]>(`${this.url}/CantidadPorTipoConsumo`);
+  }
+
+  // 🟢 NUEVO MÉTODO PARA EL REPORTE DE DISPOSITIVOS
+  getConsumoTotalPorDispositivo() {
+    return this.http.get<CantConsumoDispDTO[]>(`${this.url}/ConsumoTotalPorDispositivo`);
   }
 }

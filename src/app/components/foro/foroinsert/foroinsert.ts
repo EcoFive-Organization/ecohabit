@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -34,22 +33,27 @@ export class Foroinsert implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((data: Params) => {
-      this.id = data[`id`];
-      this.edicion = data[`id`] != null;
-      this.init();
-    });
+    // 1. PRIMERO: Inicializamos el formulario con sus validaciones
     this.form = this.formBuilder.group({
-      codigo: [``],
+      codigo: [''],
       titulo: ['', Validators.required],
       descripcion: ['', Validators.required],
     });
+
+    // 2. SEGUNDO: Verificamos si estamos editando
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init(); // Llamamos a cargar datos si es edición
+    });
   }
+
   aceptar(): void {
     if (this.form.valid) {
       this.foro.idForo = this.form.value.codigo;
       this.foro.titulo = this.form.value.titulo;
       this.foro.descripcion = this.form.value.descripcion;
+      
       if (this.edicion) {
         this.fS.update(this.foro).subscribe((data) => {
           this.fS.list().subscribe((data) => {
@@ -63,16 +67,19 @@ export class Foroinsert implements OnInit {
           });
         });
       }
-      this.router.navigate([`menu/listarforos`]);
+      this.router.navigate(['menu/listarforos']);
     }
   }
+
   init() {
     if (this.edicion) {
       this.fS.listid(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.idForo),
-          titulo: new FormControl(data.titulo),
-          descripcion: new FormControl(data.descripcion),
+        // 🔴 CORRECCIÓN AQUÍ:
+        // Usamos patchValue para llenar los datos SIN borrar los validadores
+        this.form.patchValue({
+          codigo: data.idForo,
+          titulo: data.titulo,
+          descripcion: data.descripcion
         });
       });
     }

@@ -51,12 +51,15 @@ form {
   gap: 12px; /* Espaciado uniforme entre campos */
 }
 
+
 /* Input Full Width dentro del contenedor */
 mat-form-field, .example-full-width {
   width: 100%;
   font-family: 'Roboto', sans-serif;
 }
-
+.example-full-width{
+  width: 100%;
+}
 /* Contenedor del *ngIf para usuario (Admin) */
 div[ng-reflect-ng-if] {
   width: 100%;

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -41,16 +40,18 @@ export class Recompensainsert implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((data: Params) => {
-      this.id = data[`id`];
-      this.edicion = data[`id`] != null;
-      this.init();
-    });
+    // 1. Configuramos el formulario CON VALIDACIONES al inicio
     this.form = this.formBuilder.group({
-      codigo: [``],
+      codigo: [''],
       nombre: ['', Validators.required],
       descripcion: ['', [Validators.required, Validators.maxLength(255)]],
       costoPuntos: ['', Validators.required],
+    });
+
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init(); // Si es edición, cargamos los datos
     });
   }
 
@@ -64,6 +65,7 @@ export class Recompensainsert implements OnInit {
       this.recompensa.nombre = this.form.value.nombre;
       this.recompensa.descripcion = this.form.value.descripcion;
       this.recompensa.costoPuntos = this.form.value.costoPuntos;
+      
       if (this.edicion) {
         this.rS.update(this.recompensa).subscribe((data) => {
           this.rS.list().subscribe((data) => {
@@ -77,17 +79,19 @@ export class Recompensainsert implements OnInit {
           });
         });
       }
-      this.router.navigate([`menu/listarrecompensa`]);
+      this.router.navigate(['menu/listarrecompensa']);
     }
   }
+
   init() {
     if (this.edicion) {
       this.rS.listid(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.idRecompensa),
-          nombre: new FormControl(data.nombre),
-          descripcion: new FormControl(data.descripcion),
-          costoPuntos: new FormControl(Number(data.costoPuntos ?? 0)), // para el slider
+        // 🔴 CORRECCIÓN CLAVE: Usamos patchValue en lugar de new FormGroup
+        this.form.patchValue({
+          codigo: data.idRecompensa,
+          nombre: data.nombre,
+          descripcion: data.descripcion,
+          costoPuntos: Number(data.costoPuntos ?? 0),
         });
       });
     }
