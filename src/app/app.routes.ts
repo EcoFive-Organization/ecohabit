@@ -29,6 +29,7 @@ import { Dashboard } from './components/dashboard/dashboard';
 import { HistorialComponent } from './components/consumo/historial/historial';
 import { ReporteCantidadPublicacionForo } from './components/reporte-cantidad-publicacion-foro/reporte-cantidad-publicacion-foro';
 import { ReporteCantidadReaccionesPublicacion } from './components/reporte-cantidad-reacciones-publicacion/reporte-cantidad-reacciones-publicacion';
+import { ReporteUsuariosComponent } from './components/usuario/reporte-usuarios/reporte-usuarios';
 
 export const routes: Routes = [
   // Zona pública
