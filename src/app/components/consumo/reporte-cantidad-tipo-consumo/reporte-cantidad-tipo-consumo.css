@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+.reporte-container {
+padding: 2rem;
+background-color: #ECEFF1;
+min-height: calc(100vh - 64px);
+font-family: 'Roboto', sans-serif;
+color: #37474F;
+}
+
+.header-row {
+margin-bottom: 2rem;
+}
+
+h2 {
+margin: 0;
+font-family: 'Montserrat', sans-serif;
+color: #37474F;
+font-weight: 700;
+font-size: 1.8rem;
+}
+
+.subtitle {
+color: #78909C;
+margin-top: 5px;
+font-size: 0.95rem;
+}
+
+/* GRID */
+.cards-grid {
+display: grid;
+  /* Centrado y con un ancho máximo para que el pie chart no sea gigante */
+grid-template-columns: minmax(300px, 600px); 
+justify-content: center; 
+gap: 24px;
+}
+
+/* TARJETA */
+.chart-card {
+padding: 1.5rem;
+background-color: #FFFFFF;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08);
+border: 1px solid rgba(0,0,0,0.03);
+}
+
+.card-header {
+display: flex;
+align-items: center;
+margin-bottom: 1.5rem;
+border-bottom: 1px solid #ECEFF1;
+padding-bottom: 1rem;
+}
+
+.icon-circle {
+width: 44px;
+height: 44px;
+border-radius: 12px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 15px;
+}
+
+.green-bg { background-color: rgba(95, 185, 99, 0.15); color: #5FB963; }
+
+.header-text {
+display: flex;
+flex-direction: column;
+}
+
+.card-title {
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+color: #37474F;
+font-size: 1.1rem;
+}
+
+.card-subtitle {
+font-size: 0.85rem;
+color: #90A4AE;
+font-weight: 500;
+}
+
+/* GRÁFICO */
+.chart-wrapper {
+height: 350px;
+position: relative;
+display: flex;
+justify-content: center;
+}

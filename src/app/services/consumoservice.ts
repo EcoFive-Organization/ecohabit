@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 import { Consumo } from '../models/Consumo';
 import { HttpClient } from '@angular/common/http';
+import { CantidadConsumoDTO } from '../models/CantidadConsumoDTO';
 
 
 const base_url = environment.base
@@ -41,5 +42,10 @@ export class Consumoservice {
   getGraficoSemanal() {
     // Llamará a: http://localhost:8080/consumos/grafico-semanal
     return this.http.get<ConsumoGraficoDTO[]>(`${this.url}/grafico-semanal`);
+  }
+
+  // 🟢 NUEVO MÉTODO PARA EL REPORTE
+  getCantidadPorTipoConsumo() {
+    return this.http.get<CantidadConsumoDTO[]>(`${this.url}/CantidadPorTipoConsumo`);
   }
 }
