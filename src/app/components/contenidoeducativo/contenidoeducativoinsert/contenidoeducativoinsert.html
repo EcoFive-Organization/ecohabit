@@ -1,6 +1,12 @@
 <div class="container">
   <br />
-  <div class="titulo"><h2>Registro de Contenido Educativo</h2></div>
+  @if (edicion) {
+    <div class="titulo"><h2> Actualizar Contenido Educativo</h2></div>
+  }
+  @else {
+    <div class="titulo"><h2>Registro de Contenido Educativo</h2></div>
+  }
+  
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
       <!--Si edicion está en true que se muestre el campo ID, si es false no se muestra (osea para registrar, no actualizar)-->
