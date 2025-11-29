@@ -50,17 +50,29 @@ export class Consumoinsert implements OnInit {
       this.dS.list().subscribe((data) => {
         this.listaDispositivos = data;
       })
+    
+    const soloLetras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
 
       this.form = this.formBuilder.group({
         id: [''],
         dispositivoL: ['', Validators.required],
-        tipo: ['', Validators.required],
-        valor: ['', [Validators.required, Validators.min(1)]],
+
+        // Validación: Solo texto para el Tipo
+        tipo: ['', [Validators.required, Validators.pattern(soloLetras)]],
+
+        // Validación: Números positivos (mínimo 0.1 para aceptar decimales pequeños)
+        valor: ['', [Validators.required, Validators.min(0.1)]],
+
         unidad: ['', Validators.required],
-        origenConsumo: ['', Validators.required],
+
+        // Validación: Solo texto para el Origen (ej. "Cocina", "Grifo Principal")
+        origenConsumo: ['', [Validators.required, Validators.pattern(soloLetras)]],
+
         fecha: [new Date(), Validators.required],
-        umbral: ['', [Validators.required, Validators.min(1)]]
-      })
+
+        // Validación: Números positivos
+        umbral: ['', [Validators.required, Validators.min(0.1)]],
+      });
   }
 
   aceptar(): void {

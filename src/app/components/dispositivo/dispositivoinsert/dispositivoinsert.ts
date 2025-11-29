@@ -63,13 +63,18 @@ export class Dispositivoinsert implements OnInit {
 
     this.form = this.formBuilder.group({
       id: [''],
-      nombre: ['', Validators.required],
+
+      // 1. VALIDACIÓN NOMBRE: Obligatorio + Mínimo 4 caracteres
+      nombre: ['', [Validators.required, Validators.minLength(4)]],
+
       tipo: ['', Validators.required],
-      ubicacion: ['', Validators.required],
+
+      // 2. VALIDACIÓN UBICACIÓN: Obligatorio + Solo letras y espacios
+      // El regex /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/ asegura que no se puedan poner números ni símbolos raros.
+      ubicacion: ['', [Validators.required, Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
+
       fechaRegistro: [new Date(), Validators.required],
-      // 4. Validación Condicional
-      // Si es Admin, usuario es required. Si es Client, no.
-      usuario: ['', this.isAdmin ? Validators.required : null], // FK de Usuario
+      usuario: ['', this.isAdmin ? Validators.required : null],
     });
   }
 
@@ -111,9 +116,13 @@ export class Dispositivoinsert implements OnInit {
       this.dS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           id: new FormControl(data.idDispositivo),
-          nombre: new FormControl(data.nombre),
-          tipo: new FormControl(data.tipo),
-          ubicacion: new FormControl(data.ubicacion),
+          // IMPORTANTE: Mantener las validaciones también en la edición
+          nombre: new FormControl(data.nombre, [Validators.required, Validators.minLength(4)]),
+          tipo: new FormControl(data.tipo, Validators.required),
+          ubicacion: new FormControl(data.ubicacion, [
+            Validators.required,
+            Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/),
+          ]),
           fechaRegistro: new FormControl(data.fechaRegistro),
           usuario: new FormControl(this.isAdmin ? data.usuario.idUsuario : ''),
         });
