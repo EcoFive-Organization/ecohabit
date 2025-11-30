@@ -4,8 +4,13 @@
    LAYOUT PRINCIPAL
    ========================================= */
 .historial-container {
+<<<<<<< HEAD
   padding: 2rem;
   background-color: #ECEFF1;
+=======
+  padding: 2rem; /* Espaciado generoso */
+  background-color: #ECEFF1; /* Gris Claro para fondos secundarios */
+>>>>>>> 3dfbd1538b530cb2ba5a8ce61320855e1a3f1557
   min-height: calc(100vh - 64px);
   font-family: 'Roboto', sans-serif;
   color: #37474F;
