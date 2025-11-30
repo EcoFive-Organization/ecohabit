@@ -1,23 +1,17 @@
-/* =========================================
-   1. IMPORTACIÓN DE FUENTES (Guideline 60-66)
-   Montserrat (Títulos) y Roboto (Cuerpo)
-   ========================================= */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
 
 /* =========================================
-   2. LAYOUT PRINCIPAL (Guideline 23, 31, 59)
+   LAYOUT PRINCIPAL
    ========================================= */
 .historial-container {
-  padding: 2rem; /* Espaciado generoso */
-  background-color: #ECEFF1; * Gris Claro para fondos secundarios */
+  padding: 2rem;
+  background-color: #ECEFF1;
   min-height: calc(100vh - 64px);
-  font-family: 'Roboto', sans-serif; /* [cite: 62] Fuente secundaria */
-  color: #37474F; /* [cite: 27] Gris Oscuro para texto general */
+  font-family: 'Roboto', sans-serif;
+  color: #37474F;
 }
 
-/* =========================================
-   3. ENCABEZADO (Guideline 61, 64)
-   ========================================= */
+/* ENCABEZADO */
 .header-row {
   display: flex;
   justify-content: space-between;
@@ -27,14 +21,14 @@
 
 h2 {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;/* [cite: 61] Fuente Primaria */
-  font-size: 1.8rem;/* [cite: 64] Tamaño Desktop */
-  color: #37474F; /* [cite: 27] Gris Oscuro */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  color: #37474F;
   font-weight: 700;
 }
 
 .subtitle {
-  color: #78909C; /* Variación suave del gris para jerarquía */
+  color: #78909C;
   margin-top: 5px;
   font-size: 0.95rem;
   font-weight: 400;
@@ -45,47 +39,41 @@ h2 {
   gap: 12px;
 }
 
-/* =========================================
-   4. BOTONES MATERIAL (Guideline 11, 15, 88)
-   Sobreescritura de estilos de Angular Material
-   ========================================= */
-
-/* Botón "Exportar" (Sólido) */
+/* BOTONES */
 button.mat-mdc-flat-button {
-  background-color: #5FB963 !important; /* [cite: 11] Verde Principal */
-  color: #FFFFFF !important; /* [cite: 23] Blanco */
+  background-color: #5FB963 !important;
+  color: #FFFFFF !important;
   font-family: 'Montserrat', sans-serif !important;
   font-weight: 600 !important;
 }
 
 button.mat-mdc-flat-button:disabled {
-  background-color: #B0BEC5 !important; /* Gris deshabilitado */
+  background-color: #B0BEC5 !important;
   color: #ECEFF1 !important;
 }
 
-/* Botón "Última Semana" (Borde) */
 button.mat-mdc-outlined-button {
-  color: #37474F !important; /* Texto Gris Oscuro */
+  color: #37474F !important;
   border-color: #CFD8DC !important;
   font-family: 'Montserrat', sans-serif !important;
   font-weight: 600 !important;
 }
 
 /* =========================================
-   5. TARJETAS DE RESUMEN (Guideline 23, 68)
+   TARJETAS DE RESUMEN
    ========================================= */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive */
-  gap: 24px; /* [cite: 59] Espaciado generoso */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
   margin-bottom: 2rem;
 }
 
 .stat-card {
   padding: 1.5rem;
-  background-color: #FFFFFF;/* [cite: 23] Fondo Blanco */
+  background-color: #FFFFFF;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08); /* Sombra suave */
+  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08);
   border: 1px solid rgba(0,0,0,0.03);
 }
 
@@ -95,18 +83,25 @@ button.mat-mdc-outlined-button {
   margin-bottom: 1rem;
 }
 
-/* Círculos de iconos */
+/* ICONOS (CÍRCULOS) */
 .icon-circle {
   width: 44px;
   height: 44px;
-  border-radius: 12px; /* Bordes redondeados modernos */
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 12px;
 }
 
-/* Títulos de Tarjetas */
+/* Forzar tamaño del icono */
+.icon-circle mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+/* TÍTULOS */
 .card-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -117,7 +112,6 @@ button.mat-mdc-outlined-button {
   letter-spacing: 0.5px;
 }
 
-/* Valores y Etiquetas */
 .label {
   font-size: 0.85rem;
   color: #90A4AE;
@@ -133,6 +127,47 @@ h3 {
   line-height: 1.2;
 }
 
+/* =========================================
+   COLORES ESPECÍFICOS (Fondos y Textos)
+   ========================================= */
+
+/* AGUA: Azul Claro */
+.blue-bg { background-color: rgba(3, 169, 244, 0.15) !important; }
+.blue-bg mat-icon { color: #03A9F4 !important; }
+.blue-text { color: #03A9F4 !important; }
+
+/* ELECTRICIDAD: Amarillo */
+.yellow-bg { background-color: rgba(255, 193, 7, 0.15) !important; }
+.yellow-bg mat-icon { color: #FFC107 !important; }
+.yellow-text { color: #FFC107 !important; }
+
+/* GAS: Naranja */
+.orange-bg { background-color: rgba(255, 152, 0, 0.15) !important; }
+.orange-bg mat-icon { color: #FF9800 !important; }
+.orange-text { color: #FF9800 !important; }
+
+
+/* =========================================
+   TENDENCIAS (FLECHAS)
+   ========================================= */
+
+.trend-icon { 
+  font-size: 24px; 
+  width: 24px; 
+  height: 24px;
+}
+
+/* SUBIR consumo es MALO -> ROJO */
+mat-icon.trend-icon.up { color: #F44336 !important; }
+.trend-text.red { color: #F44336 !important; }
+
+/* BAJAR consumo es BUENO -> VERDE */
+mat-icon.trend-icon.down { color: #5FB963 !important; }
+.trend-text.green { color: #5FB963 !important; }
+
+/* NEUTRO */
+.trend-icon { color: #90A4AE; } 
+
 .trend-text {
   font-size: 0.85rem;
   font-weight: 600;
@@ -142,37 +177,7 @@ h3 {
 }
 
 /* =========================================
-   6. COLORES ESPECÍFICOS (Guideline 19, 35, 40, 44)
-   ========================================= */
-
-/* AGUA: Azul Claro */
-.blue-bg { background-color: rgba(3, 169, 244, 0.15); color: #03A9F4;} /* [cite: 20] */
-.blue-text { color: #03A9F4; }
-
-/* ELECTRICIDAD: Amarillo/Ámbar */
-/* Usamos una variante más legible del amarillo sobre blanco */
-.yellow-bg { background-color: rgba(255, 193, 7, 0.15); color: #FFC107; } 
-.yellow-text { color: #FFC107; }
-
-/* GAS: Naranja */
-.orange-bg { background-color: rgba(255, 152, 0, 0.15); color: #FF9800;} /* [cite: 45] */
-.orange-text { color: #FF9800; }
-
-/* TENDENCIAS */
-/* Bajar consumo es BUENO -> Verde */
-[cite_start].green { color: #5FB963;} /* [cite: 11] */
-.down { color: #5FB963; }
-
-/* Subir consumo es MALO -> Rojo */
-[cite_start].red { color: #F44336;} /* [cite: 35] */
-.up { color: #F44336; }
-
-/* Iconos de tendencia en header */
-.trend-icon { font-size: 24px; width: 24px; height: 24px; }
-
-
-/* =========================================
-   7. SECCIÓN GRÁFICO
+   GRÁFICO
    ========================================= */
 .chart-section {
   padding: 2rem;
@@ -195,11 +200,10 @@ h3 {
 }
 
 /* =========================================
-   8. ANÁLISIS AUTOMÁTICO (Estilo Insight)
+   ANÁLISIS (INSIGHT)
    ========================================= */
 .analysis-box {
-  /* Fondo Verde Principal con mucha transparencia */
-  background-color: rgba(95, 185, 99, 0.12); 
+  background-color: rgba(95, 185, 99, 0.12);
   border: 1px solid rgba(95, 185, 99, 0.3);
   border-radius: 12px;
   padding: 1.5rem;
@@ -209,7 +213,7 @@ h3 {
 }
 
 .analysis-icon {
-  background-color: #5FB963; /* [cite: 11] Verde Principal Sólido */
+  background-color: #5FB963;
   color: white;
   width: 40px;
   height: 40px;
@@ -224,7 +228,7 @@ h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   margin: 0 0 5px 0;
-  color: #2E7D32; /* Verde Oscuro para contraste de texto */
+  color: #2E7D32;
   font-size: 1.1rem;
 }
 
@@ -236,7 +240,7 @@ h3 {
 }
 
 /* =========================================
-   9. ESTADO SIN DATOS (Empty State)
+   ESTADO SIN DATOS (No Data)
    ========================================= */
 .no-data-container {
   display: flex;
@@ -244,17 +248,17 @@ h3 {
   align-items: center;
   justify-content: center;
   padding: 4rem 2rem;
-  background-color: #FFFFFF; /* [cite: 23] */
+  background-color: #FFFFFF;
   border-radius: 12px;
   text-align: center;
-  border: 2px dashed #CFD8DC; /* Borde discontinuo para indicar vacío */
+  border: 2px dashed #CFD8DC;
   margin-top: 2rem;
 }
 
 .no-data-icon-circle {
   width: 80px;
   height: 80px;
-  background-color: #ECEFF1; /* [cite: 31] Gris Claro */
+  background-color: #ECEFF1;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -266,20 +270,20 @@ h3 {
   font-size: 40px;
   width: 40px;
   height: 40px;
-  color: #90A4AE; /* Gris suave para icono deshabilitado */
+  color: #90A4AE;
 }
 
 .no-data-container h3 {
-  font-family: 'Montserrat', sans-serif; /* [cite: 61] */
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
-  color: #37474F; /* [cite: 27] */
+  color: #37474F;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 .no-data-container p {
   color: #78909C;
-  font-family: 'Roboto', sans-serif; /* [cite: 62] */
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   margin: 0;
 }
@@ -287,12 +291,12 @@ h3 {
 .sub-hint {
   font-size: 0.9rem;
   margin-top: 10px !important;
-  color: #5FB963 !important; /* [cite: 11] Verde Principal para la acción */
+  color: #5FB963 !important;
   font-weight: 600;
   cursor: pointer;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 600px) {
   .header-row {
     flex-direction: column;
