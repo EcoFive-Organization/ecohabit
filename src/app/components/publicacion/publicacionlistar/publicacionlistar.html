@@ -1,0 +1,58 @@
+<div>
+  <h2>Lista de Publicaciones</h2>
+  @if (isAdmin) {
+    <div class="search-container">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Buscar por nombre de usuario</mat-label>
+      <input matInput (keyup)="filtrar($event)" placeholder="Ej. Juan Perez">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  }
+  <div class="card-container">
+    <mat-card *ngFor="let element of pagedData" class="mat-elevation-z8 contenido-card">
+      <mat-card-header>
+        <mat-card-title class="titulo">{{ element.titulo }}</mat-card-title>
+        <mat-card-subtitle>
+          Foro: {{ element.foro.titulo }} <br />
+          @if (isAdmin) {
+            Usuario: {{element.usuario.nombre}} <br>
+          }
+          Fecha: {{ element.fecha }} <br />
+          Privacidad: {{ element.privacidad }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <div class="icon-container">
+        <mat-icon class="icono-contenido">forest</mat-icon>
+      </div>
+      <mat-card-content>
+        <p>{{ element.contenido }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-button [routerLink]="['edits', element.idPublicacion]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-button color="warn" (click)="eliminar(element.idPublicacion)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Paginador -->
+  <mat-paginator
+    [length]="dataSource.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[2, 5, 10, 20]"
+    (page)="onPageChange($event)"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+
+  <!-- Mensaje cuando no hay datos -->
+  <div *ngIf="!dataSource || dataSource.length === 0" class="no-data-message">
+    No hay publicaciones para mostrar.
+  </div>
+</div>
+
