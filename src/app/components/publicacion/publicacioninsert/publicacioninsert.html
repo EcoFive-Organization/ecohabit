@@ -1,0 +1,131 @@
+<div class="container">
+  <div>
+    <h2>{{ edicion ? 'Editar Publicacion' : 'Publicar' }}</h2>
+  </div>
+  <div >
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <!--Codigo-->
+      <mat-form-field>
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="id" required readonly />
+
+        @if (form.get('id')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+      <br />
+      <!--Titulo-->
+      <mat-form-field>
+        <mat-label>Titulo</mat-label>
+        <input matInput formControlName="titulo" required />
+
+        <mat-error>
+          @if (form.get('titulo')?.hasError('required')) { El campo titulo es obligatorio. } @if
+          (form.get('titulo')?.hasError('minlength')) { Debe tener al menos 4 caracteres. }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <!--Contenido-->
+      <mat-form-field>
+        <mat-label>Contenido</mat-label>
+        <!-- Cambiado a <textarea> y añadido maxlength -->
+        <textarea
+          matInput
+          formControlName="contenido"
+          placeholder="Descripción del contenido..."
+          maxlength="255"
+        ></textarea>
+        <!-- Añadido contador de caracteres -->
+        <mat-hint align="end">{{ form.get('contenido')?.value?.length || 0 }} / 255</mat-hint>
+        <mat-error>
+          @if (form.get('contenido')?.hasError('required')) { El contenido es obligatorio!!!! }
+          @if (form.get('contenido')?.hasError('maxlength')) { El contenido no debe exceder los
+          255 caracteres. }
+        </mat-error>
+      </mat-form-field>
+
+      <br>
+
+      <!--Privacidad-->
+      <mat-form-field>
+        <mat-label>Privacidad</mat-label>
+        <mat-select formControlName="privacidad" required >
+          @for (p of privacidades; track p.value) {
+          <mat-option [value]="p.value">{{ p.viewValue }}</mat-option> }
+        </mat-select>
+        <mat-error>
+          @if (form.get('privacidad')?.hasError('required')) { La privacidad es obligatoria!!!! }
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <!--Fecha-->
+      <mat-form-field>
+        <mat-label>Fecha</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="fecha"
+          required
+          readonly 
+        />
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-hint>DD/MM/YYYY</mat-hint>
+
+        @if (form.get('fecha')?.hasError('required')) {
+          <mat-error>El campo fecha es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      <br />
+      <br />
+
+      <!--Vistas Column-->
+      <mat-form-field>
+        <mat-label>Vistas</mat-label>
+        <input matInput type="number" formControlName="vistas" placeholder="0.00" required min="0" step="1"/>
+        <mat-error>
+          @if (form.get('vistas')?.hasError('required')) { El Valor es obligatorio }
+          @if (form.get('vistas')?.hasError('min')) { Debe ser mayor a 0 }
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <!--Compartidos Column-->
+      <mat-form-field>
+        <mat-label>Compartidos</mat-label>
+        <input matInput type="number" formControlName="compartidos" placeholder="0.00" required min="0" step="1"/>
+        <mat-error>
+          @if (form.get('compartidos')?.hasError('required')) { El Valor es obligatorio }
+          @if (form.get('compartidos')?.hasError('min')) { Debe ser mayor a 0 }
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <!--Foro (FK)-->
+      <!-- El value es el valor que va a capturar (lo que debe registrarse en BD), y el viewValue es lo que el usuario verá-->
+      <div class="example-full-width">
+        <mat-form-field >
+          <mat-label>Nombre Foro:</mat-label>
+          <mat-select formControlName="foro">
+            @for (f of listaForos; track f.idForo) {
+            <mat-option [value]="f.idForo">
+              {{ f.titulo }}
+            </mat-option>
+            }
+          </mat-select>
+
+          @if (form.get('foro')?.hasError('required')) {
+          <mat-error>El campo foro es obligatorio.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <button matButton="elevated">{{ edicion ? 'Editar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>
+

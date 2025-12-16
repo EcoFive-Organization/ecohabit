@@ -32,6 +32,9 @@ import { ReporteCantidadReaccionesPublicacion } from './components/reporte-canti
 import { ReporteUsuariosComponent } from './components/usuario/reporte-usuarios/reporte-usuarios';
 import { ReporteTransaccion } from './components/transaccion/reporte-transaccion/reporte-transaccion';
 import { ReporteCantidadTipoConsumo } from './components/consumo/reporte-cantidad-tipo-consumo/reporte-cantidad-tipo-consumo';
+import { ReporteConsumoDispositivoComponent } from './components/consumo/reporte-consumo-dispositivo/reporte-consumo-dispositivo';
+import { Publicacion } from './components/publicacion/publicacion';
+import { Publicacioninsert } from './components/publicacion/publicacioninsert/publicacioninsert';
 
 export const routes: Routes = [
   // Zona pública
@@ -70,7 +73,7 @@ export const routes: Routes = [
           // Los dos puntos indican que es una variable
           { path: 'edits/:id', component: Foroinsert },
         ],
-        canActivate: [seguridadGuard],
+        //canActivate: [seguridadGuard],
       },
       // Recompensa
       {
@@ -138,7 +141,8 @@ export const routes: Routes = [
           { path: 'registroconsumo', component: Consumoinsert},
           { path:`historial`, component: HistorialComponent},
         // 🟢 NUEVA RUTA
-          { path: 'reporte-cantidad', component: ReporteCantidadTipoConsumo}],
+          { path: 'reporte-cantidad', component: ReporteCantidadTipoConsumo},
+          {path: 'reporte-dispositivos', component: ReporteConsumoDispositivoComponent},],
         canActivate: [seguridadGuard],
       },
 
@@ -188,9 +192,20 @@ export const routes: Routes = [
         path: 'reporte-cantidad-reacciones-publicacion',
         component: ReporteCantidadReaccionesPublicacion,
         canActivate: [seguridadGuard]
+      },
+
+      // Publicacion
+      {
+        path: 'listarpublicaciones',
+        component: Publicacion,
+        children: [
+          { path: 'registropublicacion', component: Publicacioninsert },
+          { path: 'edits/:id', component: Publicacioninsert}
+        ],
+        canActivate: [seguridadGuard]
       }
 
     ],
-    canActivate: [seguridadGuard],
+    //canActivate: [seguridadGuard],
   },
 ];

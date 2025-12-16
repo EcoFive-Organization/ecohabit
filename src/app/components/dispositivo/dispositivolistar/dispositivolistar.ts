@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core'; // 🟢 Importar TemplateRef
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -12,6 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+
+// 🟢 Importar MatDialog
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dispositivolistar',
@@ -26,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
     MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule // 🟢 Asegúrate de importar el módulo aquí
   ],
   templateUrl: './dispositivolistar.html',
   styleUrl: './dispositivolistar.css',
@@ -33,28 +37,31 @@ import { MatInputModule } from '@angular/material/input';
 export class Dispositivolistar implements OnInit {
   allData: Dispositivo[] = [];
   dataSource: MatTableDataSource<Dispositivo> = new MatTableDataSource();
-  pagedData: Dispositivo[] = []; // Para las cards
+  pagedData: Dispositivo[] = [];
 
-  // Paginación
   totalElements = 0;
   pageSize = 5;
   pageIndex = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
+  // 🟢 Capturamos la plantilla del diálogo del HTML
+  @ViewChild('confirmDialog') confirmDialog!: TemplateRef<any>;
 
   isAdmin: boolean = false;
   displayedColumns: string[] = ['c1', 'c2', 'c4', 'c7', 'c8'];
 
-  constructor(private dS: Dispositivoservice, private loginService: Loginservice) {}
+  constructor(
+    private dS: Dispositivoservice, 
+    private loginService: Loginservice,
+    private dialog: MatDialog // 🟢 Inyectamos MatDialog
+  ) {}
 
   ngOnInit(): void {
     const role = this.loginService.showRole();
-
     this.isAdmin = role === 'ADMIN';
 
-    // Si es ADMIN, agregamos la columna de usuario a la vista
     if (this.isAdmin) {
-      // Insertamos la columna en la posición que quieras (ej: antes de editar)
       this.displayedColumns.splice(3, 0, 'cforaneanombre');
     }
 
@@ -62,12 +69,10 @@ export class Dispositivolistar implements OnInit {
   }
 
   cargarDatos() {
-    // Usamos list() o getList() según tu servicio, unificamos la carga
     this.dS.list().subscribe((data) => {
       this.procesarDatos(data);
     });
 
-    // Suscripción al Subject para actualizaciones (si usas setList en el servicio)
     this.dS.getList().subscribe((data) => {
       this.procesarDatos(data);
     });
@@ -78,19 +83,15 @@ export class Dispositivolistar implements OnInit {
     this.totalElements = data.length;
 
     if (this.isAdmin) {
-      // --- LOGICA PARA ADMIN (TABLA) ---
       this.dataSource = new MatTableDataSource(this.allData);
       this.dataSource.paginator = this.paginator;
 
-      // CONFIGURACIÓN DEL FILTRO PERSONALIZADO
-      // Esto permite buscar por propiedades anidadas (nombre del usuario)
       this.dataSource.filterPredicate = (data: Dispositivo, filter: string) => {
-        const nombreUsuario = data.usuario?.nombre?.toLowerCase() || ''; // Acceso seguro
+        const nombreUsuario = data.usuario?.nombre?.toLowerCase() || '';
         const nombreDispositivo = data.nombre?.toLowerCase() || '';
         const ubicacion = data.ubicacion?.toLowerCase() || '';
         const id = data.idDispositivo.toString();
 
-        // Retorna true si alguna de las propiedades contiene el texto del filtro
         return (
           nombreUsuario.includes(filter) ||
           nombreDispositivo.includes(filter) ||
@@ -99,12 +100,10 @@ export class Dispositivolistar implements OnInit {
         );
       };
     } else {
-      // --- LOGICA PARA CLIENT (CARDS) ---
       this.updatePagedData();
     }
   }
 
-  // Método para aplicar el filtro desde el HTML
   filtrar(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -114,31 +113,38 @@ export class Dispositivolistar implements OnInit {
     }
   }
 
-  // Evento al cambiar de página en el Paginador
   onPageChange(event: PageEvent) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
 
-    if (this.isAdmin) {
-      // La tabla se conecta sola al paginator, no necesita lógica extra aquí
-    } else {
-      // Actualizamos las cards manualmente
+    if (!this.isAdmin) {
       this.updatePagedData();
     }
   }
 
-  // Cortar el array para mostrar solo las cards de la página actual
   updatePagedData() {
     const start = this.pageIndex * this.pageSize;
     const end = start + this.pageSize;
     this.pagedData = this.allData.slice(start, end);
   }
 
+  // 🟢 MÉTODO ELIMINAR CON CONFIRMACIÓN
   eliminar(id: number) {
-    this.dS.delete(id).subscribe((data) => {
-      this.dS.list().subscribe((data) => {
-        this.dS.setList(data);
-      });
+    // Abrimos el diálogo usando la plantilla local
+    const dialogRef = this.dialog.open(this.confirmDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        // Si el usuario confirmó, procedemos a eliminar
+        this.dS.delete(id).subscribe(() => {
+          // Refrescamos la lista llamando al servicio de nuevo
+          this.dS.list().subscribe((data) => {
+            this.dS.setList(data);
+            // También actualizamos la vista local por si acaso
+            this.procesarDatos(data); 
+          });
+        });
+      }
     });
   }
 }

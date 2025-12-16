@@ -1,42 +1,40 @@
 <mat-sidenav-container class="sidenav-container">
-  
+
   <!-- SIDEBAR (Menú Lateral) -->
   <mat-sidenav #sidenav mode="side" opened class="sidenav">
-    
-    <!-- Cabecera del Menú con Logo -->
+
+    <!-- Cabecera -->
     <div class="sidenav-header">
       <div class="logo-container">
-        <!-- Asegúrate de tener tu logo aquí -->
         <img src="assets/images/logo_ecohabit_sinletras.png" alt="Logo" class="menu-logo">
         <h2 class="app-name">EcoHabit</h2>
       </div>
-      <p class="user-welcome">Bienvenido, Usuario</p>
+      <p class="user-welcome">Bienvenido, {{ usuario || 'Usuario' }}</p>
     </div>
 
+    <!-- Lista de Navegación -->
     <mat-nav-list class="nav-list">
-      
-      <!-- Opción Simple: Dashboard/Inicio (Ejemplo) -->
+
       <a mat-list-item routerLink="/menu/dashboard" routerLinkActive="active-link" class="menu-item-custom">
         <mat-icon>dashboard</mat-icon> <span>Dashboard</span>
       </a>
 
+      <!-- ADMIN: Usuarios -->
       @if (isAdmin()) {
-        <!-- Grupo: Usuarios -->
-      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>people</mat-icon> <span>Usuarios</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listausuarios" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Listar Usuarios</a>
-          <a mat-list-item routerLink="/menu/listausuarios/reportes" routerLinkActive="active-link">Reportes</a>
-        </mat-nav-list>
-      </mat-expansion-panel>
+        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>people</mat-icon> <span>Usuarios</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list disablePadding>
+            <a mat-list-item routerLink="/menu/listausuarios" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Listar Usuarios</a>
+            <a mat-list-item routerLink="/menu/listausuarios/reportes" routerLinkActive="active-link">Reportes</a>
+          </mat-nav-list>
+        </mat-expansion-panel>
       }
 
-
-      <!-- Grupo: Foros -->
+      <!-- Foros -->
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -44,30 +42,29 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          @if (isClient()) {
-            <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Foros</a>
-          }
-          @else if (isAdmin()) {
-            <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Foros</a>
-          <a mat-list-item routerLink="/menu/listarforos/registroforo" routerLinkActive="active-link">Crear Foro</a>
-          <a mat-list-item routerLink="/menu/reporte-cantidad-publicaciones-foro" routerLinkActive="active-link">Ver Reporte</a>
+          <a mat-list-item routerLink="/menu/listarforos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Foros</a>
+          @if (isAdmin()) {
+            <a mat-list-item routerLink="/menu/listarforos/registroforo" routerLinkActive="active-link">Crear Foro</a>
+            <a mat-list-item routerLink="/menu/reporte-cantidad-publicaciones-foro" routerLinkActive="active-link">Ver Reporte</a>
           }
         </mat-nav-list>
       </mat-expansion-panel>
 
-      <!-- Grupo: Publicación -->
-        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+      <!-- Publicaciones -->
+      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <mat-icon> contacts</mat-icon> <span>Publicaciones</span>
+            <mat-icon>contacts</mat-icon> <span>Publicaciones</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
+          <a mat-list-item routerLink="/menu/listarpublicaciones" routerLinkActive="active-link">Ver Publicaciones</a>
+          <a mat-list-item routerLink="/menu/listarpublicaciones/registropublicacion" routerLinkActive="active-link">Publica Algo</a>
           <a mat-list-item routerLink="/menu/reporte-cantidad-reacciones-publicacion" routerLinkActive="active-link">Ver Gráfico</a>
         </mat-nav-list>
       </mat-expansion-panel>
 
-      <!-- Grupo: Recompensas -->
+      <!-- Recompensas -->
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -75,22 +72,19 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          @if (isClient()) {
-            <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Catálogo</a>
-          }
-          @else if (isAdmin()) {
-            <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Catálogo</a>
-          <a mat-list-item routerLink="/menu/listarrecompensa/registrorecompensa" routerLinkActive="active-link">Nueva Recompensa</a>
+          <a mat-list-item routerLink="/menu/listarrecompensa" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Catálogo</a>
+          @if (isAdmin()) {
+            <a mat-list-item routerLink="/menu/listarrecompensa/registrorecompensa" routerLinkActive="active-link">Nueva Recompensa</a>
           }
         </mat-nav-list>
       </mat-expansion-panel>
 
-      <!-- Opción Simple: Planes -->
+      <!-- Planes -->
       <a mat-list-item routerLink="/menu/listarplansuscripcion" routerLinkActive="active-link" class="menu-item-custom">
         <mat-icon>card_membership</mat-icon> <span>Plan de Suscripción</span>
       </a>
 
-      <!-- Grupo: Contenido Educativo -->
+      <!-- Educación -->
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -98,17 +92,14 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          @if (isClient()) {
-            <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Biblioteca</a>
-          }
-          @else if (isAdmin()) {
-            <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Biblioteca</a>
-          <a mat-list-item routerLink="/menu/listarcontenidoeducativo/registrocontenidoeducativo" routerLinkActive="active-link">Publicar</a>
+          <a mat-list-item routerLink="/menu/listarcontenidoeducativo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Biblioteca</a>
+          @if (isAdmin()) {
+            <a mat-list-item routerLink="/menu/listarcontenidoeducativo/registrocontenidoeducativo" routerLinkActive="active-link">Publicar</a>
           }
         </mat-nav-list>
       </mat-expansion-panel>
 
-      <!-- Grupo: Billetera -->
+      <!-- Billetera -->
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -118,17 +109,15 @@
         <mat-nav-list disablePadding>
           @if (isClient()) {
             <a mat-list-item routerLink="/menu/listarbilleteras" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mi Saldo</a>
-          }
-          @else if (isAdmin()) {
+          } @else if (isAdmin()) {
             <a mat-list-item routerLink="/menu/listarbilleteras" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Billeteras</a>
-          <a mat-list-item routerLink="/menu/listarbilleteras/registrobilleteras" routerLinkActive="active-link">Configurar</a>
+            <a mat-list-item routerLink="/menu/listarbilleteras/registrobilleteras" routerLinkActive="active-link">Configurar</a>
           }
         </mat-nav-list>
       </mat-expansion-panel>
 
-      <!-- Grupo: Transacciones -->
-       @if (isAdmin()) {
-        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+      <!-- Transacciones -->
+      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>receipt_long</mat-icon> <span>Transacciones</span>
@@ -136,99 +125,70 @@
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
           <a mat-list-item routerLink="/menu/listartransacciones" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Historial</a>
-          <a mat-list-item routerLink="/menu/listartransacciones/registrotransacciones" routerLinkActive="active-link">Nueva</a>
-          <a mat-list-item routerLink="/menu/listartransacciones/reportes" routerLinkActive="active-link">Reportes</a>
+          @if (isAdmin()) {
+             <a mat-list-item routerLink="/menu/listartransacciones/registrotransacciones" routerLinkActive="active-link">Nueva</a>
+             <a mat-list-item routerLink="/menu/listartransacciones/reportes" routerLinkActive="active-link">Reportes</a>
+          }
         </mat-nav-list>
       </mat-expansion-panel>
-       }
-       @else if (isClient()) {
-        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>receipt_long</mat-icon> <span>Transacciones</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listartransacciones" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Historial</a>
-        </mat-nav-list>
-      </mat-expansion-panel>
-       }
 
-      <!-- Grupo: Dispositivos -->
-      @if (isAdmin()) {
-        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+      <!-- Dispositivos -->
+      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>devices</mat-icon> <span>Dispositivos</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listadispositivo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Dispositivos</a>
+          @if (isAdmin()) {
+            <a mat-list-item routerLink="/menu/listadispositivo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Dispositivos</a>
+          } @else {
+            <a mat-list-item routerLink="/menu/listadispositivo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mis Dispositivos</a>
+          }
           <a mat-list-item routerLink="/menu/listadispositivo/registrodispositivo" routerLinkActive="active-link">Vincular</a>
         </mat-nav-list>
       </mat-expansion-panel>
-      }
-      @else if (isClient()) {
-        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>devices</mat-icon> <span>Dispositivos</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listadispositivo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mis Dispositivos</a>
-          <a mat-list-item routerLink="/menu/listadispositivo/registrodispositivo" routerLinkActive="active-link">Vincular</a>
-        </mat-nav-list>
-      </mat-expansion-panel>
-      }
 
-       <!-- Grupo: Consumo -->
-        @if (isAdmin()) {
-          <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+       <!-- Consumo -->
+       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>bolt</mat-icon> <span>Consumo</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarconsumo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Consumos</a>
+          <a mat-list-item routerLink="/menu/listarconsumo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            {{ isAdmin() ? 'Ver Consumos' : 'Mis Consumos' }}
+          </a>
           <a mat-list-item routerLink="/menu/listarconsumo/registroconsumo" routerLinkActive="active-link">Registrar</a>
           <a mat-list-item routerLink="/menu/listarconsumo/historial" routerLinkActive="active-link">Historial</a>
+<<<<<<< HEAD
           <a mat-list-item routerLink="/menu/listarconsumo/reporte-cantidad" routerLinkActive="active-link">Reportes</a>
+=======
+          <a mat-list-item routerLink="/menu/listarconsumo/reporte-dispositivos" routerLinkActive="active-link">Consumo Por Dispositivo</a>
+          @if (isAdmin()) {
+            <a mat-list-item routerLink="/menu/listarconsumo/reporte-cantidad" routerLinkActive="active-link">Cantidad Tipo de Consumo</a>
+          }
+>>>>>>> f61aa8c026771979db7fcc034f03a12254689c64
         </mat-nav-list>
       </mat-expansion-panel>
-        }
-        @else if (isClient()) {
-          <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>bolt</mat-icon> <span>Consumo</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarconsumo" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Mis Consumos</a>
-          <a mat-list-item routerLink="/menu/listarconsumo/historial" routerLinkActive="active-link">Historial</a>
-        </mat-nav-list>
-      </mat-expansion-panel>
-        }
 
-      <!-- Grupo: Suscripcion -->
-       @if (isAdmin()) {
-         <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>credit_card</mat-icon> <span>Suscripcion</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarsuscripcion" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Suscripciones</a>
-        </mat-nav-list>
-      </mat-expansion-panel>
-       }
-
-      <!-- Grupo: MetodoPago -->
-       @if (isAdmin()) {
+      <!-- Suscripcion -->
+      @if (isAdmin()) {
         <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>credit_card</mat-icon> <span>Suscripcion</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list disablePadding>
+            <a mat-list-item routerLink="/menu/listarsuscripcion" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Suscripciones</a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      }
+
+      <!-- Metodos de Pago -->
+      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>credit_card</mat-icon> <span>Metodos de Pago</span>
@@ -236,65 +196,57 @@
         </mat-expansion-panel-header>
         <mat-nav-list disablePadding>
           <a mat-list-item routerLink="/menu/listarmetodopago" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Metodos</a>
-          <a mat-list-item routerLink="/menu/listarmetodopago/registrometodopago" routerLinkActive="active-link">Registrar</a>
+          @if (isAdmin()) {
+             <a mat-list-item routerLink="/menu/listarmetodopago/registrometodopago" routerLinkActive="active-link">Registrar</a>
+          }
         </mat-nav-list>
       </mat-expansion-panel>
-       }
-       @else if (isClient()) {
-        <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>credit_card</mat-icon> <span>Metodos de Pago</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarmetodopago" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Ver Metodos</a>
-        </mat-nav-list>
-      </mat-expansion-panel>
-       }
-       
 
-      <!-- Grupo: Rol -->
-       @if (isAdmin()) {
+      <!-- Roles (Solo Admin) -->
+      @if (isAdmin()) {
         <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>face</mat-icon> <span>Rol</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list disablePadding>
-          <a mat-list-item routerLink="/menu/listarroles" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Roles</a>
-          <a mat-list-item routerLink="/menu/listarroles/registrorol" routerLinkActive="active-link">Insertar Rol</a>
-        </mat-nav-list>
-      </mat-expansion-panel>
-       }
-       
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>face</mat-icon> <span>Rol</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list disablePadding>
+            <a mat-list-item routerLink="/menu/listarroles" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Roles</a>
+            <a mat-list-item routerLink="/menu/listarroles/registrorol" routerLinkActive="active-link">Insertar Rol</a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      }
 
     </mat-nav-list>
   </mat-sidenav>
 
   <!-- CONTENIDO PRINCIPAL -->
   <mat-sidenav-content class="content-area">
-    
+
     <mat-toolbar color="primary" class="top-toolbar">
       <button mat-icon-button (click)="sidenav.toggle()" class="menu-toggle">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="toolbar-title">Panel de Administración</span>
-      <span class="spacer"></span>
       
+      @if (isAdmin()) {
+        <span class="toolbar-title">Panel de Administración</span>
+      }
+      @else if (isClient()) {
+        <span class="toolbar-title">Panel de Cliente</span>
+      }
+      <span class="spacer"></span>
+
       <button mat-icon-button [matMenuTriggerFor]="menuPerfil">
         <mat-icon>account_circle</mat-icon>
       </button>
 
       <mat-menu #menuPerfil="matMenu">
-        <button mat-menu-item routerLink="/" (click)="cerrar()">
+        <button mat-menu-item (click)="confirmarCierre()">
           <mat-icon style="color: #D32F2F;">logout</mat-icon> <span>Cerrar Sesión</span>
         </button>
         <button mat-menu-item>
-      Rol:
-      <span>{{ role }}</span>
-    </button>
+          Rol: <span>{{ role }}</span>
+        </button>
       </mat-menu>
 
     </mat-toolbar>
@@ -305,3 +257,15 @@
 
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<!-- Plantilla del Diálogo -->
+<ng-template #logoutDialog>
+  <h2 mat-dialog-title>Cerrar Sesión</h2>
+  <mat-dialog-content>
+    <p>¿Estás seguro de que deseas salir de la aplicación?</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-flat-button color="warn" [mat-dialog-close]="true">Salir</button>
+  </mat-dialog-actions>
+</ng-template>

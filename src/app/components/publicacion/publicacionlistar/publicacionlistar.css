@@ -1,0 +1,273 @@
+/* =========================================
+   ECOHABIT - LISTADO DE PUBLICACIONES
+   Estilo: Alineación Perfecta + Colores Branding
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+/* Mantenemos variables solo para fondos y textos generales */
+:root {
+  --eco-gray-dark: #37474F;
+  --eco-gray-light: #ECEFF1;
+  --eco-white: #FFFFFF;
+}
+
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: #ECEFF1; /* Gris Claro */
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* =========================================
+   ENCABEZADO
+   ========================================= */
+h2 {
+  text-align: center;
+  margin: 20px auto 40px auto;
+  font-size: 36px;
+  font-family: 'Montserrat', sans-serif;
+  color: #37474F; /* Gris Oscuro */
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* =========================================
+   LAYOUT (GRID PERFECTO)
+   ========================================= */
+.card-container {
+  display: grid;
+  /* Columnas automáticas, mínimo 300px de ancho */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   TARJETA (Estructura Rígida)
+   ========================================= */
+.contenido-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupa toda la altura de la fila */
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  /* Sombra inicial suave */
+  box-shadow: 0 4px 6px rgba(55, 71, 79, 0.08);
+  border: 1px solid rgba(55, 71, 79, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.contenido-card:hover {
+  transform: translateY(-5px);
+  /* Sombra Verde (#5FB963) al pasar el mouse */
+  box-shadow: 0 12px 20px rgba(95, 185, 99, 0.2);
+  border-color: rgba(95, 185, 99, 0.3);
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+mat-card-header {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  min-height: 80px; /* Altura mínima para alineación */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+mat-card-title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  color: #37474F !important;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+mat-card-subtitle {
+  font-family: 'Roboto', sans-serif !important;
+  color: #78909C !important;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* =========================================
+   ICONO HERO
+   ========================================= */
+.icon-container {
+  text-align: center;
+  margin: 0 16px;
+  height: 140px; /* Altura FIJA */
+  background-color: rgba(95, 185, 99, 0.08); /* Fondo verde muy claro */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-container .icono-contenido {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: #5FB963; /* Verde Principal */
+}
+
+/* =========================================
+   CONTENIDO (Texto Alineado)
+   ========================================= */
+.contenido-card mat-card-content {
+  flex-grow: 1; /* Empuja el footer hacia abajo */
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.contenido-card mat-card-content p {
+  flex-grow: 0;
+  color: #37474F;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 0;
+  
+  /* Limitar a 4 líneas exactas */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 6.4em;
+}
+
+/* =========================================
+   BOTONES DE ACCIÓN (CORREGIDO Y FORZADO)
+   ========================================= */
+mat-card-actions {
+  padding: 12px 16px !important;
+  border-top: 1px solid #ECEFF1;
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* --- BOTÓN EDITAR (Verde) --- */
+/* Estado Normal */
+button[mat-button]:not([color="warn"]) {
+  color: #5FB963 !important; /* Verde Principal */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Asegurar que el icono también sea verde */
+button[mat-button]:not([color="warn"]) mat-icon {
+  color: #5FB963 !important;
+}
+
+/* Estado Hover (Al pasar el mouse) */
+button[mat-button]:not([color="warn"]):hover {
+  background-color: #388E3C !important; /* Fondo Verde Oscuro */
+  color: #FFFFFF !important; /* Texto Blanco */
+}
+
+button[mat-button]:not([color="warn"]):hover mat-icon {
+  color: #FFFFFF !important; /* Icono Blanco */
+}
+
+
+/* --- BOTÓN ELIMINAR (Rojo) --- */
+/* Estado Normal */
+button[mat-button][color="warn"] {
+  color: #F44336 !important; /* Rojo Alerta */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Asegurar que el icono también sea rojo */
+button[mat-button][color="warn"] mat-icon {
+  color: #F44336 !important;
+}
+
+/* Estado Hover (Al pasar el mouse) */
+button[mat-button][color="warn"]:hover {
+  background-color: #F44336 !important; /* Fondo Rojo */
+  color: #FFFFFF !important; /* Texto Blanco */
+}
+
+button[mat-button][color="warn"]:hover mat-icon {
+  color: #FFFFFF !important; /* Icono Blanco */
+}
+
+/* =========================================
+   PAGINADOR Y MENSAJES
+   ========================================= */
+mat-paginator {
+  background-color: transparent !important;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  color: #37474F;
+}
+
+.no-data-message {
+  text-align: center;
+  padding: 3rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #90A4AE;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  margin-top: 20px;
+  border: 2px dashed #CFD8DC;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 600px) {
+  h2 {
+    font-size: 28px;
+  }
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.search-field {
+  width: 100%;
+  max-width: 500px; /* Que no sea demasiado ancho */
+}
+
+/* Color del borde al enfocar (Verde EcoHabit) */
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-notched-outline__trailing {
+  border-color: #5FB963 !important; /* Variable --eco-green */
+  border-width: 2px;
+}
+
+/* Color de la etiqueta flotante (Verde EcoHabit) */
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #5FB963 !important;
+}
+
+/* Icono de búsqueda */
+mat-icon[matSuffix] {
+  color: #37474F; /* Gris Oscuro */
+}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -14,21 +13,21 @@ import { ContenidoEducativo } from '../../../models/ContenidoEducativo';
 import { Contenidoeducativoservice } from '../../../services/contenidoeducativoservice';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select'; // <-- 1. IMPORTAR SELECT
-import { CommonModule } from '@angular/common'; // <-- 2. IMPORTAR COMMONMODULE
+import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-contenidoeducativoinsert',
-  standalone: true, // <-- 3. ASEGURAR QUE SEA STANDALONE
+  standalone: true,
   imports: [
-    CommonModule, // <-- 4. AÑADIR COMMONMODULE (para @if/@for)
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule, // <-- 5. AÑADIR MATSELECTMODULE
+    MatSelectModule,
     MatOptionModule,
   ],
   templateUrl: './contenidoeducativoinsert.html',
@@ -41,9 +40,7 @@ export class Contenidoeducativoinsert implements OnInit {
   edicion: boolean = false;
   id: number = 0;
 
-  // --- 6. AÑADIR LISTA DE TIPOS ---
   tipos: string[] = ['Lectura', 'Video'];
-  // ---------------------------------
 
   constructor(
     private ceS: Contenidoeducativoservice,
@@ -53,25 +50,20 @@ export class Contenidoeducativoinsert implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((data: Params) => {
-      this.id = data[`id`];
-      this.edicion = data[`id`] != null;
-      this.init();
-    });
-
+    // 1. Configuramos el formulario UNA SOLA VEZ con todas sus validaciones
     this.form = this.formBuilder.group({
-      codigo: [``],
+      codigo: [''],
       titulo: ['', Validators.required],
       tipo: ['', Validators.required],
       url: ['', Validators.required],
-
-      // --- 7. AÑADIR VALIDACIÓN DE MAXLENGTH ---
       descripcion: ['', [Validators.required, Validators.maxLength(255)]],
-      // ----------------------------------------
-
-      // --- 8. AÑADIR FECHA ACTUAL POR DEFECTO ---
       fecha: [new Date(), Validators.required],
-      // ----------------------------------------
+    });
+
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init(); // Si es edición, llenamos los datos
     });
   }
 
@@ -97,24 +89,22 @@ export class Contenidoeducativoinsert implements OnInit {
           });
         });
       }
-      this.router.navigate([`menu/listarcontenidoeducativo`]);
+      this.router.navigate(['menu/listarcontenidoeducativo']);
     }
   }
 
   init() {
     if (this.edicion) {
       this.ceS.listid(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.idContenidoEducativo),
-          titulo: new FormControl(data.titulo),
-          tipo: new FormControl(data.tipo),
-          url: new FormControl(data.url),
-          // --- 9. AÑADIR VALIDACIÓN TAMBIÉN EN MODO EDICIÓN ---
-          descripcion: new FormControl(data.descripcion, [
-            Validators.required,
-            Validators.maxLength(255),
-          ]),
-          fecha: new FormControl(data.fechaPublicacion),
+        // 🔴 CORRECCIÓN: Usamos patchValue para inyectar los valores 
+        // sin borrar las validaciones definidas en ngOnInit
+        this.form.patchValue({
+          codigo: data.idContenidoEducativo,
+          titulo: data.titulo,
+          tipo: data.tipo,
+          url: data.url,
+          descripcion: data.descripcion,
+          fecha: data.fechaPublicacion,
         });
       });
     }

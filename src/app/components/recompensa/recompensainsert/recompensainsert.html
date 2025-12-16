@@ -1,6 +1,11 @@
 <div class="container">
   <br>
-  <div class="titulo"><h2>Registro de Recompensa</h2></div>
+  @if (edicion) {
+    <div class="titulo"><h2>Actualizar Recompensa</h2></div>
+  }
+  @else {
+    <div class="titulo"><h2>Registro de Recompensa</h2></div>
+  }
   <br>
   <div>
     <form [formGroup]="form" (submit)="aceptar()">

@@ -1,0 +1,134 @@
+/* =========================================
+   1. IMPORTACIÓN DE FUENTES (EcoHabit Guide)
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+/* =========================================
+   2. VARIABLES DE DISEÑO (EcoHabit Palette)
+   ========================================= */
+:root {
+  /* Según Cap 4.1.1 del informe */
+  --eco-green: #5FB963;       /* [cite: 562] Verde Principal */
+  --eco-green-dark: #388E3C;  /* [cite: 566] Verde Oscuro (Hover) */
+  --eco-blue: #03A9F4;        /* [cite: 570] Azul Claro */
+  --eco-white: #FFFFFF;       /* [cite: 574] Blanco */
+  --eco-gray-dark: #37474F;   /* [cite: 578] Gris Oscuro */
+  --eco-gray-light: #ECEFF1;  /* [cite: 582] Gris Claro */
+  --eco-red: #F44336;         /* [cite: 586] Rojo Alerta */
+  
+  --border-radius: 12px;
+}
+
+/* =========================================
+   3. ESTRUCTURA DEL CONTENEDOR
+   ========================================= */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: var(--eco-white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+}
+
+/* =========================================
+   4. TIPOGRAFÍA
+   ========================================= */
+h2 {
+  font-family: 'Montserrat', sans-serif; /* [cite: 611] */
+  color: var(--eco-gray-dark);
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* =========================================
+   5. FORMULARIO Y CAMPOS
+   ========================================= */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+}
+
+mat-form-field {
+  width: 100%;
+  font-family: 'Roboto', sans-serif; /* [cite: 612] */
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Color de texto en inputs */
+input.mat-input-element, 
+textarea.mat-input-element {
+  color: var(--eco-gray-dark) !important;
+}
+
+/* =========================================
+   6. BOTÓN PRINCIPAL (CORREGIDO)
+   ========================================= */
+/* Selector específico para el atributo que usaste en el HTML */
+button[matButton="elevated"] {
+  /* Forzamos el color verde principal definido en la guía [cite: 603] */
+  background-color: #5FB963 !important; 
+  color: #FFFFFF !important;
+  
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 32px;
+  border-radius: 8px;
+  margin-top: 25px;
+  width: 100%;
+  border: none;
+  box-shadow: 0 4px 6px rgba(95, 185, 99, 0.3); /* Sombra verdosa suave */
+  transition: all 0.3s ease;
+}
+
+/* Estado Hover (Pasar el mouse) */
+button[matButton="elevated"]:hover {
+  /* Verde Oscuro definido en la guía para hover [cite: 566, 603] */
+  background-color: #388E3C !important; 
+  transform: translateY(-2px); /* Pequeño efecto de elevación */
+  box-shadow: 0 6px 12px rgba(56, 142, 60, 0.4);
+  cursor: pointer;
+}
+
+/* Estado Disabled (Deshabilitado) */
+button[matButton="elevated"]:disabled {
+  background-color: #BDBDBD !important;
+  color: #FFFFFF !important;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   7. MENSAJES Y ERRORES
+   ========================================= */
+mat-error {
+  color: var(--eco-red); /* [cite: 607] */
+  font-size: 12px;
+}
+
+mat-hint {
+  color: #78909C;
+  font-size: 12px;
+}
+
+/* =========================================
+   8. RESPONSIVE
+   ========================================= */
+@media (max-width: 600px) {
+  .container {
+    margin: 15px;
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+}

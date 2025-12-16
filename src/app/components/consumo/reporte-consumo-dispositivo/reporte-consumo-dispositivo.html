@@ -1,0 +1,36 @@
+<div class="reporte-container">
+  
+  <div class="header-row">
+    <div>
+      <h2>Ranking de Consumo</h2>
+      <p class="subtitle">Identifica qué dispositivos están consumiendo más recursos en tu hogar</p>
+    </div>
+  </div>
+
+  <div class="insight-card" *ngIf="maxConsumo > 0">
+    <div class="insight-icon">
+      <mat-icon>warning</mat-icon>
+    </div>
+    <div class="insight-content">
+      <span class="insight-label">Mayor Consumidor</span>
+      <h3 class="insight-value">{{ topDispositivo }}</h3>
+      <p class="insight-sub">{{ maxConsumo | number:'1.2-2' }} unidades acumuladas</p>
+    </div>
+  </div>
+
+  <mat-card class="chart-card">
+    <div class="chart-header">
+      <div class="icon-circle green-bg"><mat-icon>bar_chart</mat-icon></div>
+      <span class="card-title">Comparativa de Dispositivos</span>
+    </div>
+    
+    <div class="chart-wrapper">
+      <canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [type]="barChartType">
+      </canvas>
+    </div>
+  </mat-card>
+
+</div>

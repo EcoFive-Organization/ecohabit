@@ -22,7 +22,7 @@ import { environment } from '../../../../environments/environment';
     MatDividerModule,
     MatButtonModule,
     MatIconModule,
-    NgxPayPalModule, // <--- Importante: Agregar el módulo aquí
+    NgxPayPalModule, // Modulo de PayPal
   ],
   templateUrl: './plansuscripcionlistar.html',
   styleUrl: './plansuscripcionlistar.css',
@@ -34,11 +34,9 @@ export class Plansuscripcionlistar implements OnInit {
   // Variable para controlar qué plan está seleccionando el usuario
   planSeleccionado: PlanSuscripcion | null = null;
 
-  // 🔴 Variable nueva para controlar el estado
+  // Variable nueva para controlar el estado
   esPremium: boolean = false;
 
-  // Simulación del ID logueado (Deberías sacarlo del sessionStorage)
-  // idUsuarioLogueado = 1;
   idUsuarioLogueado: number = 0;
 
   constructor(
@@ -47,20 +45,20 @@ export class Plansuscripcionlistar implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // 🔴 CAMBIO 2: Leer explícitamente el ID que guardó el Login
+    // Leer explícitamente el ID que guardó el Login
     const idStorage = sessionStorage.getItem('idUsuario');
 
-    // LOG PARA DEPURAR (Míralo en la consola del navegador F12)
-    console.log('🔎 Buscando ID en SessionStorage:', idStorage);
+    // LOG PARA DEPURAR
+    console.log('Buscando ID en SessionStorage:', idStorage);
 
     if (idStorage) {
       this.idUsuarioLogueado = parseInt(idStorage);
-      console.log('✅ ID de Usuario cargado:', this.idUsuarioLogueado);
+      console.log('ID de Usuario cargado:', this.idUsuarioLogueado);
 
       // Solo verificamos si tenemos un ID válido
       this.verificarEstadoUsuario();
     } else {
-      console.error("⚠️ No se encontró 'idUsuario' en sessionStorage. ¿Hiciste Login?");
+      console.error("No se encontró 'idUsuario' en sessionStorage. ¿Hiciste Login?");
     }
 
     this.pS.list().subscribe((data) => {
@@ -73,7 +71,7 @@ export class Plansuscripcionlistar implements OnInit {
   verificarEstadoUsuario() {
     // Verificamos el estado del ID real cargado
     console.log(
-      '📡 Preguntando al backend si el usuario ' + this.idUsuarioLogueado + ' es Premium...'
+      'Preguntando al backend si el usuario ' + this.idUsuarioLogueado + ' es Premium...'
     );
 
     this.sS.verificarSuscripcion(this.idUsuarioLogueado).subscribe((activo) => {
@@ -82,7 +80,7 @@ export class Plansuscripcionlistar implements OnInit {
     });
   }
 
-  // 2. Método que se ejecuta al dar clic en "Seleccionar"
+  // Método que se ejecuta al dar clic en "Seleccionar"
   seleccionarPlan(plan: PlanSuscripcion) {
     // 1. Reseteamos todo primero para "matar" cualquier instancia vieja del botón
     this.planSeleccionado = null;
@@ -101,7 +99,7 @@ export class Plansuscripcionlistar implements OnInit {
   // 3. Configuración de la API de PayPal
   private initConfig(plan: PlanSuscripcion): void {
     this.payPalConfig = {
-      currency: 'USD', // O la moneda que hayas configurado en PayPal Sandbox
+      currency: 'USD',
       clientId: environment.paypalClientId, // Lo toma de tu environment
 
       // Esta función crea la suscripción en PayPal
@@ -115,7 +113,7 @@ export class Plansuscripcionlistar implements OnInit {
       onApprove: ((data: any, actions: any) => {
         console.log('Transacción aprobada (Objeto):', data);
 
-        // 🔴 CORRECCIÓN: Usamos orderID como respaldo si subscriptionID no viene
+        // CORRECCIÓN: Usamos orderID como respaldo si subscriptionID no viene
         const idReferencia = data.subscriptionID || data.orderID || data.paymentID;
 
         console.log('ID QUE ENVIAREMOS AL BACKEND:', idReferencia); // Verifica que esto ya no sea undefined
@@ -144,7 +142,7 @@ export class Plansuscripcionlistar implements OnInit {
       return;
     }
 
-    // 🔴 CORRECCIÓN: Objeto Plano (Flat JSON) para coincidir con el nuevo DTO de Java
+    // Objeto Plano (Flat JSON) para coincidir con el nuevo DTO de Java
     const suscripcionDTO = {
       idSuscripcion: 0,
       fechaInicio: new Date(),
@@ -152,7 +150,7 @@ export class Plansuscripcionlistar implements OnInit {
       estado: 'ACTIVA',
       paypalSuscripcionId: paypalSubId,
 
-      // ✅ ENVIAMOS SOLO LOS IDs (enteros), YA NO OBJETOS {}
+      // ENVIAMOS SOLO LOS IDs (enteros), YA NO OBJETOS {}
       idUsuario: this.idUsuarioLogueado, // Usamos la variable que capturamos del login
       idPlanSuscripcion: plan.idPlanSuscripcion,
     };

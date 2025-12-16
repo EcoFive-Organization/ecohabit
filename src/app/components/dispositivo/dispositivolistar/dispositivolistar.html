@@ -114,3 +114,16 @@
   </div>
 
 </div>
+
+<ng-template #confirmDialog>
+  <h2 mat-dialog-title>Confirmar Eliminación</h2>
+  <mat-dialog-content>
+    <p>¿Estás seguro de que deseas eliminar este dispositivo?</p>
+    <p style="font-size: 0.9em; color: #78909C;">Esta acción no se puede deshacer.</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    
+    <button mat-flat-button color="warn" [mat-dialog-close]="true">Eliminar</button>
+  </mat-dialog-actions>
+</ng-template>

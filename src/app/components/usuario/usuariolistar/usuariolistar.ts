@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core'; // 🟢 Importar TemplateRef
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Usuario } from '../../../models/Usuario';
 import { Usuarioservice } from '../../../services/usuarioservice';
@@ -9,6 +9,9 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+// 🟢 Importar MatDialog y MatDialogModule
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuariolistar',
@@ -21,6 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
+    MatDialogModule // 🟢 Asegúrate de importar el módulo aquí
   ],
   templateUrl: './usuariolistar.html',
   styleUrl: './usuariolistar.css',
@@ -29,10 +33,16 @@ export class Usuariolistar implements OnInit {
   dataSource: MatTableDataSource<Usuario> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
+  // 🟢 Capturamos la plantilla del diálogo desde el HTML
+  @ViewChild('confirmDialog') confirmDialog!: TemplateRef<any>;
 
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4'];
 
-  constructor(private uU: Usuarioservice) {}
+  constructor(
+    private uU: Usuarioservice,
+    private dialog: MatDialog // 🟢 Inyectamos MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.cargarDatos()
@@ -52,7 +62,6 @@ export class Usuariolistar implements OnInit {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
 
-    // Configuración del Filtro: Busca por nombre, email o ID
     this.dataSource.filterPredicate = (data: Usuario, filter: string) => {
       const nombre = data.nombre?.toLowerCase() || '';
       const email = data.email?.toLowerCase() || '';
@@ -62,7 +71,6 @@ export class Usuariolistar implements OnInit {
     };
   }
 
-  // Método para aplicar el filtro (HTML input)
   filtrar(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -71,15 +79,23 @@ export class Usuariolistar implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  // Metodo eliminar, primero elimina y luego muestra la lista actualizada
+
+  // 🟢 MÉTODO ELIMINAR MEJORADO CON MAT-DIALOG
   eliminar(id: number) {
-    const confirmacion = globalThis.confirm('¿Estás seguro de eliminar este registro');
-    if (confirmacion) {
-      this.uU.delete(id).subscribe(() => {
-        this.uU.list().subscribe((data) => {
-          this.uU.setList(data);
+    // Abrimos el diálogo usando la plantilla local
+    const dialogRef = this.dialog.open(this.confirmDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        // El usuario confirmó la eliminación
+        this.uU.delete(id).subscribe(() => {
+          // Refrescamos la lista
+          this.uU.list().subscribe((data) => {
+            this.uU.setList(data);
+            this.procesarDatos(data); // Actualizamos la tabla visualmente
+          });
         });
-      });
-    }
+      }
+    });
   }
 }

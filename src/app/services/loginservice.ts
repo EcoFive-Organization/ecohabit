@@ -51,4 +51,8 @@ export class Loginservice {
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.id; // Asegúrate que en tu Backend el claim se llame "id"
   }
+
+  logout() {
+    return this.http.post(`${base_url}/logout`, {});
+  }
 }
