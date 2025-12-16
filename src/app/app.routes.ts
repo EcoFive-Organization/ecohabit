@@ -71,7 +71,7 @@ export const routes: Routes = [
           // Los dos puntos indican que es una variable
           { path: 'edits/:id', component: Foroinsert },
         ],
-        canActivate: [seguridadGuard],
+        //canActivate: [seguridadGuard],
       },
       // Recompensa
       {
@@ -193,6 +193,6 @@ export const routes: Routes = [
       }
 
     ],
-    canActivate: [seguridadGuard],
+    //canActivate: [seguridadGuard],
   },
 ];

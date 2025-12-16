@@ -62,15 +62,21 @@ export class Menu implements OnInit {
     });
   }
 
-  // 🟢 MÉTODO 2: Ejecuta el cierre real
+  // 2. Ejecuta el logout en Backend y luego limpia Frontend
   cerrarSesion() {
-    sessionStorage.clear();
-    this.router.navigate(['login']);
-  }
-
-  // Método antiguo (ya no se usa directamente desde el HTML, pero se mantiene la lógica dentro de cerrarSesion)
-  cerrar() {
-    sessionStorage.clear();
+    this.loginService.logout().subscribe({
+      next: () => {
+        console.log("Token invalidado en el servidor correctamente.");
+      },
+      error: (err) => {
+        console.error("Error al invalidar token (posiblemente ya expiró), cerrando sesión localmente.", err);
+      },
+      complete: () => {
+        // Se ejecuta siempre, haya error o éxito
+        sessionStorage.clear();
+        this.router.navigate(['login']);
+      }
+    });
   }
 
   verificar() {
